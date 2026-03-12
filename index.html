@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validador de SKUs - ContentStack</title>
-     <!-- FAVICON SVG DE CHECK/VALIDAR -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
         %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E
         %3Ccircle cx='50' cy='50' r='48' fill='%2300b894'/%3E
-        %3Cpath d='M25 52 L42 68 L75 35' stroke='white' stroke-width='10' 
+        %3Cpath d='M25 52 L42 68 L75 35' stroke='white' stroke-width='10'
         fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E
         %3C/svg%3E">
     <style>
@@ -27,7 +26,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
         }
 
@@ -47,7 +46,7 @@
             font-size: 0.9em;
         }
 
-        /* ---- PASO 1: CONFIGURACIÓN ---- */
+        /* ---- STEPS ---- */
         .step {
             background-color: #1a1a2e;
             border-radius: 14px;
@@ -81,7 +80,6 @@
             font-size: 1.1em;
         }
 
-        /* Canal selector */
         .channel-selector {
             display: flex;
             gap: 15px;
@@ -112,7 +110,6 @@
             color: white;
         }
 
-        /* File upload */
         .file-upload {
             display: flex;
             gap: 10px;
@@ -167,10 +164,15 @@
             border: 1px solid rgba(233, 69, 96, 0.2);
         }
 
-        /* Carruseles detectados */
         .detected-carousels {
             display: none;
             margin-top: 15px;
+        }
+
+        .detected-carousels h3 {
+            color: #6c5ce7;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
 
         .detected-card {
@@ -179,6 +181,10 @@
             padding: 12px;
             margin-bottom: 8px;
             border-left: 3px solid #6c5ce7;
+        }
+
+        .detected-card.popup-card {
+            border-left-color: #e94560;
         }
 
         .detected-card h4 {
@@ -200,7 +206,44 @@
             margin-bottom: 4px;
         }
 
-        /* ---- PASO 2: EXCEL ---- */
+        /* ---- POPUP SECTION ---- */
+        .popup-section {
+            background-color: #1a1a2e;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e9456040;
+        }
+
+        .popup-section .section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .popup-section .section-label h3 {
+            color: #e94560;
+            font-size: 1em;
+        }
+
+        .popup-section .section-label .badge {
+            background-color: #e9456030;
+            color: #e94560;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .popup-section .card-id {
+            color: #555;
+            font-size: 0.7em;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ---- EXCEL GRID ---- */
         .excel-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -229,7 +272,7 @@
 
         textarea {
             width: 100%;
-            height: 200px;
+            height: 180px;
             background-color: #0a0a1a;
             border: 1px solid #2a2a4a;
             border-radius: 6px;
@@ -249,6 +292,10 @@
             color: #333;
         }
 
+        textarea.popup-textarea {
+            height: 80px;
+        }
+
         .counter {
             text-align: right;
             font-size: 0.7em;
@@ -256,7 +303,7 @@
             margin-top: 3px;
         }
 
-        /* ---- BOTONES ---- */
+        /* ---- BUTTONS ---- */
         .btn-container {
             display: flex;
             justify-content: center;
@@ -284,12 +331,6 @@
             transform: translateY(-2px);
         }
 
-        .btn-validate:disabled {
-            background-color: #444;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .btn-clear {
             background-color: #2a2a4a;
             color: #aaa;
@@ -300,7 +341,7 @@
             color: #fff;
         }
 
-        /* ---- RESULTADOS ---- */
+        /* ---- RESULTS ---- */
         .results-container {
             display: none;
         }
@@ -350,7 +391,7 @@
 
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -360,6 +401,10 @@
             border-radius: 12px;
             padding: 15px;
             border: 1px solid #2a2a4a;
+        }
+
+        .result-card.popup-result {
+            border-color: #e9456050;
         }
 
         .result-card-header {
@@ -372,12 +417,12 @@
         }
 
         .result-card-header h4 {
-            font-size: 0.9em;
+            font-size: 0.85em;
         }
 
         .result-card-header .mini-stats {
             margin-left: auto;
-            font-size: 0.7em;
+            font-size: 0.65em;
             color: #888;
         }
 
@@ -386,7 +431,7 @@
         }
 
         .result-section-header {
-            font-size: 0.78em;
+            font-size: 0.75em;
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -408,7 +453,7 @@
             margin: 2px 0;
             border-radius: 4px;
             font-family: 'Courier New', monospace;
-            font-size: 0.75em;
+            font-size: 0.72em;
         }
 
         .result-list.correct li {
@@ -466,7 +511,13 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
             .excel-grid, .results-grid {
                 grid-template-columns: 1fr;
             }
@@ -480,22 +531,19 @@
             <p>Importa el JSON de ContentStack + Pega los SKUs del Excel</p>
         </div>
 
-        <!-- PASO 1 -->
+        <!-- PASO 1: JSON -->
         <div class="step">
             <div class="step-header">
                 <div class="step-number">1</div>
                 <h2>Importar JSON de ContentStack</h2>
             </div>
-
             <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
                 Selecciona el canal y sube el archivo JSON exportado del home
             </p>
-
             <div class="channel-selector">
                 <button class="channel-btn active" onclick="setChannel('store', this)">🏬 Tienda</button>
-                <button class="channel-btn" onclick="setChannel('web', this)"">🌐 .COM</button>
+                <button class="channel-btn" onclick="setChannel('web', this)">🌐 .COM</button>
             </div>
-
             <div class="file-upload">
                 <label>
                     📂 Seleccionar archivo JSON
@@ -503,39 +551,51 @@
                 </label>
                 <span class="file-name" id="fileName">Ningún archivo seleccionado</span>
             </div>
-
             <div class="file-status" id="fileStatus"></div>
-
             <div class="detected-carousels" id="detectedCarousels"></div>
         </div>
 
-        <!-- PASO 2 -->
+        <!-- PASO 2: POPUP -->
         <div class="step">
             <div class="step-header">
                 <div class="step-number">2</div>
                 <h2>Pegar SKUs del Excel</h2>
             </div>
             <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
-                Pega los SKUs de cada tabla del Excel (uno por línea, las comas se quitan automáticamente)
+                Pega los SKUs de cada sección (uno por línea, las comas se quitan automáticamente)
             </p>
 
-            <div class="excel-grid" id="excelGrid">
+            <!-- POPUP -->
+            <div class="popup-section">
+                <div class="section-label">
+                    <h3>🔔 Popup Oferta del Día</h3>
+                    <span class="badge">POPUP</span>
+                </div>
+                <div class="card-id">popupOfertaDelDia</div>
+                <textarea id="excel-popup" class="popup-textarea"
+                    placeholder="Pega los SKUs del popup aquí...&#10;PM-9389043&#10;PR-3783422"
+                    oninput="updateCounter('excel-popup', 'count-popup')"></textarea>
+                <div class="counter"><span id="count-popup">0</span> SKUs</div>
+            </div>
+
+            <!-- CARRUSELES -->
+            <div class="excel-grid">
                 <div class="excel-card">
-                    <h4>📗 Carrusel 1</h4>
+                    <h4>🎠 Carrusel 1</h4>
                     <div class="card-id">carruselOfertaDelDia</div>
-                    <textarea id="excel-0" placeholder="Pega los SKUs aquí..." oninput="updateCounter(0)"></textarea>
+                    <textarea id="excel-0" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-0', 'count-0')"></textarea>
                     <div class="counter"><span id="count-0">0</span> SKUs</div>
                 </div>
                 <div class="excel-card">
-                    <h4>📗 Carrusel 2</h4>
+                    <h4>🎠 Carrusel 2</h4>
                     <div class="card-id">carruselEligeTuFavorito</div>
-                    <textarea id="excel-1" placeholder="Pega los SKUs aquí..." oninput="updateCounter(1)"></textarea>
+                    <textarea id="excel-1" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-1', 'count-1')"></textarea>
                     <div class="counter"><span id="count-1">0</span> SKUs</div>
                 </div>
                 <div class="excel-card">
-                    <h4>📗 Carrusel 3</h4>
+                    <h4>🎠 Carrusel 3</h4>
                     <div class="card-id">carruselLosMasBuscados</div>
-                    <textarea id="excel-2" placeholder="Pega los SKUs aquí..." oninput="updateCounter(2)"></textarea>
+                    <textarea id="excel-2" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-2', 'count-2')"></textarea>
                     <div class="counter"><span id="count-2">0</span> SKUs</div>
                 </div>
             </div>
@@ -543,7 +603,7 @@
 
         <!-- BOTONES -->
         <div class="btn-container">
-            <button class="btn btn-validate" id="btnValidate" onclick="validate()">🔍 VALIDAR SKUs</button>
+            <button class="btn btn-validate" onclick="validate()">🔍 VALIDAR SKUs</button>
             <button class="btn btn-clear" onclick="clearAll()">🗑️ LIMPIAR TODO</button>
         </div>
 
@@ -553,7 +613,6 @@
                 <h2>📊 Resultados de Validación</h2>
                 <p style="color:#888; font-size:0.8em; margin-top:5px;" id="resultsSubtitle"></p>
             </div>
-
             <div class="global-summary">
                 <div class="global-card correct">
                     <div class="number" id="gCorrect">0</div>
@@ -572,7 +631,6 @@
                     <div class="label">🔄 Duplicados</div>
                 </div>
             </div>
-
             <div class="results-grid" id="resultsGrid"></div>
             <div id="statusBar" class="status-bar"></div>
         </div>
@@ -580,23 +638,46 @@
 
     <script>
         // =====================
-        // CONFIGURACIÓN
+        // CONFIGURACIÓN DE COMPONENTES
         // =====================
-        const CAROUSEL_IDS = [
-            'carruselOfertaDelDia',
-            'carruselEligeTuFavorito',
-            'carruselLosMasBuscados'
-        ];
-
-        const CAROUSEL_NAMES = [
-            'Oferta del Día',
-            'Elige tu Favorito',
-            'Los Más Buscados'
+        const COMPONENTS = [
+            {
+                id: 'popupOfertaDelDia',
+                name: 'Popup Oferta del Día',
+                icon: '🔔',
+                type: 'popup',
+                textareaId: 'excel-popup',
+                counterId: 'count-popup'
+            },
+            {
+                id: 'carruselOfertaDelDia',
+                name: 'Oferta del Día',
+                icon: '🎠',
+                type: 'carousel',
+                textareaId: 'excel-0',
+                counterId: 'count-0'
+            },
+            {
+                id: 'carruselEligeTuFavorito',
+                name: 'Elige tu Favorito',
+                icon: '🎠',
+                type: 'carousel',
+                textareaId: 'excel-1',
+                counterId: 'count-1'
+            },
+            {
+                id: 'carruselLosMasBuscados',
+                name: 'Los Más Buscados',
+                icon: '🎠',
+                type: 'carousel',
+                textareaId: 'excel-2',
+                counterId: 'count-2'
+            }
         ];
 
         let selectedChannel = 'store';
         let jsonData = null;
-        let cmsCarousels = []; // SKUs extraídos del JSON
+        let cmsComponents = [];
 
         // =====================
         // CANAL
@@ -605,11 +686,7 @@
             selectedChannel = channel;
             document.querySelectorAll('.channel-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            // Re-procesar si ya hay JSON cargado
-            if (jsonData) {
-                processJSON(jsonData);
-            }
+            if (jsonData) processJSON(jsonData);
         }
 
         // =====================
@@ -618,7 +695,6 @@
         function loadJSON(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             document.getElementById('fileName').textContent = file.name;
 
             const reader = new FileReader();
@@ -627,7 +703,7 @@
                     jsonData = JSON.parse(e.target.result);
                     processJSON(jsonData);
                 } catch (err) {
-                    showFileStatus('error', '❌ Error al leer el JSON. Asegúrate de que sea un archivo válido.');
+                    showFileStatus('error', '❌ Error al leer el JSON. Verifica que sea válido.');
                 }
             };
             reader.readAsText(file);
@@ -638,23 +714,21 @@
         // =====================
         function processJSON(data) {
             const components = data.component || data.components || [];
-            cmsCarousels = [];
+            cmsComponents = [];
 
             if (!components || components.length === 0) {
-                showFileStatus('error', '❌ No se encontró el array "component" en el JSON.');
+                showFileStatus('error', '❌ No se encontró "component" en el JSON.');
                 return;
             }
 
-            // Buscar los 3 carruseles por component_id
-            CAROUSEL_IDS.forEach((id, index) => {
+            COMPONENTS.forEach((config) => {
                 let found = false;
 
                 for (const comp of components) {
-                    if (comp.product_carousel && comp.product_carousel.component_id === id) {
+                    if (comp.product_carousel && comp.product_carousel.component_id === config.id) {
                         const products = comp.product_carousel.products || [];
-                        cmsCarousels.push({
-                            id: id,
-                            name: CAROUSEL_NAMES[index],
+                        cmsComponents.push({
+                            ...config,
                             skus: products.map(p => p.trim().toUpperCase())
                         });
                         found = true;
@@ -663,37 +737,34 @@
                 }
 
                 if (!found) {
-                    cmsCarousels.push({
-                        id: id,
-                        name: CAROUSEL_NAMES[index],
-                        skus: []
-                    });
+                    cmsComponents.push({ ...config, skus: [] });
                 }
             });
 
-            // Mostrar carruseles detectados
             displayDetected();
-
-            const totalSkus = cmsCarousels.reduce((sum, c) => sum + c.skus.length, 0);
+            const totalSkus = cmsComponents.reduce((sum, c) => sum + c.skus.length, 0);
             const channelName = selectedChannel === 'store' ? 'Tienda' : '.COM';
             showFileStatus('success',
-                `✅ JSON cargado (${channelName}). Se encontraron ${cmsCarousels.length} carruseles con ${totalSkus} SKUs en total.`
+                `✅ JSON cargado (${channelName}). ${cmsComponents.length} componentes con ${totalSkus} SKUs en total.`
             );
         }
 
         // =====================
-        // MOSTRAR CARRUSELES DETECTADOS
+        // MOSTRAR DETECTADOS
         // =====================
         function displayDetected() {
             const container = document.getElementById('detectedCarousels');
             container.style.display = 'block';
-            container.innerHTML = '<h3 style="color:#6c5ce7; font-size:0.9em; margin-bottom:10px;">📦 Carruseles detectados en el JSON:</h3>';
+            container.innerHTML = '<h3>📦 Componentes detectados en el JSON:</h3>';
 
-            cmsCarousels.forEach((c, i) => {
+            cmsComponents.forEach((c) => {
                 const card = document.createElement('div');
-                card.className = 'detected-card';
+                card.className = `detected-card ${c.type === 'popup' ? 'popup-card' : ''}`;
                 card.innerHTML = `
-                    <h4>🎠 ${c.name} <span style="color:#555; font-weight:normal;">(${c.id})</span></h4>
+                    <h4>${c.icon} ${c.name}
+                        <span style="color:#555; font-weight:normal;">(${c.id})</span>
+                        ${c.type === 'popup' ? '<span style="background:#e9456030;color:#e94560;padding:2px 8px;border-radius:10px;font-size:0.7em;margin-left:6px;">POPUP</span>' : ''}
+                    </h4>
                     <div class="sku-count">${c.skus.length} SKUs encontrados</div>
                     <div class="sku-preview">${c.skus.join(', ') || 'Sin SKUs'}</div>
                 `;
@@ -702,7 +773,7 @@
         }
 
         // =====================
-        // FILE STATUS
+        // UTILIDADES
         // =====================
         function showFileStatus(type, message) {
             const el = document.getElementById('fileStatus');
@@ -711,18 +782,12 @@
             el.style.display = 'block';
         }
 
-        // =====================
-        // COUNTER
-        // =====================
-        function updateCounter(index) {
-            const text = document.getElementById(`excel-${index}`).value.trim();
+        function updateCounter(textareaId, counterId) {
+            const text = document.getElementById(textareaId).value.trim();
             const items = text ? text.split('\n').filter(i => i.trim() !== '') : [];
-            document.getElementById(`count-${index}`).textContent = items.length;
+            document.getElementById(counterId).textContent = items.length;
         }
 
-        // =====================
-        // PARSEAR LISTA EXCEL
-        // =====================
         function parseExcel(text) {
             return text
                 .split('\n')
@@ -734,7 +799,7 @@
         // VALIDAR
         // =====================
         function validate() {
-            if (cmsCarousels.length === 0) {
+            if (cmsComponents.length === 0) {
                 alert('⚠️ Primero importa el archivo JSON de ContentStack.');
                 return;
             }
@@ -745,19 +810,17 @@
             const resultsGrid = document.getElementById('resultsGrid');
             resultsGrid.innerHTML = '';
 
-            for (let i = 0; i < CAROUSEL_IDS.length; i++) {
-                const excelText = document.getElementById(`excel-${i}`).value;
-                const cms = cmsCarousels[i];
+            cmsComponents.forEach((cms) => {
+                const excelText = document.getElementById(cms.textareaId).value;
 
                 if (!excelText.trim()) {
-                    resultsGrid.innerHTML += buildEmptyResult(i, cms);
-                    continue;
+                    resultsGrid.innerHTML += buildEmptyResult(cms);
+                    return;
                 }
 
                 const excelList = parseExcel(excelText);
                 const cmsList = cms.skus;
 
-                // Validaciones
                 const correct = excelList.filter(item => cmsList.includes(item));
                 const missing = excelList.filter(item => !cmsList.includes(item));
                 const extra = cmsList.filter(item => !excelList.includes(item));
@@ -778,10 +841,9 @@
                 totalExtra += extra.length;
                 totalDuplicate += dupCount;
 
-                resultsGrid.innerHTML += buildResultCard(i, cms, isPerfect, excelList.length, cmsList.length, correct, missing, extra, duplicates);
-            }
+                resultsGrid.innerHTML += buildResultCard(cms, isPerfect, excelList.length, cmsList.length, correct, missing, extra, duplicates);
+            });
 
-            // Totales
             document.getElementById('gCorrect').textContent = totalCorrect;
             document.getElementById('gMissing').textContent = totalMissing;
             document.getElementById('gExtra').textContent = totalExtra;
@@ -793,7 +855,7 @@
             const statusBar = document.getElementById('statusBar');
             if (allPerfect) {
                 statusBar.className = 'status-bar success';
-                statusBar.textContent = '🎉 ¡PERFECTO! Todos los SKUs están correctos en los 3 carruseles.';
+                statusBar.textContent = '🎉 ¡PERFECTO! Todos los SKUs están correctos en los 4 componentes.';
             } else {
                 let errors = [];
                 if (totalMissing > 0) errors.push(`${totalMissing} faltante(s)`);
@@ -810,16 +872,16 @@
         // =====================
         // BUILD RESULT CARD
         // =====================
-        function buildResultCard(index, cms, isPerfect, excelCount, cmsCount, correct, missing, extra, duplicates) {
+        function buildResultCard(cms, isPerfect, excelCount, cmsCount, correct, missing, extra, duplicates) {
             const dupKeys = Object.keys(duplicates);
+            const isPopup = cms.type === 'popup';
             let html = `
-                <div class="result-card" style="border-color: ${isPerfect ? '#00b894' : '#e94560'}">
+                <div class="result-card ${isPopup ? 'popup-result' : ''}" style="border-color: ${isPerfect ? '#00b894' : '#e94560'}">
                     <div class="result-card-header">
                         <span>${isPerfect ? '✅' : '❌'}</span>
-                        <h4>${cms.name}</h4>
+                        <h4>${cms.icon} ${cms.name}</h4>
                         <span class="mini-stats">Excel: ${excelCount} | CMS: ${cmsCount}</span>
-                    </div>
-            `;
+                    </div>`;
 
             if (correct.length > 0) {
                 html += `<div class="result-section">
@@ -827,66 +889,57 @@
                     <ul class="result-list correct">${correct.map(s => `<li>✔ ${s}</li>`).join('')}</ul>
                 </div>`;
             }
-
             if (missing.length > 0) {
                 html += `<div class="result-section">
                     <div class="result-section-header missing">❌ En Excel pero NO en CMS (${missing.length})</div>
                     <ul class="result-list missing">${missing.map(s => `<li>✖ ${s}</li>`).join('')}</ul>
                 </div>`;
             }
-
             if (extra.length > 0) {
                 html += `<div class="result-section">
                     <div class="result-section-header extra">⚠️ En CMS pero NO en Excel (${extra.length})</div>
                     <ul class="result-list extra">${extra.map(s => `<li>⚠ ${s}</li>`).join('')}</ul>
                 </div>`;
             }
-
             if (dupKeys.length > 0) {
                 html += `<div class="result-section">
                     <div class="result-section-header duplicate">🔄 Duplicados (${dupKeys.length})</div>
                     <ul class="result-list duplicate">${dupKeys.map(s => `<li>🔄 ${s} (${duplicates[s]}x)</li>`).join('')}</ul>
                 </div>`;
             }
-
             if (isPerfect) {
                 html += `<p class="perfect-msg">🎉 Todo correcto</p>`;
             }
-
             html += `</div>`;
             return html;
         }
 
-        // =====================
-        // EMPTY RESULT
-        // =====================
-        function buildEmptyResult(index, cms) {
+        function buildEmptyResult(cms) {
             return `
-                <div class="result-card">
+                <div class="result-card ${cms.type === 'popup' ? 'popup-result' : ''}">
                     <div class="result-card-header">
                         <span>⏭️</span>
-                        <h4>${cms.name}</h4>
+                        <h4>${cms.icon} ${cms.name}</h4>
                     </div>
                     <p class="perfect-msg" style="color:#555;">Sin datos del Excel</p>
-                </div>
-            `;
+                </div>`;
         }
 
         // =====================
         // LIMPIAR
         // =====================
         function clearAll() {
-            for (let i = 0; i < 3; i++) {
-                document.getElementById(`excel-${i}`).value = '';
-                document.getElementById(`count-${i}`).textContent = '0';
-            }
+            COMPONENTS.forEach(c => {
+                document.getElementById(c.textareaId).value = '';
+                document.getElementById(c.counterId).textContent = '0';
+            });
             document.getElementById('resultsContainer').style.display = 'none';
             document.getElementById('detectedCarousels').style.display = 'none';
             document.getElementById('fileStatus').style.display = 'none';
             document.getElementById('fileName').textContent = 'Ningún archivo seleccionado';
             document.getElementById('jsonFile').value = '';
             jsonData = null;
-            cmsCarousels = [];
+            cmsComponents = [];
         }
     </script>
 </body>
