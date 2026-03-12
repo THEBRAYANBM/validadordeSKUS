@@ -18,27 +18,23 @@
         .header h1{color:#e94560;font-size:2em;margin-bottom:5px}
         .header p{color:#666;font-size:.85em}
 
-        /* TABS */
         .main-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
         .main-tab{padding:10px 20px;border-radius:8px;border:2px solid #2a2a4a;background:#1a1a2e;color:#888;cursor:pointer;font-size:.85em;font-weight:bold;transition:.3s}
         .main-tab:hover{border-color:#6c5ce7;color:#fff}
         .main-tab.active{border-color:#6c5ce7;background:#6c5ce7;color:#fff}
         .tab-content{display:none}.tab-content.active{display:block}
 
-        /* STEPS */
         .step{background:#1a1a2e;border-radius:12px;padding:18px;margin-bottom:15px;border:1px solid #2a2a4a}
         .step-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
         .step-number{background:#6c5ce7;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.8em;flex-shrink:0}
         .step-header h2{font-size:1em}
         .hint{color:#888;font-size:.75em;margin-bottom:10px}
 
-        /* CHANNEL */
         .channel-selector{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
         .channel-btn{padding:10px 25px;border-radius:8px;border:2px solid #2a2a4a;background:#12122a;color:#888;cursor:pointer;font-size:.9em;font-weight:bold;transition:.3s}
         .channel-btn:hover{border-color:#6c5ce7;color:#fff}
         .channel-btn.active{border-color:#6c5ce7;background:#6c5ce7;color:#fff}
 
-        /* FILE */
         .file-upload{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
         .file-upload label{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#0f3460;border-radius:8px;cursor:pointer;transition:.3s;font-size:.85em}
         .file-upload label:hover{background:#1a4a80}
@@ -53,7 +49,6 @@
         .det-card .det-title{color:#fdcb6e;font-weight:600}
         .det-card .det-info{color:#888;margin-top:2px}
 
-        /* SECTIONS */
         .section-box{background:#1a1a2e;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #2a2a4a}
         .section-label{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
         .section-label h3{font-size:.95em}
@@ -62,7 +57,6 @@
         .badge-slider{background:#0984e330;color:#0984e3}
         .badge-banner{background:#fdcb6e30;color:#fdcb6e}
         .badge-dept{background:#00b89430;color:#00b894}
-        .badge-sku{background:#6c5ce730;color:#6c5ce7}
         .badge-opt{background:#55555530;color:#aaa}
         .card-id{color:#555;font-size:.65em;margin-bottom:6px;font-family:'Courier New',monospace}
 
@@ -82,13 +76,11 @@
         .sub-card h4.c-yellow{color:#fdcb6e}
         .sub-card h4.c-blue{color:#0984e3}
         .sub-card h4.c-purple{color:#6c5ce7}
-        .sub-card h4.c-red{color:#e94560}
 
         .options-row{display:flex;gap:15px;margin-bottom:10px;flex-wrap:wrap}
         .opt-label{display:flex;align-items:center;gap:5px;font-size:.8em;color:#aaa}
         .opt-label input[type="checkbox"]{accent-color:#6c5ce7;width:15px;height:15px}
 
-        /* BUTTONS */
         .btn-container{display:flex;justify-content:center;gap:10px;margin:20px 0}
         .btn{border:none;padding:12px 40px;font-size:.95em;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
         .btn-validate{background:#e94560;color:#fff}
@@ -96,7 +88,6 @@
         .btn-clear{background:#2a2a4a;color:#aaa}
         .btn-clear:hover{background:#3a3a5a;color:#fff}
 
-        /* RESULTS */
         .results-container{display:none}
         .results-header{text-align:center;margin-bottom:15px}
         .results-header h2{color:#e94560;font-size:1.3em}
@@ -119,8 +110,8 @@
         .r-header.extra{color:#fdcb6e}
         .r-header.dup{color:#6c5ce7}
 
-        .r-list{list-style:none;padding:0;max-height:150px;overflow-y:auto}
-        .r-list li{padding:3px 8px;margin:2px 0;border-radius:4px;font-family:'Courier New',monospace;font-size:.7em}
+        .r-list{list-style:none;padding:0;max-height:200px;overflow-y:auto}
+        .r-list li{padding:4px 8px;margin:2px 0;border-radius:4px;font-family:'Courier New',monospace;font-size:.7em;word-break:break-all}
         .r-list.correct li{background:rgba(0,184,148,.08);border-left:3px solid #00b894;color:#00b894}
         .r-list.missing li{background:rgba(233,69,96,.08);border-left:3px solid #e94560;color:#e94560}
         .r-list.extra li{background:rgba(253,203,110,.08);border-left:3px solid #fdcb6e;color:#fdcb6e}
@@ -132,6 +123,11 @@
         .order-table tr.row-ok td{color:#00b894}
         .order-table tr.row-bad td{color:#e94560;background:rgba(233,69,96,.05)}
 
+        .match-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.6em;margin-left:4px}
+        .match-tag.exact{background:#00b89420;color:#00b894}
+        .match-tag.partial{background:#fdcb6e20;color:#fdcb6e}
+        .match-tag.none{background:#e9456020;color:#e94560}
+
         .perfect-msg{text-align:center;color:#00b894;font-size:.8em;padding:8px}
         .status-bar{text-align:center;padding:12px;border-radius:8px;font-weight:bold;font-size:.95em;margin-top:15px}
         .status-bar.success{background:rgba(0,184,148,.1);color:#00b894;border:1px solid rgba(0,184,148,.3)}
@@ -140,7 +136,6 @@
         ::-webkit-scrollbar{width:5px}
         ::-webkit-scrollbar-track{background:transparent}
         ::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:3px}
-
         @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
     </style>
 </head>
@@ -151,19 +146,15 @@
         <p>Valida todos los componentes del Home</p>
     </div>
 
-    <!-- TABS -->
     <div class="main-tabs">
         <button class="main-tab active" onclick="switchTab('skus',this)">🛒 SKUs</button>
         <button class="main-tab" onclick="switchTab('sliders',this)">🖼️ Sliders/Banners</button>
         <button class="main-tab" onclick="switchTab('depts',this)">🏷️ Iconografía</button>
     </div>
 
-    <!-- PASO 1: JSON -->
+    <!-- PASO 1 JSON -->
     <div class="step">
-        <div class="step-header">
-            <div class="step-number">1</div>
-            <h2>Importar JSON de ContentStack</h2>
-        </div>
+        <div class="step-header"><div class="step-number">1</div><h2>Importar JSON de ContentStack</h2></div>
         <div class="channel-selector">
             <button class="channel-btn active" onclick="setChannel('store',this)">🏬 Tienda</button>
             <button class="channel-btn" onclick="setChannel('web',this)">🌐 .COM</button>
@@ -176,19 +167,17 @@
         <div class="detected" id="detected"></div>
     </div>
 
-    <!-- ========== TAB: SKUs ========== -->
+    <!-- TAB SKUs -->
     <div class="tab-content active" id="tab-skus">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Pegar SKUs del Excel</h2></div>
             <p class="hint">Uno por línea. Las comas se eliminan automáticamente.</p>
-
             <div class="section-box" style="border-color:#e9456040">
                 <div class="section-label"><h3 style="color:#e94560">🔔 Popup Oferta del Día</h3><span class="badge badge-popup">POPUP</span></div>
                 <div class="card-id">popupOfertaDelDia</div>
                 <textarea id="excel-popup" class="small" placeholder="PM-9389043&#10;PR-3783422" oninput="uc('excel-popup','c-popup')"></textarea>
                 <div class="counter"><span id="c-popup">0</span> SKUs</div>
             </div>
-
             <div class="grid-3">
                 <div class="sub-card"><h4 class="c-green">🎠 Carrusel 1</h4><div class="card-id">carruselOfertaDelDia</div>
                     <textarea id="excel-c0" placeholder="Pega SKUs..." oninput="uc('excel-c0','c-c0')"></textarea><div class="counter"><span id="c-c0">0</span></div></div>
@@ -205,36 +194,37 @@
         <div class="results-container" id="skuRes"></div>
     </div>
 
-    <!-- ========== TAB: SLIDERS/BANNERS ========== -->
+    <!-- TAB SLIDERS/BANNERS -->
     <div class="tab-content" id="tab-sliders">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Sliders y Banners</h2></div>
-            <p class="hint">Las URLs se convierten automáticamente: se elimina <code>https://www.coppel.com</code></p>
+            <p class="hint">URLs: se elimina automáticamente <code>https://www.coppel.com</code> | ALTs: se buscan por contenido, no por orden</p>
 
-            <!-- SLIDER PRINCIPAL - ORDEN -->
+            <!-- SLIDER ORDEN -->
             <div class="section-box" style="border-color:#0984e340">
-                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - Orden</h3><span class="badge badge-slider">SLIDER</span></div>
-                <div class="card-id">sliderPrincipal (dentro de sliderBannerPromo)</div>
-                <p class="hint">Pega el orden de los sliders como te lo mandan por correo (uno por línea)</p>
-                <textarea id="slider-order" class="small" placeholder="Mi Look&#10;Muebles de Jardín&#10;Línea Blanca&#10;Feria del Hogar&#10;MacBook Neo&#10;Automotriz&#10;Adidas" oninput="uc('slider-order','c-so')"></textarea>
-                <div class="counter"><span id="c-so">0</span> sliders</div>
+                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - Orden</h3><span class="badge badge-slider">POR CORREO</span></div>
+                <div class="card-id">sliderPrincipal</div>
+                <p class="hint">Pega el orden como te lo mandan por correo (uno por línea)</p>
+                <textarea id="slider-order" class="small" placeholder="Mi Look&#10;Muebles de Jardín&#10;Línea Blanca&#10;..." oninput="uc('slider-order','c-so')"></textarea>
+                <div class="counter"><span id="c-so">0</span></div>
             </div>
 
             <!-- SLIDER ALTs + URLs -->
             <div class="section-box" style="border-color:#0984e340">
-                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - ALTs y URLs</h3><span class="badge badge-opt">OPCIONAL</span></div>
+                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - ALTs y URLs</h3><span class="badge badge-opt">DEL EXCEL</span></div>
+                <p class="hint">⚠️ Los ALTs se validan por contenido (no importa el orden). Las URLs sí se comparan por posición.</p>
                 <div class="grid-2">
-                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs del Slider</h4><div class="sub-hint">Penúltima columna del Excel (uno por línea)</div>
+                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs del Slider</h4><div class="sub-hint">Pega los ALTs como te los den (no importa el orden)</div>
                         <textarea id="slider-alts" placeholder="Pega los ALTs..." oninput="uc('slider-alts','c-sa')"></textarea><div class="counter"><span id="c-sa">0</span></div></div>
-                    <div class="sub-card"><h4 class="c-blue">🔗 URLs del Slider</h4><div class="sub-hint">Columna URL del Excel (se convierte automáticamente)</div>
-                        <textarea id="slider-urls" placeholder="https://www.coppel.com/ca/mi-look-coppel&#10;https://www.coppel.com/sd/RB2513..." oninput="uc('slider-urls','c-su')"></textarea><div class="counter"><span id="c-su">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-blue">🔗 URLs del Slider</h4><div class="sub-hint">Se convierte auto: https://www.coppel.com/xxx → /xxx</div>
+                        <textarea id="slider-urls" placeholder="https://www.coppel.com/ca/mi-look..." oninput="uc('slider-urls','c-su')"></textarea><div class="counter"><span id="c-su">0</span></div></div>
                 </div>
             </div>
 
             <!-- BANNERS PROMO -->
             <div class="section-box" style="border-color:#fdcb6e40">
                 <div class="section-label"><h3 style="color:#fdcb6e">📸 Banners Promo (Bloques)</h3><span class="badge badge-banner">BANNER</span></div>
-                <div class="card-id">bannersPromo (dentro de sliderBannerPromo)</div>
+                <div class="card-id">bannersPromo</div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4>
                         <textarea id="banner-alts" class="small" placeholder="Pega ALTs..." oninput="uc('banner-alts','c-ba')"></textarea><div class="counter"><span id="c-ba">0</span></div></div>
@@ -286,7 +276,7 @@
         <div class="results-container" id="bannerRes"></div>
     </div>
 
-    <!-- ========== TAB: DEPARTAMENTOS ========== -->
+    <!-- TAB DEPARTAMENTOS -->
     <div class="tab-content" id="tab-depts">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Iconografía de Departamentos</h2></div>
@@ -298,12 +288,12 @@
                     <label class="opt-label"><input type="checkbox" id="chkLinks" onchange="toggleEl('col-links',this.checked)"> Validar links <span class="badge badge-opt">OPCIONAL</span></label>
                 </div>
                 <div class="grid-3">
-                    <div class="sub-card"><h4 class="c-green">📋 Nombres</h4><div class="sub-hint">Orden de departamentos (uno por línea)</div>
-                        <textarea id="dept-names" class="tall" placeholder="Ofertas&#10;Motos y Movilidad&#10;Zapatos&#10;Celulares&#10;..." oninput="uc('dept-names','c-dn')"></textarea><div class="counter"><span id="c-dn">0</span></div></div>
-                    <div class="sub-card" id="col-pct" style="display:none"><h4 class="c-purple">📊 Porcentajes</h4><div class="sub-hint">Uno por línea en orden</div>
-                        <textarea id="dept-pcts" class="tall" placeholder="Hasta 50%&#10;Hasta 30%&#10;..." oninput="uc('dept-pcts','c-dp')"></textarea><div class="counter"><span id="c-dp">0</span></div></div>
-                    <div class="sub-card" id="col-links" style="display:none"><h4 class="c-blue">🔗 Links</h4><div class="sub-hint">Uno por línea en orden</div>
-                        <textarea id="dept-links" class="tall" placeholder="/sd/RB2514...&#10;/ct/motos-movilidad/..." oninput="uc('dept-links','c-dl')"></textarea><div class="counter"><span id="c-dl">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-green">📋 Nombres</h4><div class="sub-hint">En orden (uno por línea)</div>
+                        <textarea id="dept-names" class="tall" placeholder="Ofertas&#10;Motos y Movilidad&#10;..." oninput="uc('dept-names','c-dn')"></textarea><div class="counter"><span id="c-dn">0</span></div></div>
+                    <div class="sub-card" id="col-pct" style="display:none"><h4 class="c-purple">📊 Porcentajes</h4>
+                        <textarea id="dept-pcts" class="tall" placeholder="Hasta 50%&#10;..." oninput="uc('dept-pcts','c-dp')"></textarea><div class="counter"><span id="c-dp">0</span></div></div>
+                    <div class="sub-card" id="col-links" style="display:none"><h4 class="c-blue">🔗 Links</h4>
+                        <textarea id="dept-links" class="tall" placeholder="/sd/RB2514..." oninput="uc('dept-links','c-dl')"></textarea><div class="counter"><span id="c-dl">0</span></div></div>
                 </div>
             </div>
         </div>
@@ -316,7 +306,6 @@
 </div>
 
 <script>
-// CONFIG
 const SKU_COMPS=[
     {id:'popupOfertaDelDia',name:'Popup Oferta del Día',icon:'🔔',type:'popup',tid:'excel-popup',cid:'c-popup'},
     {id:'carruselOfertaDelDia',name:'Oferta del Día',icon:'🎠',type:'carousel',tid:'excel-c0',cid:'c-c0'},
@@ -324,39 +313,46 @@ const SKU_COMPS=[
     {id:'carruselLosMasBuscados',name:'Los Más Buscados',icon:'🎠',type:'carousel',tid:'excel-c2',cid:'c-c2'}
 ];
 
-const BANNER_COMPS=[
-    {id:'sliderPrincipal',name:'Slider Principal',icon:'🖼️',jsonKey:'slider',nested:true,parentId:'sliderBannerPromo'},
-    {id:'bannersPromo',name:'Banners Promo',icon:'📸',jsonKey:'banner',nested:true,parentId:'sliderBannerPromo'},
-    {id:'bannerMedio',name:'Banner Medio',icon:'🖼️'},
-    {id:'bloqueCredito',name:'Bloque Crédito',icon:'💳'},
-    {id:'bloqueServicios',name:'Bloque Servicios',icon:'📸'}
-];
-
 let channel='store',jsonData=null,cmsSkus=[],cmsBanners={},cmsDepts=[];
 
-// TABS
 function switchTab(t,b){document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active')}
 function toggleEl(id,show){document.getElementById(id).style.display=show?'block':'none'}
 function setChannel(c,b){channel=c;document.querySelectorAll('.channel-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(jsonData)processJSON(jsonData)}
 
-// UTILS
 function uc(tid,cid){const t=document.getElementById(tid).value.trim();const i=t?t.split('\n').filter(x=>x.trim()!==''):[];document.getElementById(cid).textContent=i.length}
 function parseSkus(t){return t.split('\n').map(i=>i.trim().replace(/,+$/,'').trim().toUpperCase()).filter(i=>i!=='')}
 function parseLines(t){return t.split('\n').map(i=>i.trim()).filter(i=>i!=='')}
 function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim()}
-function convertUrl(u){return u.trim().replace(/^https?:\/\/(www\.)?coppel\.com/,'').replace(/^\s+/,'').trim()||u.trim()}
-function cleanCmsUrl(u){return u.trim()}
+function convertUrl(u){return u.trim().replace(/^https?:\/\/(www\.)?coppel\.com/,'').trim()||u.trim()}
 function showFS(t,m){const e=document.getElementById('fileStatus');e.className='file-status '+t;e.textContent=m;e.style.display='block'}
 
-// LOAD JSON
+// ========== MATCH ALTs POR CONTENIDO ==========
+function findAltMatch(userAlt, cmsAlts) {
+    const normUser = norm(userAlt);
+    // 1. Exacto
+    for (let i = 0; i < cmsAlts.length; i++) {
+        if (norm(cmsAlts[i]) === normUser) return { index: i, type: 'exact' };
+    }
+    // 2. Uno contiene al otro (al menos 20 chars de coincidencia)
+    for (let i = 0; i < cmsAlts.length; i++) {
+        const normCms = norm(cmsAlts[i]);
+        if (normUser.length > 15 && normCms.length > 15) {
+            if (normCms.includes(normUser) || normUser.includes(normCms)) return { index: i, type: 'partial' };
+            // 3. Primeras 30 chars iguales
+            const minLen = Math.min(normUser.length, normCms.length, 30);
+            if (minLen > 10 && normUser.substring(0, minLen) === normCms.substring(0, minLen)) return { index: i, type: 'partial' };
+        }
+    }
+    return null;
+}
+
+// ========== LOAD JSON ==========
 function loadJSON(e){const f=e.target.files[0];if(!f)return;document.getElementById('fileName').textContent=f.name;const r=new FileReader();r.onload=function(ev){try{jsonData=JSON.parse(ev.target.result);processJSON(jsonData)}catch(er){showFS('error','❌ JSON inválido')}};r.readAsText(f)}
 
-// PROCESS
 function processJSON(d){
     const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No se encontró component');return}
     cmsSkus=[];cmsBanners={};cmsDepts=[];
 
-    // SKUs
     SKU_COMPS.forEach(cfg=>{
         let found=false;
         for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===cfg.id){
@@ -364,28 +360,24 @@ function processJSON(d){
         if(!found)cmsSkus.push({...cfg,skus:[]})
     });
 
-    // Banners/Sliders
     for(const c of comps){
         if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'){
-            // Slider
             if(c.slider_banner.slider){const items=c.slider_banner.slider.items||[];
-                cmsBanners['sliderPrincipal']=items.map(i=>({alt:i.alt||'',url:cleanCmsUrl(i.link?.href||''),category:i.analytics?.category||''}))}
-            // Banner promo
+                cmsBanners['sliderPrincipal']=items.map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),category:i.analytics?.category||''}))}
             if(c.slider_banner.banner){const items=c.slider_banner.banner.items||[];
-                cmsBanners['bannersPromo']=items.map(i=>({alt:i.alt||'',url:cleanCmsUrl(i.link?.href||'')}))}
+                cmsBanners['bannersPromo']=items.map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}
         }
         if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid)){
-            cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:cleanCmsUrl(i.link?.href||'')}))}}
+            cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}}
     }
 
-    // Departments
     for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){
         cmsDepts=(c.department.items||[]).map((i,idx)=>({order:idx+1,name:i.link?i.link.title:'',text:i.text||'',link:i.link?i.link.href:''}));break}}
 
     showDetected();
     const ts=cmsSkus.reduce((s,c)=>s+c.skus.length,0);
     const tb=Object.values(cmsBanners).reduce((s,a)=>s+a.length,0);
-    showFS('success',`✅ JSON cargado (${channel==='store'?'Tienda':'.COM'}). ${ts} SKUs, ${tb} banners/sliders, ${cmsDepts.length} departamentos.`)
+    showFS('success',`✅ JSON cargado (${channel==='store'?'Tienda':'.COM'}). ${ts} SKUs, ${tb} banners/sliders, ${cmsDepts.length} deptos.`)
 }
 
 function showDetected(){
@@ -397,9 +389,9 @@ function showDetected(){
 
 // ========== VALIDATE SKUs ==========
 function validateSKUs(){
-    if(!cmsSkus.length){alert('⚠️ Importa el JSON primero');return}
-    let tC=0,tE=0,allP=true;const res=document.getElementById('skuRes');let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';
-    let cards='';
+    if(!cmsSkus.length){alert('⚠️ Importa el JSON');return}
+    let tC=0,tE=0,allP=true;const res=document.getElementById('skuRes');
+    let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';let cards='';
 
     cmsSkus.forEach(cms=>{
         const txt=document.getElementById(cms.tid).value;
@@ -409,49 +401,44 @@ function validateSKUs(){
         const seen={},dups={};cl.forEach(i=>{seen[i]=(seen[i]||0)+1;if(seen[i]>1)dups[i]=seen[i]});
         const dk=Object.keys(dups).length,ok=!missing.length&&!extra.length&&!dk;
         if(!ok)allP=false;tC+=correct.length;tE+=missing.length+extra.length+dk;
-        cards+=buildSKUCard(cms,ok,el.length,cl.length,correct,missing,extra,dups)
+        let h=`<div class="result-card" style="border-color:${ok?'#00b894':'#e94560'}"><div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4><span class="mini">Excel:${el.length}|CMS:${cl.length}</span></div>`;
+        if(correct.length)h+=`<div class="r-section"><div class="r-header correct">✅ Correctos (${correct.length})</div><ul class="r-list correct">${correct.map(s=>`<li>✔ ${s}</li>`).join('')}</ul></div>`;
+        if(missing.length)h+=`<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="r-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;
+        if(extra.length)h+=`<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="r-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;
+        if(dk)h+=`<div class="r-section"><div class="r-header dup">🔄 Duplicados</div><ul class="r-list dup">${Object.keys(dups).map(s=>`<li>🔄 ${s} (${dups[s]}x)</li>`).join('')}</ul></div>`;
+        if(ok)h+=`<p class="perfect-msg">🎉 Todo correcto</p>`;
+        cards+=h+'</div>'
     });
 
     html+=`<div class="global-summary"><div class="g-card correct"><div class="number">${tC}</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">${tE}</div><div class="label">❌ Errores</div></div></div>`;
-    html+=cards;html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todos los SKUs correctos!':'⛔ Hay errores en los SKUs'}</div>`;
+    html+=cards+`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todos los SKUs correctos!':'⛔ Hay errores'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
-}
-
-function buildSKUCard(cms,ok,ec,cc,correct,missing,extra,dups){
-    const dk=Object.keys(dups);
-    let h=`<div class="result-card" style="border-color:${ok?'#00b894':'#e94560'}"><div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4><span class="mini">Excel:${ec}|CMS:${cc}</span></div>`;
-    if(correct.length)h+=`<div class="r-section"><div class="r-header correct">✅ Correctos (${correct.length})</div><ul class="r-list correct">${correct.map(s=>`<li>✔ ${s}</li>`).join('')}</ul></div>`;
-    if(missing.length)h+=`<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="r-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;
-    if(extra.length)h+=`<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="r-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;
-    if(dk.length)h+=`<div class="r-section"><div class="r-header dup">🔄 Duplicados (${dk.length})</div><ul class="r-list dup">${dk.map(s=>`<li>🔄 ${s} (${dups[s]}x)</li>`).join('')}</ul></div>`;
-    if(ok)h+=`<p class="perfect-msg">🎉 Todo correcto</p>`;
-    return h+'</div>'
 }
 
 // ========== VALIDATE BANNERS ==========
 function validateBanners(){
-    if(!Object.keys(cmsBanners).length){alert('⚠️ Importa el JSON primero');return}
+    if(!Object.keys(cmsBanners).length){alert('⚠️ Importa el JSON');return}
     let totalErr=0;const res=document.getElementById('bannerRes');
     let html='<div class="results-header"><h2>📊 Resultados Sliders/Banners</h2></div>';
 
-    // Slider Order
+    // SLIDER ORDER (por posición)
     const orderTxt=document.getElementById('slider-order').value;
     if(orderTxt.trim()&&cmsBanners.sliderPrincipal){
         const userOrder=parseLines(orderTxt);const cmsSliders=cmsBanners.sliderPrincipal;
         let oErr=0;
-        let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden del Slider</h4><span class="mini">Excel:${userOrder.length}|CMS:${cmsSliders.length}</span></div>`;
-        oh+=`<table class="order-table"><tr><th>#</th><th>Correo (pegaste)</th><th>CMS (categoría)</th><th></th></tr>`;
+        let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden del Slider</h4><span class="mini">Correo:${userOrder.length}|CMS:${cmsSliders.length}</span></div>`;
+        oh+=`<table class="order-table"><tr><th>#</th><th>Correo</th><th>CMS (categoría)</th><th></th></tr>`;
         const mx=Math.max(userOrder.length,cmsSliders.length);
         for(let i=0;i<mx;i++){
             const u=userOrder[i]||'—';const c=cmsSliders[i]?cmsSliders[i].category.replace(/^[A-Z]-\s*/,''):'—';
             const ok=norm(u)===norm(c);if(!ok)oErr++;
             oh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
         oh+='</table>';totalErr+=oErr;
-        oh+=oErr?`<div class="r-section"><div class="r-header missing">❌ ${oErr} en posición incorrecta</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
+        oh+=oErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${oErr} en posición incorrecta</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
         html+=oh+'</div>'
     }
 
-    // Generic ALT/URL validator
+    // SECTIONS: ALTs por contenido + URLs por posición
     const sections=[
         {name:'Slider Principal',altId:'slider-alts',urlId:'slider-urls',cmsKey:'sliderPrincipal',icon:'🖼️'},
         {name:'Banners Promo',altId:'banner-alts',urlId:'banner-urls',cmsKey:'bannersPromo',icon:'📸'},
@@ -469,28 +456,77 @@ function validateBanners(){
         let sErr=0;
         let sh=`<div class="result-card"><div class="result-card-header"><span>${sec.icon}</span><h4>${sec.name}</h4><span class="mini">CMS:${cmsItems.length}</span></div>`;
 
-        // ALTs
+        // ===== ALTs POR CONTENIDO (NO POR ORDEN) =====
         if(altTxt.trim()){
             const userAlts=parseLines(altTxt);
-            sh+=`<table class="order-table"><tr><th>#</th><th>ALT Excel</th><th>ALT CMS</th><th></th></tr>`;
-            const mx=Math.max(userAlts.length,cmsItems.length);
-            for(let i=0;i<mx;i++){
-                const u=userAlts[i]||'—';const c=cmsItems[i]?cmsItems[i].alt:'—';
-                const ok=norm(u)===norm(c);if(!ok)sErr++;
-                sh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u.substring(0,80)}${u.length>80?'...':''}</td><td>${c.substring(0,80)}${c.length>80?'...':''}</td><td>${ok?'✅':'❌'}</td></tr>`}
-            sh+='</table>'
+            const cmsAltList=cmsItems.map(i=>i.alt);
+            const matched=[];const unmatched=[];
+
+            userAlts.forEach(ua=>{
+                const match=findAltMatch(ua, cmsAltList);
+                if(match){
+                    matched.push({user:ua, cms:cmsAltList[match.index], type:match.type});
+                } else {
+                    unmatched.push(ua);sErr++;
+                }
+            });
+
+            // ALTs del CMS que nadie matcheó
+            const matchedCmsIdxs=matched.map(m=>cmsAltList.indexOf(m.cms));
+            const unmatchedCms=cmsAltList.filter((_,i)=>!matchedCmsIdxs.includes(i));
+
+            sh+=`<div class="r-section"><div class="r-header correct">📝 ALTs Validados</div>`;
+
+            if(matched.length){
+                sh+=`<ul class="r-list correct">`;
+                matched.forEach(m=>{
+                    const tag=m.type==='exact'?'<span class="match-tag exact">EXACTO</span>':'<span class="match-tag partial">PARCIAL</span>';
+                    sh+=`<li>✔ ${m.user.substring(0,90)}${m.user.length>90?'...':''}  ${tag}</li>`;
+                });
+                sh+=`</ul>`;
+            }
+            sh+=`</div>`;
+
+            if(unmatched.length){
+                sErr+=unmatched.length;
+                sh+=`<div class="r-section"><div class="r-header missing">❌ ALTs NO encontrados en CMS (${unmatched.length})</div>`;
+                sh+=`<ul class="r-list missing">${unmatched.map(u=>`<li>✖ ${u.substring(0,100)}${u.length>100?'...':''}</li>`).join('')}</ul></div>`;
+            }
+
+            if(unmatchedCms.length){
+                sh+=`<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match del Excel (${unmatchedCms.length})</div>`;
+                sh+=`<ul class="r-list extra">${unmatchedCms.map(u=>`<li>⚠ ${u.substring(0,100)}${u.length>100?'...':''}</li>`).join('')}</ul></div>`;
+            }
         }
 
-        // URLs
+        // ===== URLs POR CONTENIDO TAMBIÉN =====
         if(urlTxt.trim()){
             const userUrls=parseLines(urlTxt).map(convertUrl);
-            sh+=`<table class="order-table" style="margin-top:8px"><tr><th>#</th><th>URL Excel (convertida)</th><th>URL CMS</th><th></th></tr>`;
-            const mx=Math.max(userUrls.length,cmsItems.length);
-            for(let i=0;i<mx;i++){
-                const u=userUrls[i]||'—';const c=cmsItems[i]?cmsItems[i].url:'—';
-                const ok=u.trim()===c.trim();if(!ok)sErr++;
-                sh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
-            sh+='</table>'
+            const cmsUrlList=cmsItems.map(i=>i.url.trim());
+            const matchedU=[];const unmatchedU=[];
+
+            userUrls.forEach(uu=>{
+                const cleanU=uu.trim();
+                const found=cmsUrlList.findIndex(cu=>cu.trim()===cleanU);
+                if(found!==-1){matchedU.push({user:cleanU,cms:cmsUrlList[found]})}
+                else{unmatchedU.push(cleanU);sErr++}
+            });
+
+            const matchedCmsUrls=matchedU.map(m=>m.cms);
+            const unmatchedCmsU=cmsUrlList.filter(u=>!matchedCmsUrls.includes(u));
+
+            if(matchedU.length){
+                sh+=`<div class="r-section"><div class="r-header correct">🔗 URLs Correctas (${matchedU.length})</div>`;
+                sh+=`<ul class="r-list correct">${matchedU.map(m=>`<li>✔ ${m.user}</li>`).join('')}</ul></div>`;
+            }
+            if(unmatchedU.length){
+                sh+=`<div class="r-section"><div class="r-header missing">❌ URLs NO encontradas en CMS (${unmatchedU.length})</div>`;
+                sh+=`<ul class="r-list missing">${unmatchedU.map(u=>`<li>✖ ${u}</li>`).join('')}</ul></div>`;
+            }
+            if(unmatchedCmsU.length){
+                sh+=`<div class="r-section"><div class="r-header extra">⚠️ URLs en CMS sin match (${unmatchedCmsU.length})</div>`;
+                sh+=`<ul class="r-list extra">${unmatchedCmsU.map(u=>`<li>⚠ ${u}</li>`).join('')}</ul></div>`;
+            }
         }
 
         totalErr+=sErr;
@@ -498,64 +534,49 @@ function validateBanners(){
         html+=sh+'</div>'
     });
 
-    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es) encontrados`:'🎉 ¡Todo perfecto!'}</div>`;
+    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Todo perfecto!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
 // ========== VALIDATE DEPTS ==========
 function validateDepts(){
-    if(!cmsDepts.length){alert('⚠️ Importa el JSON primero');return}
+    if(!cmsDepts.length){alert('⚠️ Importa el JSON');return}
     const namesTxt=document.getElementById('dept-names').value;
     if(!namesTxt.trim()){alert('⚠️ Pega los nombres');return}
     const userNames=parseLines(namesTxt);let totalErr=0;
     const res=document.getElementById('deptRes');
     let html='<div class="results-header"><h2>📊 Resultados Iconografía</h2></div>';
 
-    // Names
     let nh=`<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden Departamentos</h4><span class="mini">Excel:${userNames.length}|CMS:${cmsDepts.length}</span></div>`;
     nh+=`<table class="order-table"><tr><th>#</th><th>Excel</th><th>CMS</th><th></th></tr>`;
     const mx=Math.max(userNames.length,cmsDepts.length);let oErr=0;
-    for(let i=0;i<mx;i++){
-        const u=userNames[i]||'—';const c=cmsDepts[i]?cmsDepts[i].name:'—';
-        const ok=norm(u)===norm(c);if(!ok)oErr++;
+    for(let i=0;i<mx;i++){const u=userNames[i]||'—';const c=cmsDepts[i]?cmsDepts[i].name:'—';const ok=norm(u)===norm(c);if(!ok)oErr++;
         nh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
     nh+='</table>';totalErr+=oErr;
     nh+=oErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${oErr} incorrecto(s)</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
     html+=nh+'</div>';
 
-    // Pcts
     if(document.getElementById('chkPct').checked){
         const pTxt=document.getElementById('dept-pcts').value;
-        if(pTxt.trim()){
-            const up=parseLines(pTxt);let pErr=0;
+        if(pTxt.trim()){const up=parseLines(pTxt);let pErr=0;
             let ph=`<div class="result-card"><div class="result-card-header"><span>📊</span><h4>Porcentajes</h4></div>`;
             ph+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Excel</th><th>CMS</th><th></th></tr>`;
-            for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){
-                const u=up[i]||'—';const c=cmsDepts[i]?cmsDepts[i].text:'—';const dn=cmsDepts[i]?cmsDepts[i].name:'';
-                const ok=norm(u)===norm(c);if(!ok)pErr++;
+            for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){const u=up[i]||'—';const c=cmsDepts[i]?cmsDepts[i].text:'—';const dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=norm(u)===norm(c);if(!ok)pErr++;
                 ph+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
             ph+='</table>';totalErr+=pErr;
             ph+=pErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${pErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Correctos</p>`;
-            html+=ph+'</div>'
-        }
-    }
+            html+=ph+'</div>'}}
 
-    // Links
     if(document.getElementById('chkLinks').checked){
         const lTxt=document.getElementById('dept-links').value;
-        if(lTxt.trim()){
-            const ul=parseLines(lTxt);let lErr=0;
+        if(lTxt.trim()){const ul=parseLines(lTxt);let lErr=0;
             let lh=`<div class="result-card"><div class="result-card-header"><span>🔗</span><h4>Links</h4></div>`;
             lh+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Excel</th><th>CMS</th><th></th></tr>`;
-            for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){
-                const u=ul[i]||'—';const c=cmsDepts[i]?cmsDepts[i].link:'—';const dn=cmsDepts[i]?cmsDepts[i].name:'';
-                const ok=u.trim()===c.trim();if(!ok)lErr++;
+            for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){const u=ul[i]||'—';const c=cmsDepts[i]?cmsDepts[i].link:'—';const dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=u.trim()===c.trim();if(!ok)lErr++;
                 lh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
             lh+='</table>';totalErr+=lErr;
             lh+=lErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${lErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Correctos</p>`;
-            html+=lh+'</div>'
-        }
-    }
+            html+=lh+'</div>'}}
 
     html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Iconografía perfecta!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
