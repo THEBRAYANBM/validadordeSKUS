@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de SKUs - ContentStack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f1a;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #e94560;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* ---- PASO 1: CONFIGURACIÓN ---- */
+        .step {
+            background-color: #1a1a2e;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a4a;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: #6c5ce7;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        .step-header h2 {
+            font-size: 1.1em;
+        }
+
+        /* Canal selector */
+        .channel-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .channel-btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: 2px solid #2a2a4a;
+            background-color: #12122a;
+            color: #888;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .channel-btn:hover {
+            border-color: #6c5ce7;
+            color: #fff;
+        }
+
+        .channel-btn.active {
+            border-color: #6c5ce7;
+            background-color: #6c5ce7;
+            color: white;
+        }
+
+        /* File upload */
+        .file-upload {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .file-upload label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #0f3460;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .file-upload label:hover {
+            background-color: #1a4a80;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-name {
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        .file-status {
+            margin-top: 10px;
+            font-size: 0.85em;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .file-status.success {
+            display: block;
+            background-color: rgba(0, 184, 148, 0.1);
+            color: #00b894;
+            border: 1px solid rgba(0, 184, 148, 0.2);
+        }
+
+        .file-status.error {
+            display: block;
+            background-color: rgba(233, 69, 96, 0.1);
+            color: #e94560;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        /* Carruseles detectados */
+        .detected-carousels {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .detected-card {
+            background-color: #12122a;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #6c5ce7;
+        }
+
+        .detected-card h4 {
+            color: #fdcb6e;
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+
+        .detected-card .sku-preview {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+            color: #888;
+            word-break: break-all;
+        }
+
+        .detected-card .sku-count {
+            color: #00b894;
+            font-size: 0.75em;
+            margin-bottom: 4px;
+        }
+
+        /* ---- PASO 2: EXCEL ---- */
+        .excel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .excel-card {
+            background-color: #12122a;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #2a2a4a;
+        }
+
+        .excel-card h4 {
+            color: #00b894;
+            font-size: 0.9em;
+            margin-bottom: 4px;
+        }
+
+        .excel-card .card-id {
+            color: #555;
+            font-size: 0.7em;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background-color: #0a0a1a;
+            border: 1px solid #2a2a4a;
+            border-radius: 6px;
+            color: #ffffff;
+            padding: 10px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #6c5ce7;
+        }
+
+        textarea::placeholder {
+            color: #333;
+        }
+
+        .counter {
+            text-align: right;
+            font-size: 0.7em;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        /* ---- BOTONES ---- */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .btn {
+            border: none;
+            padding: 14px 45px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-validate {
+            background-color: #e94560;
+            color: white;
+        }
+
+        .btn-validate:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-validate:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-clear {
+            background-color: #2a2a4a;
+            color: #aaa;
+        }
+
+        .btn-clear:hover {
+            background-color: #3a3a5a;
+            color: #fff;
+        }
+
+        /* ---- RESULTADOS ---- */
+        .results-container {
+            display: none;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .results-header h2 {
+            color: #e94560;
+            font-size: 1.4em;
+        }
+
+        .global-summary {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .global-card {
+            background-color: #1a1a2e;
+            padding: 15px 28px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #2a2a4a;
+            min-width: 120px;
+        }
+
+        .global-card .number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .global-card .label {
+            font-size: 0.7em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .global-card.correct .number { color: #00b894; }
+        .global-card.missing .number { color: #e94560; }
+        .global-card.extra .number { color: #fdcb6e; }
+        .global-card.duplicate .number { color: #6c5ce7; }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .result-card {
+            background-color: #1a1a2e;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #2a2a4a;
+        }
+
+        .result-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a2a4a;
+        }
+
+        .result-card-header h4 {
+            font-size: 0.9em;
+        }
+
+        .result-card-header .mini-stats {
+            margin-left: auto;
+            font-size: 0.7em;
+            color: #888;
+        }
+
+        .result-section {
+            margin-bottom: 8px;
+        }
+
+        .result-section-header {
+            font-size: 0.78em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .result-section-header.correct { color: #00b894; }
+        .result-section-header.missing { color: #e94560; }
+        .result-section-header.extra { color: #fdcb6e; }
+        .result-section-header.duplicate { color: #6c5ce7; }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .result-list li {
+            padding: 3px 8px;
+            margin: 2px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+        }
+
+        .result-list.correct li {
+            background-color: rgba(0, 184, 148, 0.08);
+            border-left: 3px solid #00b894;
+            color: #00b894;
+        }
+
+        .result-list.missing li {
+            background-color: rgba(233, 69, 96, 0.08);
+            border-left: 3px solid #e94560;
+            color: #e94560;
+        }
+
+        .result-list.extra li {
+            background-color: rgba(253, 203, 110, 0.08);
+            border-left: 3px solid #fdcb6e;
+            color: #fdcb6e;
+        }
+
+        .result-list.duplicate li {
+            background-color: rgba(108, 92, 231, 0.08);
+            border-left: 3px solid #6c5ce7;
+            color: #6c5ce7;
+        }
+
+        .perfect-msg {
+            text-align: center;
+            color: #00b894;
+            font-size: 0.8em;
+            padding: 10px;
+        }
+
+        .status-bar {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .status-bar.success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: #00b894;
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .status-bar.error {
+            background-color: rgba(233, 69, 96, 0.1);
+            color: #e94560;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
+
+        @media (max-width: 900px) {
+            .excel-grid, .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Validador de SKUs</h1>
+            <p>Importa el JSON de ContentStack + Pega los SKUs del Excel</p>
+        </div>
+
+        <!-- PASO 1 -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2>Importar JSON de ContentStack</h2>
+            </div>
+
+            <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
+                Selecciona el canal y sube el archivo JSON exportado del home
+            </p>
+
+            <div class="channel-selector">
+                <button class="channel-btn active" onclick="setChannel('store', this)">🏬 Tienda</button>
+                <button class="channel-btn" onclick="setChannel('web', this)"">🌐 .COM</button>
+            </div>
+
+            <div class="file-upload">
+                <label>
+                    📂 Seleccionar archivo JSON
+                    <input type="file" id="jsonFile" accept=".json" onchange="loadJSON(event)">
+                </label>
+                <span class="file-name" id="fileName">Ningún archivo seleccionado</span>
+            </div>
+
+            <div class="file-status" id="fileStatus"></div>
+
+            <div class="detected-carousels" id="detectedCarousels"></div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2>Pegar SKUs del Excel</h2>
+            </div>
+            <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
+                Pega los SKUs de cada tabla del Excel (uno por línea, las comas se quitan automáticamente)
+            </p>
+
+            <div class="excel-grid" id="excelGrid">
+                <div class="excel-card">
+                    <h4>📗 Carrusel 1</h4>
+                    <div class="card-id">carruselOfertaDelDia</div>
+                    <textarea id="excel-0" placeholder="Pega los SKUs aquí..." oninput="updateCounter(0)"></textarea>
+                    <div class="counter"><span id="count-0">0</span> SKUs</div>
+                </div>
+                <div class="excel-card">
+                    <h4>📗 Carrusel 2</h4>
+                    <div class="card-id">carruselEligeTuFavorito</div>
+                    <textarea id="excel-1" placeholder="Pega los SKUs aquí..." oninput="updateCounter(1)"></textarea>
+                    <div class="counter"><span id="count-1">0</span> SKUs</div>
+                </div>
+                <div class="excel-card">
+                    <h4>📗 Carrusel 3</h4>
+                    <div class="card-id">carruselLosMasBuscados</div>
+                    <textarea id="excel-2" placeholder="Pega los SKUs aquí..." oninput="updateCounter(2)"></textarea>
+                    <div class="counter"><span id="count-2">0</span> SKUs</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="btn-container">
+            <button class="btn btn-validate" id="btnValidate" onclick="validate()">🔍 VALIDAR SKUs</button>
+            <button class="btn btn-clear" onclick="clearAll()">🗑️ LIMPIAR TODO</button>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div class="results-container" id="resultsContainer">
+            <div class="results-header">
+                <h2>📊 Resultados de Validación</h2>
+                <p style="color:#888; font-size:0.8em; margin-top:5px;" id="resultsSubtitle"></p>
+            </div>
+
+            <div class="global-summary">
+                <div class="global-card correct">
+                    <div class="number" id="gCorrect">0</div>
+                    <div class="label">✅ Correctos</div>
+                </div>
+                <div class="global-card missing">
+                    <div class="number" id="gMissing">0</div>
+                    <div class="label">❌ Faltantes</div>
+                </div>
+                <div class="global-card extra">
+                    <div class="number" id="gExtra">0</div>
+                    <div class="label">⚠️ Extras</div>
+                </div>
+                <div class="global-card duplicate">
+                    <div class="number" id="gDuplicate">0</div>
+                    <div class="label">🔄 Duplicados</div>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid"></div>
+            <div id="statusBar" class="status-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        // =====================
+        // CONFIGURACIÓN
+        // =====================
+        const CAROUSEL_IDS = [
+            'carruselOfertaDelDia',
+            'carruselEligeTuFavorito',
+            'carruselLosMasBuscados'
+        ];
+
+        const CAROUSEL_NAMES = [
+            'Oferta del Día',
+            'Elige tu Favorito',
+            'Los Más Buscados'
+        ];
+
+        let selectedChannel = 'store';
+        let jsonData = null;
+        let cmsCarousels = []; // SKUs extraídos del JSON
+
+        // =====================
+        // CANAL
+        // =====================
+        function setChannel(channel, btn) {
+            selectedChannel = channel;
+            document.querySelectorAll('.channel-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Re-procesar si ya hay JSON cargado
+            if (jsonData) {
+                processJSON(jsonData);
+            }
+        }
+
+        // =====================
+        // CARGAR JSON
+        // =====================
+        function loadJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById('fileName').textContent = file.name;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    jsonData = JSON.parse(e.target.result);
+                    processJSON(jsonData);
+                } catch (err) {
+                    showFileStatus('error', '❌ Error al leer el JSON. Asegúrate de que sea un archivo válido.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // =====================
+        // PROCESAR JSON
+        // =====================
+        function processJSON(data) {
+            const components = data.component || data.components || [];
+            cmsCarousels = [];
+
+            if (!components || components.length === 0) {
+                showFileStatus('error', '❌ No se encontró el array "component" en el JSON.');
+                return;
+            }
+
+            // Buscar los 3 carruseles por component_id
+            CAROUSEL_IDS.forEach((id, index) => {
+                let found = false;
+
+                for (const comp of components) {
+                    if (comp.product_carousel && comp.product_carousel.component_id === id) {
+                        const products = comp.product_carousel.products || [];
+                        cmsCarousels.push({
+                            id: id,
+                            name: CAROUSEL_NAMES[index],
+                            skus: products.map(p => p.trim().toUpperCase())
+                        });
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    cmsCarousels.push({
+                        id: id,
+                        name: CAROUSEL_NAMES[index],
+                        skus: []
+                    });
+                }
+            });
+
+            // Mostrar carruseles detectados
+            displayDetected();
+
+            const totalSkus = cmsCarousels.reduce((sum, c) => sum + c.skus.length, 0);
+            const channelName = selectedChannel === 'store' ? 'Tienda' : '.COM';
+            showFileStatus('success',
+                `✅ JSON cargado (${channelName}). Se encontraron ${cmsCarousels.length} carruseles con ${totalSkus} SKUs en total.`
+            );
+        }
+
+        // =====================
+        // MOSTRAR CARRUSELES DETECTADOS
+        // =====================
+        function displayDetected() {
+            const container = document.getElementById('detectedCarousels');
+            container.style.display = 'block';
+            container.innerHTML = '<h3 style="color:#6c5ce7; font-size:0.9em; margin-bottom:10px;">📦 Carruseles detectados en el JSON:</h3>';
+
+            cmsCarousels.forEach((c, i) => {
+                const card = document.createElement('div');
+                card.className = 'detected-card';
+                card.innerHTML = `
+                    <h4>🎠 ${c.name} <span style="color:#555; font-weight:normal;">(${c.id})</span></h4>
+                    <div class="sku-count">${c.skus.length} SKUs encontrados</div>
+                    <div class="sku-preview">${c.skus.join(', ') || 'Sin SKUs'}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // =====================
+        // FILE STATUS
+        // =====================
+        function showFileStatus(type, message) {
+            const el = document.getElementById('fileStatus');
+            el.className = `file-status ${type}`;
+            el.textContent = message;
+            el.style.display = 'block';
+        }
+
+        // =====================
+        // COUNTER
+        // =====================
+        function updateCounter(index) {
+            const text = document.getElementById(`excel-${index}`).value.trim();
+            const items = text ? text.split('\n').filter(i => i.trim() !== '') : [];
+            document.getElementById(`count-${index}`).textContent = items.length;
+        }
+
+        // =====================
+        // PARSEAR LISTA EXCEL
+        // =====================
+        function parseExcel(text) {
+            return text
+                .split('\n')
+                .map(item => item.trim().replace(/,+$/, '').trim().toUpperCase())
+                .filter(item => item !== '');
+        }
+
+        // =====================
+        // VALIDAR
+        // =====================
+        function validate() {
+            if (cmsCarousels.length === 0) {
+                alert('⚠️ Primero importa el archivo JSON de ContentStack.');
+                return;
+            }
+
+            let totalCorrect = 0, totalMissing = 0, totalExtra = 0, totalDuplicate = 0;
+            let allPerfect = true;
+
+            const resultsGrid = document.getElementById('resultsGrid');
+            resultsGrid.innerHTML = '';
+
+            for (let i = 0; i < CAROUSEL_IDS.length; i++) {
+                const excelText = document.getElementById(`excel-${i}`).value;
+                const cms = cmsCarousels[i];
+
+                if (!excelText.trim()) {
+                    resultsGrid.innerHTML += buildEmptyResult(i, cms);
+                    continue;
+                }
+
+                const excelList = parseExcel(excelText);
+                const cmsList = cms.skus;
+
+                // Validaciones
+                const correct = excelList.filter(item => cmsList.includes(item));
+                const missing = excelList.filter(item => !cmsList.includes(item));
+                const extra = cmsList.filter(item => !excelList.includes(item));
+
+                const seen = {};
+                const duplicates = {};
+                cmsList.forEach(item => {
+                    seen[item] = (seen[item] || 0) + 1;
+                    if (seen[item] > 1) duplicates[item] = seen[item];
+                });
+
+                const dupCount = Object.keys(duplicates).length;
+                const isPerfect = missing.length === 0 && extra.length === 0 && dupCount === 0;
+                if (!isPerfect) allPerfect = false;
+
+                totalCorrect += correct.length;
+                totalMissing += missing.length;
+                totalExtra += extra.length;
+                totalDuplicate += dupCount;
+
+                resultsGrid.innerHTML += buildResultCard(i, cms, isPerfect, excelList.length, cmsList.length, correct, missing, extra, duplicates);
+            }
+
+            // Totales
+            document.getElementById('gCorrect').textContent = totalCorrect;
+            document.getElementById('gMissing').textContent = totalMissing;
+            document.getElementById('gExtra').textContent = totalExtra;
+            document.getElementById('gDuplicate').textContent = totalDuplicate;
+
+            const channelName = selectedChannel === 'store' ? '🏬 Tienda' : '🌐 .COM';
+            document.getElementById('resultsSubtitle').textContent = `Canal: ${channelName}`;
+
+            const statusBar = document.getElementById('statusBar');
+            if (allPerfect) {
+                statusBar.className = 'status-bar success';
+                statusBar.textContent = '🎉 ¡PERFECTO! Todos los SKUs están correctos en los 3 carruseles.';
+            } else {
+                let errors = [];
+                if (totalMissing > 0) errors.push(`${totalMissing} faltante(s)`);
+                if (totalExtra > 0) errors.push(`${totalExtra} extra(s)`);
+                if (totalDuplicate > 0) errors.push(`${totalDuplicate} duplicado(s)`);
+                statusBar.className = 'status-bar error';
+                statusBar.textContent = `⛔ Hay errores: ${errors.join(', ')}.`;
+            }
+
+            document.getElementById('resultsContainer').style.display = 'block';
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // =====================
+        // BUILD RESULT CARD
+        // =====================
+        function buildResultCard(index, cms, isPerfect, excelCount, cmsCount, correct, missing, extra, duplicates) {
+            const dupKeys = Object.keys(duplicates);
+            let html = `
+                <div class="result-card" style="border-color: ${isPerfect ? '#00b894' : '#e94560'}">
+                    <div class="result-card-header">
+                        <span>${isPerfect ? '✅' : '❌'}</span>
+                        <h4>${cms.name}</h4>
+                        <span class="mini-stats">Excel: ${excelCount} | CMS: ${cmsCount}</span>
+                    </div>
+            `;
+
+            if (correct.length > 0) {
+                html += `<div class="result-section">
+                    <div class="result-section-header correct">✅ Correctos (${correct.length})</div>
+                    <ul class="result-list correct">${correct.map(s => `<li>✔ ${s}</li>`).join('')}</ul>
+                </div>`;
+            }
+
+            if (missing.length > 0) {
+                html += `<div class="result-section">
+                    <div class="result-section-header missing">❌ En Excel pero NO en CMS (${missing.length})</div>
+                    <ul class="result-list missing">${missing.map(s => `<li>✖ ${s}</li>`).join('')}</ul>
+                </div>`;
+            }
+
+            if (extra.length > 0) {
+                html += `<div class="result-section">
+                    <div class="result-section-header extra">⚠️ En CMS pero NO en Excel (${extra.length})</div>
+                    <ul class="result-list extra">${extra.map(s => `<li>⚠ ${s}</li>`).join('')}</ul>
+                </div>`;
+            }
+
+            if (dupKeys.length > 0) {
+                html += `<div class="result-section">
+                    <div class="result-section-header duplicate">🔄 Duplicados (${dupKeys.length})</div>
+                    <ul class="result-list duplicate">${dupKeys.map(s => `<li>🔄 ${s} (${duplicates[s]}x)</li>`).join('')}</ul>
+                </div>`;
+            }
+
+            if (isPerfect) {
+                html += `<p class="perfect-msg">🎉 Todo correcto</p>`;
+            }
+
+            html += `</div>`;
+            return html;
+        }
+
+        // =====================
+        // EMPTY RESULT
+        // =====================
+        function buildEmptyResult(index, cms) {
+            return `
+                <div class="result-card">
+                    <div class="result-card-header">
+                        <span>⏭️</span>
+                        <h4>${cms.name}</h4>
+                    </div>
+                    <p class="perfect-msg" style="color:#555;">Sin datos del Excel</p>
+                </div>
+            `;
+        }
+
+        // =====================
+        // LIMPIAR
+        // =====================
+        function clearAll() {
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`excel-${i}`).value = '';
+                document.getElementById(`count-${i}`).textContent = '0';
+            }
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('detectedCarousels').style.display = 'none';
+            document.getElementById('fileStatus').style.display = 'none';
+            document.getElementById('fileName').textContent = 'Ningún archivo seleccionado';
+            document.getElementById('jsonFile').value = '';
+            jsonData = null;
+            cmsCarousels = [];
+        }
+    </script>
+</body>
+</html>
