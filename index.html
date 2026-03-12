@@ -6,157 +6,176 @@
     <title>Validador ContentStack - Home</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
         %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E
-        %3Ccircle cx='50' cy='50' r='48' fill='%2300b894'/%3E
+        %3Ccircle cx='50' cy='50' r='48' fill='%232ecc71'/%3E
         %3Cpath d='M25 52 L42 68 L75 35' stroke='white' stroke-width='10'
         fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E
         %3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
-        body{background:#0f0f1a;color:#fff;min-height:100vh;padding:20px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:#f0f4f8;color:#334155;min-height:100vh;padding:20px}
         .container{max-width:1500px;margin:0 auto}
-        .header{text-align:center;margin-bottom:25px}
-        .header h1{color:#e94560;font-size:2em;margin-bottom:5px}
-        .header p{color:#666;font-size:.85em}
 
+        /* HEADER */
+        .header{text-align:center;margin-bottom:25px;padding:20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;color:#fff}
+        .header h1{font-size:1.8em;margin-bottom:4px;font-weight:700}
+        .header p{opacity:.85;font-size:.85em}
+
+        /* TABS */
         .main-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-        .main-tab{padding:10px 20px;border-radius:8px;border:2px solid #2a2a4a;background:#1a1a2e;color:#888;cursor:pointer;font-size:.85em;font-weight:bold;transition:.3s}
-        .main-tab:hover{border-color:#6c5ce7;color:#fff}
-        .main-tab.active{border-color:#6c5ce7;background:#6c5ce7;color:#fff}
+        .main-tab{padding:10px 22px;border-radius:10px;border:2px solid #e2e8f0;background:#fff;color:#64748b;cursor:pointer;font-size:.85em;font-weight:600;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+        .main-tab:hover{border-color:#667eea;color:#667eea;box-shadow:0 2px 8px rgba(102,126,234,.15)}
+        .main-tab.active{border-color:#667eea;background:#667eea;color:#fff;box-shadow:0 4px 12px rgba(102,126,234,.3)}
         .tab-content{display:none}.tab-content.active{display:block}
 
-        .step{background:#1a1a2e;border-radius:12px;padding:18px;margin-bottom:15px;border:1px solid #2a2a4a}
-        .step-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-        .step-number{background:#6c5ce7;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.8em;flex-shrink:0}
-        .step-header h2{font-size:1em}
-        .hint{color:#888;font-size:.75em;margin-bottom:10px}
+        /* STEPS */
+        .step{background:#fff;border-radius:14px;padding:20px;margin-bottom:16px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .step-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+        .step-number{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8em;flex-shrink:0}
+        .step-header h2{font-size:1em;color:#1e293b}
+        .hint{color:#94a3b8;font-size:.75em;margin-bottom:10px}
 
-        .channel-selector{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-        .channel-btn{padding:10px 25px;border-radius:8px;border:2px solid #2a2a4a;background:#12122a;color:#888;cursor:pointer;font-size:.9em;font-weight:bold;transition:.3s}
-        .channel-btn:hover{border-color:#6c5ce7;color:#fff}
-        .channel-btn.active{border-color:#6c5ce7;background:#6c5ce7;color:#fff}
+        /* CHANNEL */
+        .channel-selector{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+        .channel-btn{padding:10px 28px;border-radius:10px;border:2px solid #e2e8f0;background:#f8fafc;color:#64748b;cursor:pointer;font-size:.9em;font-weight:600;transition:.3s}
+        .channel-btn:hover{border-color:#667eea;color:#667eea}
+        .channel-btn.active{border-color:#667eea;background:#667eea;color:#fff}
 
+        /* FILE */
         .file-upload{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-        .file-upload label{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#0f3460;border-radius:8px;cursor:pointer;transition:.3s;font-size:.85em}
-        .file-upload label:hover{background:#1a4a80}
+        .file-upload label{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:#f1f5f9;border:2px dashed #cbd5e1;border-radius:10px;cursor:pointer;transition:.3s;font-size:.85em;color:#475569}
+        .file-upload label:hover{background:#e2e8f0;border-color:#667eea}
         .file-upload input[type="file"]{display:none}
-        .file-name{color:#888;font-size:.8em}
-        .file-status{margin-top:8px;font-size:.8em;padding:8px 12px;border-radius:6px;display:none}
-        .file-status.success{display:block;background:rgba(0,184,148,.1);color:#00b894;border:1px solid rgba(0,184,148,.2)}
-        .file-status.error{display:block;background:rgba(233,69,96,.1);color:#e94560;border:1px solid rgba(233,69,96,.2)}
-        .detected{display:none;margin-top:12px}
-        .detected h3{color:#6c5ce7;font-size:.85em;margin-bottom:8px}
-        .det-card{background:#12122a;border-radius:6px;padding:8px 10px;margin-bottom:6px;border-left:3px solid #6c5ce7;font-size:.75em}
-        .det-card .det-title{color:#fdcb6e;font-weight:600}
-        .det-card .det-info{color:#888;margin-top:2px}
+        .file-name{color:#94a3b8;font-size:.8em}
+        .file-status{margin-top:10px;font-size:.8em;padding:10px 14px;border-radius:8px;display:none}
+        .file-status.success{display:block;background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+        .file-status.error{display:block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
 
-        .section-box{background:#1a1a2e;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #2a2a4a}
+        /* DETECTED */
+        .detected{display:none;margin-top:14px;background:#f8fafc;border-radius:10px;padding:12px;border:1px solid #e2e8f0}
+        .detected h3{color:#667eea;font-size:.85em;margin-bottom:8px}
+        .det-card{background:#fff;border-radius:8px;padding:8px 12px;margin-bottom:6px;border-left:3px solid #667eea;font-size:.75em;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+        .det-card .det-title{color:#1e293b;font-weight:600}
+        .det-card .det-info{color:#94a3b8;margin-top:2px}
+
+        /* SECTIONS */
+        .section-box{background:#fff;border-radius:14px;padding:18px;margin-bottom:14px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
         .section-label{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-        .section-label h3{font-size:.95em}
-        .badge{padding:2px 8px;border-radius:10px;font-size:.65em;font-weight:600}
-        .badge-popup{background:#e9456030;color:#e94560}
-        .badge-slider{background:#0984e330;color:#0984e3}
-        .badge-banner{background:#fdcb6e30;color:#fdcb6e}
-        .badge-dept{background:#00b89430;color:#00b894}
-        .badge-opt{background:#55555530;color:#aaa}
-        .card-id{color:#555;font-size:.65em;margin-bottom:6px;font-family:'Courier New',monospace}
+        .section-label h3{font-size:.95em;color:#1e293b}
+        .badge{padding:3px 10px;border-radius:20px;font-size:.6em;font-weight:600;letter-spacing:.3px}
+        .badge-popup{background:#fef2f2;color:#dc2626}
+        .badge-slider{background:#eff6ff;color:#2563eb}
+        .badge-banner{background:#fffbeb;color:#d97706}
+        .badge-dept{background:#ecfdf5;color:#059669}
+        .badge-opt{background:#f1f5f9;color:#64748b}
+        .card-id{color:#94a3b8;font-size:.65em;margin-bottom:6px;font-family:'Courier New',monospace}
 
-        textarea{width:100%;height:160px;background:#0a0a1a;border:1px solid #2a2a4a;border-radius:6px;color:#fff;padding:10px;font-size:11px;font-family:'Courier New',monospace;resize:vertical}
-        textarea:focus{outline:none;border-color:#6c5ce7}
-        textarea::placeholder{color:#333}
+        /* INPUTS */
+        textarea{width:100%;height:160px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;color:#334155;padding:12px;font-size:12px;font-family:'Courier New',monospace;resize:vertical;transition:.3s}
+        textarea:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.1);background:#fff}
+        textarea::placeholder{color:#cbd5e1}
         textarea.small{height:80px}
         textarea.tall{height:280px}
-        .counter{text-align:right;font-size:.65em;color:#555;margin-top:2px}
+        .counter{text-align:right;font-size:.65em;color:#94a3b8;margin-top:3px}
 
+        /* GRID */
         .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-        .sub-card{background:#12122a;border-radius:8px;padding:12px;border:1px solid #2a2a4a}
-        .sub-card h4{font-size:.82em;margin-bottom:3px}
-        .sub-card .sub-hint{color:#555;font-size:.65em;margin-bottom:6px}
-        .sub-card h4.c-green{color:#00b894}
-        .sub-card h4.c-yellow{color:#fdcb6e}
-        .sub-card h4.c-blue{color:#0984e3}
-        .sub-card h4.c-purple{color:#6c5ce7}
+        .sub-card{background:#f8fafc;border-radius:10px;padding:14px;border:1px solid #e2e8f0}
+        .sub-card h4{font-size:.82em;margin-bottom:4px;font-weight:600}
+        .sub-card .sub-hint{color:#94a3b8;font-size:.65em;margin-bottom:6px}
+        .sub-card h4.c-green{color:#059669}
+        .sub-card h4.c-yellow{color:#d97706}
+        .sub-card h4.c-blue{color:#2563eb}
+        .sub-card h4.c-purple{color:#7c3aed}
 
         .options-row{display:flex;gap:15px;margin-bottom:10px;flex-wrap:wrap}
-        .opt-label{display:flex;align-items:center;gap:5px;font-size:.8em;color:#aaa}
-        .opt-label input[type="checkbox"]{accent-color:#6c5ce7;width:15px;height:15px}
+        .opt-label{display:flex;align-items:center;gap:6px;font-size:.8em;color:#64748b;cursor:pointer}
+        .opt-label input[type="checkbox"]{accent-color:#667eea;width:16px;height:16px}
 
-        .btn-container{display:flex;justify-content:center;gap:10px;margin:20px 0;flex-wrap:wrap}
-        .btn{border:none;padding:12px 35px;font-size:.9em;border-radius:8px;cursor:pointer;font-weight:bold;transition:.3s}
-        .btn-validate{background:#e94560;color:#fff}
-        .btn-validate:hover{background:#c0392b;transform:translateY(-2px)}
-        .btn-clear{background:#2a2a4a;color:#aaa}
-        .btn-clear:hover{background:#3a3a5a;color:#fff}
-        .btn-download{background:#0984e3;color:#fff}
-        .btn-download:hover{background:#0873c4;transform:translateY(-2px)}
-        .btn-download:disabled{background:#333;color:#666;cursor:not-allowed;transform:none}
-        .btn-download-json{background:#00b894;color:#fff}
-        .btn-download-json:hover{background:#00a381;transform:translateY(-2px)}
-        .btn-download-json:disabled{background:#333;color:#666;cursor:not-allowed;transform:none}
+        /* BUTTONS */
+        .btn-container{display:flex;justify-content:center;gap:10px;margin:22px 0;flex-wrap:wrap}
+        .btn{border:none;padding:12px 36px;font-size:.9em;border-radius:10px;cursor:pointer;font-weight:600;transition:.3s;box-shadow:0 2px 4px rgba(0,0,0,.08)}
+        .btn-validate{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+        .btn-validate:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(102,126,234,.35)}
+        .btn-clear{background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0}
+        .btn-clear:hover{background:#e2e8f0;color:#334155}
+        .btn-download-json{background:linear-gradient(135deg,#059669,#10b981);color:#fff}
+        .btn-download-json:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(5,150,105,.35)}
+        .btn-download-json:disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}
 
+        /* RESULTS */
         .results-container{display:none}
-        .results-header{text-align:center;margin-bottom:15px}
-        .results-header h2{color:#e94560;font-size:1.3em}
+        .results-header{text-align:center;margin-bottom:16px}
+        .results-header h2{color:#1e293b;font-size:1.3em}
         .global-summary{display:flex;justify-content:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-        .g-card{background:#1a1a2e;padding:12px 24px;border-radius:10px;text-align:center;border:1px solid #2a2a4a;min-width:100px}
-        .g-card .number{font-size:1.8em;font-weight:bold}
-        .g-card .label{font-size:.65em;color:#666;margin-top:2px}
-        .g-card.correct .number{color:#00b894}
-        .g-card.errors .number{color:#e94560}
-        .g-card.fixed .number{color:#0984e3}
+        .g-card{background:#fff;padding:14px 26px;border-radius:12px;text-align:center;border:1px solid #e2e8f0;min-width:110px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .g-card .number{font-size:1.8em;font-weight:700}
+        .g-card .label{font-size:.65em;color:#94a3b8;margin-top:2px}
+        .g-card.correct .number{color:#059669}
+        .g-card.errors .number{color:#dc2626}
+        .g-card.fixed .number{color:#2563eb}
 
-        .result-card{background:#1a1a2e;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #2a2a4a}
-        .result-card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #2a2a4a;flex-wrap:wrap}
-        .result-card-header h4{font-size:.85em}
-        .result-card-header .mini{margin-left:auto;font-size:.65em;color:#888}
+        /* RESULT CARDS */
+        .result-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .result-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #f1f5f9;flex-wrap:wrap}
+        .result-card-header h4{font-size:.85em;color:#1e293b}
+        .result-card-header .mini{margin-left:auto;font-size:.65em;color:#94a3b8}
 
-        .r-section{margin-bottom:6px}
-        .r-header{font-size:.72em;font-weight:600;margin-bottom:3px}
-        .r-header.correct{color:#00b894}
-        .r-header.missing{color:#e94560}
-        .r-header.extra{color:#fdcb6e}
-        .r-header.dup{color:#6c5ce7}
-        .r-header.fixed{color:#0984e3}
+        .r-section{margin-bottom:8px}
+        .r-header{font-size:.72em;font-weight:600;margin-bottom:4px}
+        .r-header.correct{color:#059669}
+        .r-header.missing{color:#dc2626}
+        .r-header.extra{color:#d97706}
+        .r-header.dup{color:#7c3aed}
+        .r-header.fixed{color:#2563eb}
 
         .r-list{list-style:none;padding:0;max-height:200px;overflow-y:auto}
-        .r-list li{padding:4px 8px;margin:2px 0;border-radius:4px;font-family:'Courier New',monospace;font-size:.7em;word-break:break-all}
-        .r-list.correct li{background:rgba(0,184,148,.08);border-left:3px solid #00b894;color:#00b894}
-        .r-list.missing li{background:rgba(233,69,96,.08);border-left:3px solid #e94560;color:#e94560}
-        .r-list.extra li{background:rgba(253,203,110,.08);border-left:3px solid #fdcb6e;color:#fdcb6e}
-        .r-list.dup li{background:rgba(108,92,231,.08);border-left:3px solid #6c5ce7;color:#6c5ce7}
-        .r-list.fixed li{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;color:#0984e3}
+        .r-list li{padding:5px 10px;margin:3px 0;border-radius:6px;font-family:'Courier New',monospace;font-size:.72em;word-break:break-all}
+        .r-list.correct li{background:#ecfdf5;border-left:3px solid #059669;color:#059669}
+        .r-list.missing li{background:#fef2f2;border-left:3px solid #dc2626;color:#dc2626}
+        .r-list.extra li{background:#fffbeb;border-left:3px solid #d97706;color:#d97706}
+        .r-list.dup li{background:#f5f3ff;border-left:3px solid #7c3aed;color:#7c3aed}
+        .r-list.fixed li{background:#eff6ff;border-left:3px solid #2563eb;color:#2563eb}
 
-        .correction-box{background:#0a0a1a;border:1px solid #0984e340;border-radius:8px;padding:12px;margin-top:8px}
-        .correction-box h5{color:#0984e3;font-size:.8em;margin-bottom:6px}
-        .correction-item{margin-bottom:10px;padding:8px;background:#12122a;border-radius:6px;border-left:3px solid #0984e3}
-        .correction-item .corr-label{font-size:.65em;color:#888;margin-bottom:2px}
-        .correction-item .corr-old{font-size:.72em;color:#e94560;text-decoration:line-through;word-break:break-all;padding:2px 0}
-        .correction-item .corr-new{font-size:.72em;color:#00b894;word-break:break-all;padding:2px 0}
-        .correction-item .corr-arrow{color:#0984e3;font-size:.7em;padding:2px 0}
+        /* CORRECTION BOX */
+        .correction-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px;margin-top:10px}
+        .correction-box h5{color:#2563eb;font-size:.8em;margin-bottom:8px}
+        .correction-item{margin-bottom:10px;padding:10px;background:#fff;border-radius:8px;border-left:3px solid #2563eb;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+        .correction-item .corr-label{font-size:.65em;color:#94a3b8;margin-bottom:2px}
+        .correction-item .corr-old{font-size:.72em;color:#dc2626;text-decoration:line-through;word-break:break-all;padding:2px 0}
+        .correction-item .corr-new{font-size:.72em;color:#059669;word-break:break-all;padding:2px 0}
+        .correction-item .corr-arrow{color:#2563eb;font-size:.7em;padding:2px 0}
 
-        .match-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.6em;margin-left:4px}
-        .match-tag.exact{background:#00b89420;color:#00b894}
-        .match-tag.partial{background:#fdcb6e20;color:#fdcb6e}
+        .match-tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.55em;margin-left:4px;font-weight:600}
+        .match-tag.exact{background:#ecfdf5;color:#059669}
+        .match-tag.partial{background:#fffbeb;color:#d97706}
 
-        .perfect-msg{text-align:center;color:#00b894;font-size:.8em;padding:8px}
-        .status-bar{text-align:center;padding:12px;border-radius:8px;font-weight:bold;font-size:.95em;margin-top:15px}
-        .status-bar.success{background:rgba(0,184,148,.1);color:#00b894;border:1px solid rgba(0,184,148,.3)}
-        .status-bar.error{background:rgba(233,69,96,.1);color:#e94560;border:1px solid rgba(233,69,96,.3)}
+        /* TABLE */
+        .order-table{width:100%;border-collapse:collapse;font-size:.72em;margin-top:6px}
+        .order-table th{text-align:left;padding:6px 8px;color:#94a3b8;border-bottom:2px solid #f1f5f9;font-weight:600}
+        .order-table td{padding:6px 8px;border-bottom:1px solid #f8fafc;font-family:'Courier New',monospace;word-break:break-all}
+        .order-table tr.row-ok td{color:#059669;background:#f0fdf4}
+        .order-table tr.row-bad td{color:#dc2626;background:#fef2f2}
+        .order-table tr:hover td{background:#f8fafc}
 
-        .order-table{width:100%;border-collapse:collapse;font-size:.7em;margin-top:4px}
-        .order-table th{text-align:left;padding:4px 6px;color:#888;border-bottom:1px solid #2a2a4a}
-        .order-table td{padding:4px 6px;border-bottom:1px solid #1a1a3a;font-family:'Courier New',monospace;word-break:break-all}
-        .order-table tr.row-ok td{color:#00b894}
-        .order-table tr.row-bad td{color:#e94560;background:rgba(233,69,96,.05)}
+        .perfect-msg{text-align:center;color:#059669;font-size:.82em;padding:10px;font-weight:600}
+        .status-bar{text-align:center;padding:14px;border-radius:10px;font-weight:600;font-size:.95em;margin-top:16px}
+        .status-bar.success{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+        .status-bar.error{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
 
-        .download-section{background:#0a0a1a;border:1px solid #00b89440;border-radius:10px;padding:15px;margin-top:15px;text-align:center}
-        .download-section h4{color:#00b894;margin-bottom:8px;font-size:.9em}
-        .download-section p{color:#888;font-size:.75em;margin-bottom:12px}
+        /* DOWNLOAD SECTION */
+        .download-section{background:linear-gradient(135deg,#ecfdf5,#eff6ff);border:1px solid #a7f3d0;border-radius:12px;padding:18px;margin-top:16px;text-align:center}
+        .download-section h4{color:#059669;margin-bottom:6px;font-size:.9em}
+        .download-section p{color:#64748b;font-size:.75em;margin-bottom:12px}
         .download-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
-        ::-webkit-scrollbar{width:5px}
-        ::-webkit-scrollbar-track{background:transparent}
-        ::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:3px}
+        /* SCROLLBAR */
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:#f1f5f9;border-radius:3px}
+        ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+        ::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
         @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
     </style>
 </head>
@@ -169,7 +188,7 @@
 
     <div class="main-tabs">
         <button class="main-tab active" onclick="switchTab('skus',this)">🛒 SKUs</button>
-        <button class="main-tab" onclick="switchTab('sliders',this)">🖼️ Sliders/Banners</button>
+        <button class="main-tab" onclick="switchTab('sliders',this)">🖼️ Sliders / Banners</button>
         <button class="main-tab" onclick="switchTab('depts',this)">🏷️ Iconografía</button>
     </div>
 
@@ -181,8 +200,8 @@
             <button class="channel-btn" onclick="setChannel('web',this)">🌐 .COM</button>
         </div>
         <div class="file-upload">
-            <label>📂 Seleccionar JSON<input type="file" id="jsonFile" accept=".json" onchange="loadJSON(event)"></label>
-            <span class="file-name" id="fileName">Ningún archivo</span>
+            <label>📂 Seleccionar archivo JSON<input type="file" id="jsonFile" accept=".json" onchange="loadJSON(event)"></label>
+            <span class="file-name" id="fileName">Ningún archivo seleccionado</span>
         </div>
         <div class="file-status" id="fileStatus"></div>
         <div class="detected" id="detected"></div>
@@ -192,9 +211,9 @@
     <div class="tab-content active" id="tab-skus">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Pegar SKUs del Excel</h2></div>
-            <p class="hint">Uno por línea. Las comas se eliminan. Si hay errores, se corrigen con los valores del JSON y puedes descargar el JSON corregido.</p>
-            <div class="section-box" style="border-color:#e9456040">
-                <div class="section-label"><h3 style="color:#e94560">🔔 Popup Oferta del Día</h3><span class="badge badge-popup">POPUP</span></div>
+            <p class="hint">Uno por línea. Las comas se eliminan automáticamente.</p>
+            <div class="section-box" style="border-left:3px solid #dc2626">
+                <div class="section-label"><h3>🔔 Popup Oferta del Día</h3><span class="badge badge-popup">POPUP</span></div>
                 <div class="card-id">popupOfertaDelDia</div>
                 <textarea id="excel-popup" class="small" placeholder="PM-9389043&#10;PR-3783422" oninput="uc('excel-popup','c-popup')"></textarea>
                 <div class="counter"><span id="c-popup">0</span> SKUs</div>
@@ -209,7 +228,7 @@
             </div>
         </div>
         <div class="btn-container">
-            <button class="btn btn-validate" onclick="validateSKUs()">🔍 VALIDAR</button>
+            <button class="btn btn-validate" onclick="validateSKUs()">🔍 VALIDAR SKUs</button>
             <button class="btn btn-clear" onclick="clearSKUs()">🗑️ LIMPIAR</button>
         </div>
         <div class="results-container" id="skuRes"></div>
@@ -219,50 +238,51 @@
     <div class="tab-content" id="tab-sliders">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Sliders y Banners</h2></div>
-            <p class="hint">URLs se convierten auto. ALTs se buscan por contenido. Descarga el JSON con las correcciones aplicadas.</p>
+            <p class="hint">URLs se convierten auto (<code>https://www.coppel.com</code> se elimina). ALTs se buscan por contenido.</p>
 
-            <div class="section-box" style="border-color:#0984e340">
-                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - Orden</h3><span class="badge badge-slider">POR CORREO</span></div>
-                <textarea id="slider-order" class="small" placeholder="Mi Look&#10;Línea Blanca&#10;..." oninput="uc('slider-order','c-so')"></textarea>
+            <div class="section-box" style="border-left:3px solid #2563eb">
+                <div class="section-label"><h3>🖼️ Slider Principal - Orden</h3><span class="badge badge-slider">POR CORREO</span></div>
+                <div class="card-id">sliderPrincipal</div>
+                <textarea id="slider-order" class="small" placeholder="Mi Look&#10;Muebles de Jardín&#10;Línea Blanca&#10;..." oninput="uc('slider-order','c-so')"></textarea>
                 <div class="counter"><span id="c-so">0</span></div>
             </div>
 
-            <div class="section-box" style="border-color:#0984e340">
-                <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider - ALTs y URLs</h3><span class="badge badge-opt">DEL EXCEL</span></div>
+            <div class="section-box" style="border-left:3px solid #2563eb">
+                <div class="section-label"><h3>🖼️ Slider - ALTs y URLs</h3><span class="badge badge-opt">DEL EXCEL</span></div>
                 <div class="grid-2">
-                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4>
-                        <textarea id="slider-alts" placeholder="Pega ALTs..." oninput="uc('slider-alts','c-sa')"></textarea><div class="counter"><span id="c-sa">0</span></div></div>
-                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4>
-                        <textarea id="slider-urls" placeholder="https://www.coppel.com/..." oninput="uc('slider-urls','c-su')"></textarea><div class="counter"><span id="c-su">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><div class="sub-hint">No importa el orden</div>
+                        <textarea id="slider-alts" placeholder="Pega los ALTs..." oninput="uc('slider-alts','c-sa')"></textarea><div class="counter"><span id="c-sa">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><div class="sub-hint">Se convierte automáticamente</div>
+                        <textarea id="slider-urls" placeholder="https://www.coppel.com/ca/mi-look..." oninput="uc('slider-urls','c-su')"></textarea><div class="counter"><span id="c-su">0</span></div></div>
                 </div>
             </div>
 
-            <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">📸 Banners Promo</h3></div>
+            <div class="section-box" style="border-left:3px solid #d97706">
+                <div class="section-label"><h3>📸 Banners Promo</h3><span class="badge badge-banner">BANNER</span></div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><textarea id="banner-alts" class="small" oninput="uc('banner-alts','c-ba')"></textarea><div class="counter"><span id="c-ba">0</span></div></div>
                     <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><textarea id="banner-urls" class="small" oninput="uc('banner-urls','c-bu')"></textarea><div class="counter"><span id="c-bu">0</span></div></div>
                 </div>
             </div>
 
-            <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">🖼️ Banner Medio</h3></div>
+            <div class="section-box" style="border-left:3px solid #d97706">
+                <div class="section-label"><h3>🖼️ Banner Medio</h3><span class="badge badge-banner">BANNER</span></div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALT</h4><textarea id="bmedio-alt" class="small" oninput="uc('bmedio-alt','c-bma')"></textarea><div class="counter"><span id="c-bma">0</span></div></div>
                     <div class="sub-card"><h4 class="c-blue">🔗 URL</h4><textarea id="bmedio-url" class="small" oninput="uc('bmedio-url','c-bmu')"></textarea><div class="counter"><span id="c-bmu">0</span></div></div>
                 </div>
             </div>
 
-            <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">💳 Bloque Crédito</h3></div>
+            <div class="section-box" style="border-left:3px solid #d97706">
+                <div class="section-label"><h3>💳 Bloque Crédito</h3><span class="badge badge-banner">BANNER</span></div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><textarea id="credito-alts" oninput="uc('credito-alts','c-ca')"></textarea><div class="counter"><span id="c-ca">0</span></div></div>
                     <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><textarea id="credito-urls" oninput="uc('credito-urls','c-cu')"></textarea><div class="counter"><span id="c-cu">0</span></div></div>
                 </div>
             </div>
 
-            <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">📸 Bloque Servicios</h3></div>
+            <div class="section-box" style="border-left:3px solid #d97706">
+                <div class="section-label"><h3>📸 Bloque Servicios</h3><span class="badge badge-banner">BANNER</span></div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><textarea id="servicio-alts" oninput="uc('servicio-alts','c-sva')"></textarea><div class="counter"><span id="c-sva">0</span></div></div>
                     <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><textarea id="servicio-urls" oninput="uc('servicio-urls','c-svu')"></textarea><div class="counter"><span id="c-svu">0</span></div></div>
@@ -280,19 +300,20 @@
     <div class="tab-content" id="tab-depts">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Iconografía</h2></div>
-            <div class="section-box" style="border-color:#00b89440">
-                <div class="section-label"><h3 style="color:#00b894">🏷️ Departamentos</h3><span class="badge badge-dept">ICONOGRAFÍA</span></div>
+            <div class="section-box" style="border-left:3px solid #059669">
+                <div class="section-label"><h3>🏷️ Departamentos</h3><span class="badge badge-dept">ICONOGRAFÍA</span></div>
+                <div class="card-id">bloqueDepartamentos</div>
                 <div class="options-row">
                     <label class="opt-label"><input type="checkbox" id="chkPct" onchange="toggleEl('col-pct',this.checked)"> Porcentajes <span class="badge badge-opt">OPCIONAL</span></label>
                     <label class="opt-label"><input type="checkbox" id="chkLinks" onchange="toggleEl('col-links',this.checked)"> Links <span class="badge badge-opt">OPCIONAL</span></label>
                 </div>
                 <div class="grid-3">
-                    <div class="sub-card"><h4 class="c-green">📋 Nombres</h4>
-                        <textarea id="dept-names" class="tall" placeholder="Ofertas&#10;Motos y Movilidad&#10;..." oninput="uc('dept-names','c-dn')"></textarea><div class="counter"><span id="c-dn">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-green">📋 Nombres</h4><div class="sub-hint">En orden, uno por línea</div>
+                        <textarea id="dept-names" class="tall" placeholder="Ofertas&#10;Motos y Movilidad&#10;Zapatos&#10;..." oninput="uc('dept-names','c-dn')"></textarea><div class="counter"><span id="c-dn">0</span></div></div>
                     <div class="sub-card" id="col-pct" style="display:none"><h4 class="c-purple">📊 Porcentajes</h4>
-                        <textarea id="dept-pcts" class="tall" oninput="uc('dept-pcts','c-dp')"></textarea><div class="counter"><span id="c-dp">0</span></div></div>
+                        <textarea id="dept-pcts" class="tall" placeholder="Hasta 50%&#10;Hasta 30%&#10;..." oninput="uc('dept-pcts','c-dp')"></textarea><div class="counter"><span id="c-dp">0</span></div></div>
                     <div class="sub-card" id="col-links" style="display:none"><h4 class="c-blue">🔗 Links</h4>
-                        <textarea id="dept-links" class="tall" oninput="uc('dept-links','c-dl')"></textarea><div class="counter"><span id="c-dl">0</span></div></div>
+                        <textarea id="dept-links" class="tall" placeholder="/sd/RB2514...&#10;/ct/motos..." oninput="uc('dept-links','c-dl')"></textarea><div class="counter"><span id="c-dl">0</span></div></div>
                 </div>
             </div>
         </div>
@@ -313,7 +334,6 @@ const SKU_COMPS=[
 ];
 
 let channel='store',jsonData=null,jsonOriginal=null,cmsSkus=[],cmsBanners={},cmsDepts=[];
-let hasCorrections=false;
 
 function switchTab(t,b){document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active')}
 function toggleEl(id,s){document.getElementById(id).style.display=s?'block':'none'}
@@ -340,160 +360,79 @@ function findAltMatch(ua,cmsAlts){
     return null
 }
 
-// ========== LOAD JSON ==========
 function loadJSON(e){
     const f=e.target.files[0];if(!f)return;
     document.getElementById('fileName').textContent=f.name;
     const r=new FileReader();
-    r.onload=function(ev){
-        try{
-            jsonData=JSON.parse(ev.target.result);
-            // Guardar copia profunda del original para poder modificarlo después
-            jsonOriginal=JSON.parse(ev.target.result);
-            processJSON(jsonData);
-        }catch(er){showFS('error','❌ JSON inválido')}
-    };
+    r.onload=function(ev){try{jsonData=JSON.parse(ev.target.result);jsonOriginal=JSON.parse(ev.target.result);processJSON(jsonData)}catch(er){showFS('error','❌ JSON inválido')}};
     r.readAsText(f)
 }
 
 function processJSON(d){
-    const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No component');return}
+    const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No se encontró component');return}
     cmsSkus=[];cmsBanners={};cmsDepts=[];
 
     SKU_COMPS.forEach(cfg=>{let f=false;for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===cfg.id){cmsSkus.push({...cfg,skus:(c.product_carousel.products||[]).map(p=>p.trim().toUpperCase())});f=true;break}}if(!f)cmsSkus.push({...cfg,skus:[]})});
 
     for(const c of comps){
         if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'){
-            if(c.slider_banner.slider)cmsBanners['sliderPrincipal']=(c.slider_banner.slider.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||'',category:i.analytics?.category||''}));
-            if(c.slider_banner.banner)cmsBanners['bannersPromo']=(c.slider_banner.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||''}));
+            if(c.slider_banner.slider)cmsBanners['sliderPrincipal']=(c.slider_banner.slider.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),category:i.analytics?.category||''}));
+            if(c.slider_banner.banner)cmsBanners['bannersPromo']=(c.slider_banner.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}));
         }
-        if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid))cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||''}))}
+        if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid))cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}
     }
 
     for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){cmsDepts=(c.department.items||[]).map((i,idx)=>({order:idx+1,name:i.link?i.link.title:'',text:i.text||'',link:i.link?i.link.href:''}));break}}
 
     showDetected();
     const ts=cmsSkus.reduce((s,c)=>s+c.skus.length,0),tb=Object.values(cmsBanners).reduce((s,a)=>s+a.length,0);
-    showFS('success',`✅ JSON (${channel==='store'?'Tienda':'.COM'}). ${ts} SKUs, ${tb} banners, ${cmsDepts.length} deptos.`)
+    showFS('success',`✅ JSON cargado (${channel==='store'?'Tienda':'.COM'}). ${ts} SKUs, ${tb} banners, ${cmsDepts.length} deptos.`)
 }
 
 function showDetected(){
-    const d=document.getElementById('detected');d.style.display='block';d.innerHTML='<h3>📦 Detectado:</h3>';
+    const d=document.getElementById('detected');d.style.display='block';d.innerHTML='<h3>📦 Componentes detectados:</h3>';
     cmsSkus.forEach(c=>{d.innerHTML+=`<div class="det-card"><span class="det-title">${c.icon} ${c.name}</span><span class="det-info"> — ${c.skus.length} SKUs</span></div>`});
-    Object.entries(cmsBanners).forEach(([k,v])=>{d.innerHTML+=`<div class="det-card"><span class="det-title">🖼️ ${k}</span><span class="det-info"> — ${v.length}</span></div>`});
+    Object.entries(cmsBanners).forEach(([k,v])=>{d.innerHTML+=`<div class="det-card"><span class="det-title">🖼️ ${k}</span><span class="det-info"> — ${v.length} items</span></div>`});
     if(cmsDepts.length)d.innerHTML+=`<div class="det-card"><span class="det-title">🏷️ Departamentos</span><span class="det-info"> — ${cmsDepts.length}</span></div>`
 }
 
-// ========== APPLY CORRECTIONS TO JSON ==========
-function applyCorrectionsToJSON(correctionType, correctionData){
-    if(!jsonOriginal)return;
-    const comps=jsonOriginal.component||jsonOriginal.components||[];
-
-    if(correctionType==='skus'){
-        correctionData.forEach(corr=>{
-            for(const c of comps){
-                if(c.product_carousel&&c.product_carousel.component_id===corr.id){
-                    c.product_carousel.products=corr.correctedSkus;
-                    break;
-                }
-            }
-        });
-    }
-
-    if(correctionType==='banners'){
-        correctionData.forEach(corr=>{
-            if(corr.cmsKey==='sliderPrincipal'){
-                for(const c of comps){
-                    if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'&&c.slider_banner.slider){
-                        corr.items.forEach((fix,i)=>{
-                            if(c.slider_banner.slider.items[i]){
-                                if(fix.alt!==undefined){c.slider_banner.slider.items[i].alt=fix.alt;c.slider_banner.slider.items[i].link.title=fix.alt}
-                                if(fix.url!==undefined)c.slider_banner.slider.items[i].link.href=fix.url;
-                            }
-                        });break;
-                    }
-                }
-            }
-            if(corr.cmsKey==='bannersPromo'){
-                for(const c of comps){
-                    if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'&&c.slider_banner.banner){
-                        corr.items.forEach((fix,i)=>{
-                            if(c.slider_banner.banner.items[i]){
-                                if(fix.alt!==undefined){c.slider_banner.banner.items[i].alt=fix.alt;c.slider_banner.banner.items[i].link.title=fix.alt}
-                                if(fix.url!==undefined)c.slider_banner.banner.items[i].link.href=fix.url;
-                            }
-                        });break;
-                    }
-                }
-            }
-            if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(corr.cmsKey)){
-                for(const c of comps){
-                    if(c.banner&&c.banner.component_id===corr.cmsKey){
-                        corr.items.forEach((fix,i)=>{
-                            if(c.banner.items[i]){
-                                if(fix.alt!==undefined){c.banner.items[i].alt=fix.alt;c.banner.items[i].link.title=fix.alt}
-                                if(fix.url!==undefined)c.banner.items[i].link.href=fix.url;
-                            }
-                        });break;
-                    }
-                }
-            }
-        });
-    }
-
-    if(correctionType==='depts'){
-        for(const c of comps){
-            if(c.department&&c.department.component_id==='bloqueDepartamentos'){
-                correctionData.forEach((fix,i)=>{
-                    if(c.department.items[i]){
-                        if(fix.name!==undefined&&c.department.items[i].link)c.department.items[i].link.title=fix.name;
-                        if(fix.text!==undefined)c.department.items[i].text=fix.text;
-                        if(fix.link!==undefined&&c.department.items[i].link)c.department.items[i].link.href=fix.link;
-                    }
-                });break;
-            }
-        }
-    }
-
-    hasCorrections=true;
+function applyCorrectionsToJSON(type,data){
+    if(!jsonOriginal)return;const comps=jsonOriginal.component||jsonOriginal.components||[];
+    if(type==='skus'){data.forEach(corr=>{for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===corr.id){c.product_carousel.products=corr.correctedSkus;break}}})}
+    if(type==='banners'){data.forEach(corr=>{
+        if(corr.cmsKey==='sliderPrincipal'){for(const c of comps){if(c.slider_banner&&c.slider_banner.slider){corr.items.forEach((fix,i)=>{if(c.slider_banner.slider.items[i]){if(fix.alt!==undefined)c.slider_banner.slider.items[i].alt=fix.alt;if(fix.url!==undefined)c.slider_banner.slider.items[i].link.href=fix.url}});break}}}
+        if(corr.cmsKey==='bannersPromo'){for(const c of comps){if(c.slider_banner&&c.slider_banner.banner){corr.items.forEach((fix,i)=>{if(c.slider_banner.banner.items[i]){if(fix.alt!==undefined)c.slider_banner.banner.items[i].alt=fix.alt;if(fix.url!==undefined)c.slider_banner.banner.items[i].link.href=fix.url}});break}}}
+        if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(corr.cmsKey)){for(const c of comps){if(c.banner&&c.banner.component_id===corr.cmsKey){corr.items.forEach((fix,i)=>{if(c.banner.items[i]){if(fix.alt!==undefined)c.banner.items[i].alt=fix.alt;if(fix.url!==undefined)c.banner.items[i].link.href=fix.url}});break}}}
+    })}
+    if(type==='depts'){for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){data.forEach((fix,i)=>{if(c.department.items[i]){if(fix.name!==undefined&&c.department.items[i].link)c.department.items[i].link.title=fix.name;if(fix.text!==undefined)c.department.items[i].text=fix.text;if(fix.link!==undefined&&c.department.items[i].link)c.department.items[i].link.href=fix.link}});break}}}
 }
 
 function downloadCorrectedJSON(){
-    if(!jsonOriginal){alert('No hay JSON cargado');return}
-    const ch=channel==='store'?'Tienda':'COM';
-    const now=new Date().toISOString().split('T')[0];
+    if(!jsonOriginal)return;
+    const ch=channel==='store'?'Tienda':'COM';const now=new Date().toISOString().split('T')[0];
     const blob=new Blob([JSON.stringify(jsonOriginal,null,2)],{type:'application/json'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download=`home_${ch}_corregido_${now}.json`;
-    a.click();
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`home_${ch}_corregido_${now}.json`;a.click()
 }
 
-// ========== VALIDATE SKUs ==========
+// VALIDATE SKUs
 function validateSKUs(){
     if(!cmsSkus.length){alert('⚠️ Importa el JSON');return}
-    let tC=0,tE=0,tF=0,allP=true;
-    const res=document.getElementById('skuRes');
-    let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';
-    const skuCorrections=[];
+    let tC=0,tE=0,tF=0,allP=true;const res=document.getElementById('skuRes');
+    let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';const skuCorr=[];
 
     cmsSkus.forEach(cms=>{
         const txt=document.getElementById(cms.tid).value;
-        if(!txt.trim()){html+=`<div class="result-card"><div class="result-card-header"><span>⏭️</span><h4>${cms.icon} ${cms.name}</h4></div><p class="perfect-msg" style="color:#555">Sin datos</p></div>`;return}
+        if(!txt.trim()){html+=`<div class="result-card"><div class="result-card-header"><span>⏭️</span><h4>${cms.icon} ${cms.name}</h4></div><p class="perfect-msg" style="color:#94a3b8">Sin datos</p></div>`;return}
         const el=parseSkus(txt),cl=cms.skus;
         const correct=[],missing=[],extra=[];
-
-        el.forEach(sku=>{if(cl.includes(sku))correct.push(sku);else{missing.push(sku);tF++}});
-        cl.forEach(sku=>{if(!el.includes(sku))extra.push(sku)});
+        el.forEach(s=>{if(cl.includes(s))correct.push(s);else{missing.push(s);tF++}});
+        cl.forEach(s=>{if(!el.includes(s))extra.push(s)});
         const seen={},dups={};cl.forEach(i=>{seen[i]=(seen[i]||0)+1;if(seen[i]>1)dups[i]=seen[i]});
-
-        // Guardar corrección: siempre usar la lista del CMS
-        skuCorrections.push({id:cms.id,name:cms.name,correctedSkus:[...cl]});
-
+        skuCorr.push({id:cms.id,correctedSkus:[...cl]});
         const dk=Object.keys(dups).length,ok=!missing.length&&!extra.length&&!dk;
         if(!ok)allP=false;tC+=correct.length;tE+=missing.length+extra.length+dk;
 
-        let h=`<div class="result-card" style="border-color:${ok?'#00b894':'#e94560'}"><div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4><span class="mini">Excel:${el.length}|CMS:${cl.length}</span></div>`;
+        let h=`<div class="result-card" style="border-left:3px solid ${ok?'#059669':'#dc2626'}"><div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4><span class="mini">Excel: ${el.length} | CMS: ${cl.length}</span></div>`;
         if(correct.length)h+=`<div class="r-section"><div class="r-header correct">✅ Correctos (${correct.length})</div><ul class="r-list correct">${correct.map(s=>`<li>✔ ${s}</li>`).join('')}</ul></div>`;
         if(missing.length)h+=`<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="r-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;
         if(extra.length)h+=`<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="r-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;
@@ -503,50 +442,32 @@ function validateSKUs(){
         html+=h+'</div>';
     });
 
-    // Aplicar correcciones al JSON
-    applyCorrectionsToJSON('skus', skuCorrections);
-
+    applyCorrectionsToJSON('skus',skuCorr);
     html+=`<div class="global-summary"><div class="g-card correct"><div class="number">${tC}</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">${tE}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${tF}</div><div class="label">🔧 Corregidos</div></div></div>`;
-
-    // Sección de descarga
-    html+=`<div class="download-section">
-        <h4>📥 Descargar JSON Corregido</h4>
-        <p>El archivo JSON original fue modificado con los valores correctos. Puedes descargarlo y re-importarlo a ContentStack.</p>
-        <div class="download-btns">
-            <button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button>
-        </div>
-    </div>`;
-
-    html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todo correcto!':'⛔ Se corrigieron errores. Descarga el JSON.'}</div>`;
+    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>El JSON fue actualizado con los valores correctos. Re-impórtalo a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
+    html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todos los SKUs correctos!':'⛔ Se encontraron errores. Descarga el JSON corregido.'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
-// ========== VALIDATE BANNERS ==========
+// VALIDATE BANNERS
 function validateBanners(){
     if(!Object.keys(cmsBanners).length){alert('⚠️ Importa el JSON');return}
-    let totalErr=0,totalFix=0;
-    const res=document.getElementById('bannerRes');
-    let html='<div class="results-header"><h2>📊 Resultados Sliders/Banners</h2></div>';
-    const bannerCorrections=[];
+    let totalErr=0,totalFix=0;const res=document.getElementById('bannerRes');
+    let html='<div class="results-header"><h2>📊 Resultados Sliders / Banners</h2></div>';const bannerCorr=[];
 
-    // Slider order
     const orderTxt=document.getElementById('slider-order').value;
     if(orderTxt.trim()&&cmsBanners.sliderPrincipal){
-        const uo=parseLines(orderTxt),cs=cmsBanners.sliderPrincipal;
-        let oErr=0;
-        let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden Slider</h4><span class="mini">Correo:${uo.length}|CMS:${cs.length}</span></div>`;
+        const uo=parseLines(orderTxt),cs=cmsBanners.sliderPrincipal;let oErr=0;
+        let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden Slider</h4><span class="mini">Correo: ${uo.length} | CMS: ${cs.length}</span></div>`;
         oh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS</th><th></th></tr>`;
         const mx=Math.max(uo.length,cs.length);
-        for(let i=0;i<mx;i++){
-            const u=uo[i]||'—',c=cs[i]?cs[i].category.replace(/^[A-Z]-\s*/,''):'—';
-            const ok=norm(u)===norm(c);if(!ok)oErr++;
+        for(let i=0;i<mx;i++){const u=uo[i]||'—',c=cs[i]?cs[i].category.replace(/^[A-Z]-\s*/,''):'—';const ok=norm(u)===norm(c);if(!ok)oErr++;
             oh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
         oh+='</table>';totalErr+=oErr;totalFix+=oErr;
-        oh+=oErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${oErr} en posición incorrecta</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
+        oh+=oErr?`<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ${oErr} en posición incorrecta</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
         html+=oh+'</div>'
     }
 
-    // Sections
     const sections=[
         {name:'Slider Principal',altId:'slider-alts',urlId:'slider-urls',cmsKey:'sliderPrincipal',icon:'🖼️'},
         {name:'Banners Promo',altId:'banner-alts',urlId:'banner-urls',cmsKey:'bannersPromo',icon:'📸'},
@@ -556,80 +477,61 @@ function validateBanners(){
     ];
 
     sections.forEach(sec=>{
-        const altTxt=document.getElementById(sec.altId).value;
-        const urlTxt=document.getElementById(sec.urlId).value;
-        const cmsItems=cmsBanners[sec.cmsKey]||[];
-        if(!altTxt.trim()&&!urlTxt.trim())return;
+        const altTxt=document.getElementById(sec.altId).value,urlTxt=document.getElementById(sec.urlId).value;
+        const cmsItems=cmsBanners[sec.cmsKey]||[];if(!altTxt.trim()&&!urlTxt.trim())return;
+        let sErr=0;const corrItems=cmsItems.map(i=>({alt:i.alt,url:i.url}));
+        let sh=`<div class="result-card"><div class="result-card-header"><span>${sec.icon}</span><h4>${sec.name}</h4><span class="mini">CMS: ${cmsItems.length}</span></div>`;
 
-        let sErr=0;
-        // Preparar items de corrección (mantener valores del CMS)
-        const corrItems=cmsItems.map(i=>({alt:i.alt,url:i.url}));
-
-        let sh=`<div class="result-card"><div class="result-card-header"><span>${sec.icon}</span><h4>${sec.name}</h4><span class="mini">CMS:${cmsItems.length}</span></div>`;
-
-        // ALTs
         if(altTxt.trim()){
-            const ua=parseLines(altTxt),ca=cmsItems.map(i=>i.alt);
-            const matched=[],unmatched=[];
+            const ua=parseLines(altTxt),ca=cmsItems.map(i=>i.alt);const matched=[],unmatched=[];
             ua.forEach(a=>{const m=findAltMatch(a,ca);if(m)matched.push({user:a,cms:ca[m.index],type:m.type});else{unmatched.push(a);sErr++;totalFix++}});
-            const mi=matched.map(m=>ca.indexOf(m.cms));
-            const uc2=ca.filter((_,i)=>!mi.includes(i));
-
+            const mi=matched.map(m=>ca.indexOf(m.cms)),uc2=ca.filter((_,i)=>!mi.includes(i));
             if(matched.length)sh+=`<div class="r-section"><div class="r-header correct">📝 ALTs OK (${matched.length})</div><ul class="r-list correct">${matched.map(m=>`<li>✔ ${m.user.substring(0,80)}... <span class="match-tag ${m.type}">${m.type==='exact'?'EXACTO':'PARCIAL'}</span></li>`).join('')}</ul></div>`;
             if(unmatched.length)sh+=`<div class="r-section"><div class="r-header missing">❌ ALTs no encontrados (${unmatched.length})</div><ul class="r-list missing">${unmatched.map(u=>`<li>✖ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
             if(uc2.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match (${uc2.length})</div><ul class="r-list extra">${uc2.map(u=>`<li>⚠ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
-            if(unmatched.length||uc2.length)sh+=`<div class="correction-box"><h5>🔧 ALTs correctos (del JSON):</h5><ul class="r-list fixed">${ca.map(a=>`<li>📋 ${a}</li>`).join('')}</ul></div>`;
+            if(unmatched.length||uc2.length)sh+=`<div class="correction-box"><h5>🔧 ALTs correctos:</h5><ul class="r-list fixed">${ca.map(a=>`<li>📋 ${a}</li>`).join('')}</ul></div>`;
         }
 
-        // URLs
         if(urlTxt.trim()){
-            const uu=parseLines(urlTxt).map(convertUrl),cu=cmsItems.map(i=>i.url.trim());
-            const mU=[],umU=[];
+            const uu=parseLines(urlTxt).map(convertUrl),cu=cmsItems.map(i=>i.url.trim());const mU=[],umU=[];
             uu.forEach(u=>{const f=cu.findIndex(c=>c.trim()===u.trim());if(f!==-1)mU.push({user:u,cms:cu[f]});else{umU.push(u);sErr++;totalFix++}});
             const mcu=mU.map(m=>m.cms),umcu=cu.filter(u=>!mcu.includes(u));
-
             if(mU.length)sh+=`<div class="r-section"><div class="r-header correct">🔗 URLs OK (${mU.length})</div><ul class="r-list correct">${mU.map(m=>`<li>✔ ${m.user}</li>`).join('')}</ul></div>`;
             if(umU.length)sh+=`<div class="r-section"><div class="r-header missing">❌ URLs no encontradas (${umU.length})</div><ul class="r-list missing">${umU.map(u=>`<li>✖ ${u}</li>`).join('')}</ul></div>`;
             if(umcu.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ URLs en CMS sin match (${umcu.length})</div><ul class="r-list extra">${umcu.map(u=>`<li>⚠ ${u}</li>`).join('')}</ul></div>`;
-            if(umU.length||umcu.length)sh+=`<div class="correction-box"><h5>🔧 URLs correctas (del JSON):</h5><ul class="r-list fixed">${cu.map(u=>`<li>📋 ${u}</li>`).join('')}</ul></div>`;
+            if(umU.length||umcu.length)sh+=`<div class="correction-box"><h5>🔧 URLs correctas:</h5><ul class="r-list fixed">${cu.map(u=>`<li>📋 ${u}</li>`).join('')}</ul></div>`;
         }
 
-        bannerCorrections.push({cmsKey:sec.cmsKey,items:corrItems});
-        totalErr+=sErr;
-        sh+=sErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${sErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Todo correcto</p>`;
+        bannerCorr.push({cmsKey:sec.cmsKey,items:corrItems});totalErr+=sErr;
+        sh+=sErr?`<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ${sErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Todo correcto</p>`;
         html+=sh+'</div>'
     });
 
-    applyCorrectionsToJSON('banners',bannerCorrections);
-
-    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;
-    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Los valores correctos del JSON original se mantienen. Descárgalo para re-importar a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
-    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga el JSON corregido.`:'🎉 ¡Todo perfecto!'}</div>`;
+    applyCorrectionsToJSON('banners',bannerCorr);
+    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Por corregir</div></div></div>`;
+    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Re-importa a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
+    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Todo perfecto!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
-// ========== VALIDATE DEPTS ==========
+// VALIDATE DEPTS
 function validateDepts(){
     if(!cmsDepts.length){alert('⚠️ Importa el JSON');return}
-    const nt=document.getElementById('dept-names').value;
-    if(!nt.trim()){alert('⚠️ Pega los nombres');return}
-    const un=parseLines(nt);let totalErr=0,totalFix=0;
-    const res=document.getElementById('deptRes');
+    const nt=document.getElementById('dept-names').value;if(!nt.trim()){alert('⚠️ Pega los nombres');return}
+    const un=parseLines(nt);let totalErr=0,totalFix=0;const res=document.getElementById('deptRes');
     let html='<div class="results-header"><h2>📊 Resultados Iconografía</h2></div>';
-    const deptCorrections=cmsDepts.map(d=>({name:d.name,text:d.text,link:d.link}));
+    const deptCorr=cmsDepts.map(d=>({name:d.name,text:d.text,link:d.link}));
 
-    // Names
     const mx=Math.max(un.length,cmsDepts.length);let oErr=0;
-    let nh=`<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden</h4><span class="mini">Excel:${un.length}|CMS:${cmsDepts.length}</span></div>`;
+    let nh=`<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden Departamentos</h4><span class="mini">Excel: ${un.length} | CMS: ${cmsDepts.length}</span></div>`;
     nh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS (correcto)</th><th></th></tr>`;
     for(let i=0;i<mx;i++){const u=un[i]||'—',c=cmsDepts[i]?cmsDepts[i].name:'—';const ok=norm(u)===norm(c);if(!ok){oErr++;totalFix++}
         nh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
     nh+='</table>';totalErr+=oErr;
     if(oErr)nh+=`<div class="correction-box"><h5>🔧 Orden correcto:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${i+1}. ${d.name}</li>`).join('')}</ul></div>`;
-    else nh+=`<p class="perfect-msg">🎉 Perfecto</p>`;
+    else nh+=`<p class="perfect-msg">🎉 Orden perfecto</p>`;
     html+=nh+'</div>';
 
-    // Pcts
     if(document.getElementById('chkPct').checked){
         const pt=document.getElementById('dept-pcts').value;
         if(pt.trim()){const up=parseLines(pt);let pE=0;
@@ -638,11 +540,9 @@ function validateDepts(){
             for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){const u=up[i]||'—',c=cmsDepts[i]?cmsDepts[i].text:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=norm(u)===norm(c);if(!ok){pE++;totalFix++}
                 ph+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
             ph+='</table>';totalErr+=pE;
-            if(pE)ph+=`<div class="correction-box"><h5>🔧 Porcentajes correctos:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${d.name}: ${d.text}</li>`).join('')}</ul></div>`;
-            else ph+=`<p class="perfect-msg">🎉 Correctos</p>`;
-            html+=ph+'</div>'}}
+            if(pE)ph+=`<div class="correction-box"><h5>🔧 Porcentajes correctos:</h5><ul class="r-list fixed">${cmsDepts.map(d=>`<li>📋 ${d.name}: ${d.text}</li>`).join('')}</ul></div>`;
+            else ph+=`<p class="perfect-msg">🎉 Correctos</p>`;html+=ph+'</div>'}}
 
-    // Links
     if(document.getElementById('chkLinks').checked){
         const lt=document.getElementById('dept-links').value;
         if(lt.trim()){const ul=parseLines(lt);let lE=0;
@@ -651,15 +551,13 @@ function validateDepts(){
             for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){const u=ul[i]||'—',c=cmsDepts[i]?cmsDepts[i].link:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=u.trim()===c.trim();if(!ok){lE++;totalFix++}
                 lh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
             lh+='</table>';totalErr+=lE;
-            if(lE)lh+=`<div class="correction-box"><h5>🔧 Links correctos:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${d.name}: ${d.link}</li>`).join('')}</ul></div>`;
-            else lh+=`<p class="perfect-msg">🎉 Correctos</p>`;
-            html+=lh+'</div>'}}
+            if(lE)lh+=`<div class="correction-box"><h5>🔧 Links correctos:</h5><ul class="r-list fixed">${cmsDepts.map(d=>`<li>📋 ${d.name}: ${d.link}</li>`).join('')}</ul></div>`;
+            else lh+=`<p class="perfect-msg">🎉 Correctos</p>`;html+=lh+'</div>'}}
 
-    applyCorrectionsToJSON('depts',deptCorrections);
-
+    applyCorrectionsToJSON('depts',deptCorr);
     html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;
-    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Descarga el JSON con los valores correctos para re-importar a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
-    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga el JSON.`:'🎉 ¡Perfecto!'}</div>`;
+    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Re-importa a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
+    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Iconografía perfecta!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
