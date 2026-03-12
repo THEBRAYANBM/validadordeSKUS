@@ -90,6 +90,9 @@
         .btn-download{background:#0984e3;color:#fff}
         .btn-download:hover{background:#0873c4;transform:translateY(-2px)}
         .btn-download:disabled{background:#333;color:#666;cursor:not-allowed;transform:none}
+        .btn-download-json{background:#00b894;color:#fff}
+        .btn-download-json:hover{background:#00a381;transform:translateY(-2px)}
+        .btn-download-json:disabled{background:#333;color:#666;cursor:not-allowed;transform:none}
 
         .results-container{display:none}
         .results-header{text-align:center;margin-bottom:15px}
@@ -145,7 +148,11 @@
         .order-table td{padding:4px 6px;border-bottom:1px solid #1a1a3a;font-family:'Courier New',monospace;word-break:break-all}
         .order-table tr.row-ok td{color:#00b894}
         .order-table tr.row-bad td{color:#e94560;background:rgba(233,69,96,.05)}
-        .order-table tr.row-fixed td{color:#0984e3;background:rgba(9,132,227,.05)}
+
+        .download-section{background:#0a0a1a;border:1px solid #00b89440;border-radius:10px;padding:15px;margin-top:15px;text-align:center}
+        .download-section h4{color:#00b894;margin-bottom:8px;font-size:.9em}
+        .download-section p{color:#888;font-size:.75em;margin-bottom:12px}
+        .download-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
         ::-webkit-scrollbar{width:5px}
         ::-webkit-scrollbar-track{background:transparent}
@@ -157,7 +164,7 @@
 <div class="container">
     <div class="header">
         <h1>🔍 Validador ContentStack</h1>
-        <p>Valida, corrige y descarga los componentes del Home</p>
+        <p>Valida, corrige y descarga el JSON corregido</p>
     </div>
 
     <div class="main-tabs">
@@ -185,7 +192,7 @@
     <div class="tab-content active" id="tab-skus">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Pegar SKUs del Excel</h2></div>
-            <p class="hint">Uno por línea. Las comas se eliminan automáticamente. Si un SKU está mal, se marca y se muestra el correcto del JSON.</p>
+            <p class="hint">Uno por línea. Las comas se eliminan. Si hay errores, se corrigen con los valores del JSON y puedes descargar el JSON corregido.</p>
             <div class="section-box" style="border-color:#e9456040">
                 <div class="section-label"><h3 style="color:#e94560">🔔 Popup Oferta del Día</h3><span class="badge badge-popup">POPUP</span></div>
                 <div class="card-id">popupOfertaDelDia</div>
@@ -203,7 +210,6 @@
         </div>
         <div class="btn-container">
             <button class="btn btn-validate" onclick="validateSKUs()">🔍 VALIDAR</button>
-            <button class="btn btn-download" id="dlSkus" disabled onclick="downloadCorrection('skus')">📥 DESCARGAR CORREGIDO</button>
             <button class="btn btn-clear" onclick="clearSKUs()">🗑️ LIMPIAR</button>
         </div>
         <div class="results-container" id="skuRes"></div>
@@ -213,11 +219,10 @@
     <div class="tab-content" id="tab-sliders">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Sliders y Banners</h2></div>
-            <p class="hint">URLs se convierten auto. ALTs se buscan por contenido. Los errores se corrigen con los valores del JSON.</p>
+            <p class="hint">URLs se convierten auto. ALTs se buscan por contenido. Descarga el JSON con las correcciones aplicadas.</p>
 
             <div class="section-box" style="border-color:#0984e340">
                 <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider Principal - Orden</h3><span class="badge badge-slider">POR CORREO</span></div>
-                <div class="card-id">sliderPrincipal</div>
                 <textarea id="slider-order" class="small" placeholder="Mi Look&#10;Línea Blanca&#10;..." oninput="uc('slider-order','c-so')"></textarea>
                 <div class="counter"><span id="c-so">0</span></div>
             </div>
@@ -225,23 +230,23 @@
             <div class="section-box" style="border-color:#0984e340">
                 <div class="section-label"><h3 style="color:#0984e3">🖼️ Slider - ALTs y URLs</h3><span class="badge badge-opt">DEL EXCEL</span></div>
                 <div class="grid-2">
-                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><div class="sub-hint">No importa el orden</div>
+                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4>
                         <textarea id="slider-alts" placeholder="Pega ALTs..." oninput="uc('slider-alts','c-sa')"></textarea><div class="counter"><span id="c-sa">0</span></div></div>
-                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><div class="sub-hint">Se convierte auto</div>
+                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4>
                         <textarea id="slider-urls" placeholder="https://www.coppel.com/..." oninput="uc('slider-urls','c-su')"></textarea><div class="counter"><span id="c-su">0</span></div></div>
                 </div>
             </div>
 
             <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">📸 Banners Promo</h3><span class="badge badge-banner">BANNER</span></div>
+                <div class="section-label"><h3 style="color:#fdcb6e">📸 Banners Promo</h3></div>
                 <div class="grid-2">
-                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><textarea id="banner-alts" class="small" placeholder="ALTs..." oninput="uc('banner-alts','c-ba')"></textarea><div class="counter"><span id="c-ba">0</span></div></div>
-                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><textarea id="banner-urls" class="small" placeholder="URLs..." oninput="uc('banner-urls','c-bu')"></textarea><div class="counter"><span id="c-bu">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-yellow">📝 ALTs</h4><textarea id="banner-alts" class="small" oninput="uc('banner-alts','c-ba')"></textarea><div class="counter"><span id="c-ba">0</span></div></div>
+                    <div class="sub-card"><h4 class="c-blue">🔗 URLs</h4><textarea id="banner-urls" class="small" oninput="uc('banner-urls','c-bu')"></textarea><div class="counter"><span id="c-bu">0</span></div></div>
                 </div>
             </div>
 
             <div class="section-box" style="border-color:#fdcb6e40">
-                <div class="section-label"><h3 style="color:#fdcb6e">🖼️ Banner Medio</h3><span class="badge badge-banner">BANNER</span></div>
+                <div class="section-label"><h3 style="color:#fdcb6e">🖼️ Banner Medio</h3></div>
                 <div class="grid-2">
                     <div class="sub-card"><h4 class="c-yellow">📝 ALT</h4><textarea id="bmedio-alt" class="small" oninput="uc('bmedio-alt','c-bma')"></textarea><div class="counter"><span id="c-bma">0</span></div></div>
                     <div class="sub-card"><h4 class="c-blue">🔗 URL</h4><textarea id="bmedio-url" class="small" oninput="uc('bmedio-url','c-bmu')"></textarea><div class="counter"><span id="c-bmu">0</span></div></div>
@@ -266,7 +271,6 @@
         </div>
         <div class="btn-container">
             <button class="btn btn-validate" onclick="validateBanners()">🔍 VALIDAR</button>
-            <button class="btn btn-download" id="dlBanners" disabled onclick="downloadCorrection('banners')">📥 DESCARGAR CORREGIDO</button>
             <button class="btn btn-clear" onclick="clearBanners()">🗑️ LIMPIAR</button>
         </div>
         <div class="results-container" id="bannerRes"></div>
@@ -294,7 +298,6 @@
         </div>
         <div class="btn-container">
             <button class="btn btn-validate" onclick="validateDepts()">🔍 VALIDAR</button>
-            <button class="btn btn-download" id="dlDepts" disabled onclick="downloadCorrection('depts')">📥 DESCARGAR CORREGIDO</button>
             <button class="btn btn-clear" onclick="clearDepts()">🗑️ LIMPIAR</button>
         </div>
         <div class="results-container" id="deptRes"></div>
@@ -309,8 +312,8 @@ const SKU_COMPS=[
     {id:'carruselLosMasBuscados',name:'Los Más Buscados',icon:'🎠',type:'carousel',tid:'excel-c2',cid:'c-c2'}
 ];
 
-let channel='store',jsonData=null,cmsSkus=[],cmsBanners={},cmsDepts=[];
-let corrections={skus:null,banners:null,depts:null};
+let channel='store',jsonData=null,jsonOriginal=null,cmsSkus=[],cmsBanners={},cmsDepts=[];
+let hasCorrections=false;
 
 function switchTab(t,b){document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active')}
 function toggleEl(id,s){document.getElementById(id).style.display=s?'block':'none'}
@@ -337,27 +340,34 @@ function findAltMatch(ua,cmsAlts){
     return null
 }
 
-function findUrlMatch(uu,cmsUrls){
-    const cu=uu.trim();
-    for(let i=0;i<cmsUrls.length;i++){if(cmsUrls[i].trim()===cu)return i}
-    return -1
+// ========== LOAD JSON ==========
+function loadJSON(e){
+    const f=e.target.files[0];if(!f)return;
+    document.getElementById('fileName').textContent=f.name;
+    const r=new FileReader();
+    r.onload=function(ev){
+        try{
+            jsonData=JSON.parse(ev.target.result);
+            // Guardar copia profunda del original para poder modificarlo después
+            jsonOriginal=JSON.parse(ev.target.result);
+            processJSON(jsonData);
+        }catch(er){showFS('error','❌ JSON inválido')}
+    };
+    r.readAsText(f)
 }
 
-// LOAD
-function loadJSON(e){const f=e.target.files[0];if(!f)return;document.getElementById('fileName').textContent=f.name;const r=new FileReader();r.onload=function(ev){try{jsonData=JSON.parse(ev.target.result);processJSON(jsonData)}catch(er){showFS('error','❌ JSON inválido')}};r.readAsText(f)}
-
 function processJSON(d){
-    const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No se encontró component');return}
+    const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No component');return}
     cmsSkus=[];cmsBanners={};cmsDepts=[];
 
     SKU_COMPS.forEach(cfg=>{let f=false;for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===cfg.id){cmsSkus.push({...cfg,skus:(c.product_carousel.products||[]).map(p=>p.trim().toUpperCase())});f=true;break}}if(!f)cmsSkus.push({...cfg,skus:[]})});
 
     for(const c of comps){
         if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'){
-            if(c.slider_banner.slider){cmsBanners['sliderPrincipal']=(c.slider_banner.slider.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),category:i.analytics?.category||''}))}
-            if(c.slider_banner.banner){cmsBanners['bannersPromo']=(c.slider_banner.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}
+            if(c.slider_banner.slider)cmsBanners['sliderPrincipal']=(c.slider_banner.slider.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||'',category:i.analytics?.category||''}));
+            if(c.slider_banner.banner)cmsBanners['bannersPromo']=(c.slider_banner.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||''}));
         }
-        if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid)){cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}}
+        if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid))cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),title:i.link?.title||''}))}
     }
 
     for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){cmsDepts=(c.department.items||[]).map((i,idx)=>({order:idx+1,name:i.link?i.link.title:'',text:i.text||'',link:i.link?i.link.href:''}));break}}
@@ -374,33 +384,111 @@ function showDetected(){
     if(cmsDepts.length)d.innerHTML+=`<div class="det-card"><span class="det-title">🏷️ Departamentos</span><span class="det-info"> — ${cmsDepts.length}</span></div>`
 }
 
+// ========== APPLY CORRECTIONS TO JSON ==========
+function applyCorrectionsToJSON(correctionType, correctionData){
+    if(!jsonOriginal)return;
+    const comps=jsonOriginal.component||jsonOriginal.components||[];
+
+    if(correctionType==='skus'){
+        correctionData.forEach(corr=>{
+            for(const c of comps){
+                if(c.product_carousel&&c.product_carousel.component_id===corr.id){
+                    c.product_carousel.products=corr.correctedSkus;
+                    break;
+                }
+            }
+        });
+    }
+
+    if(correctionType==='banners'){
+        correctionData.forEach(corr=>{
+            if(corr.cmsKey==='sliderPrincipal'){
+                for(const c of comps){
+                    if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'&&c.slider_banner.slider){
+                        corr.items.forEach((fix,i)=>{
+                            if(c.slider_banner.slider.items[i]){
+                                if(fix.alt!==undefined){c.slider_banner.slider.items[i].alt=fix.alt;c.slider_banner.slider.items[i].link.title=fix.alt}
+                                if(fix.url!==undefined)c.slider_banner.slider.items[i].link.href=fix.url;
+                            }
+                        });break;
+                    }
+                }
+            }
+            if(corr.cmsKey==='bannersPromo'){
+                for(const c of comps){
+                    if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'&&c.slider_banner.banner){
+                        corr.items.forEach((fix,i)=>{
+                            if(c.slider_banner.banner.items[i]){
+                                if(fix.alt!==undefined){c.slider_banner.banner.items[i].alt=fix.alt;c.slider_banner.banner.items[i].link.title=fix.alt}
+                                if(fix.url!==undefined)c.slider_banner.banner.items[i].link.href=fix.url;
+                            }
+                        });break;
+                    }
+                }
+            }
+            if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(corr.cmsKey)){
+                for(const c of comps){
+                    if(c.banner&&c.banner.component_id===corr.cmsKey){
+                        corr.items.forEach((fix,i)=>{
+                            if(c.banner.items[i]){
+                                if(fix.alt!==undefined){c.banner.items[i].alt=fix.alt;c.banner.items[i].link.title=fix.alt}
+                                if(fix.url!==undefined)c.banner.items[i].link.href=fix.url;
+                            }
+                        });break;
+                    }
+                }
+            }
+        });
+    }
+
+    if(correctionType==='depts'){
+        for(const c of comps){
+            if(c.department&&c.department.component_id==='bloqueDepartamentos'){
+                correctionData.forEach((fix,i)=>{
+                    if(c.department.items[i]){
+                        if(fix.name!==undefined&&c.department.items[i].link)c.department.items[i].link.title=fix.name;
+                        if(fix.text!==undefined)c.department.items[i].text=fix.text;
+                        if(fix.link!==undefined&&c.department.items[i].link)c.department.items[i].link.href=fix.link;
+                    }
+                });break;
+            }
+        }
+    }
+
+    hasCorrections=true;
+}
+
+function downloadCorrectedJSON(){
+    if(!jsonOriginal){alert('No hay JSON cargado');return}
+    const ch=channel==='store'?'Tienda':'COM';
+    const now=new Date().toISOString().split('T')[0];
+    const blob=new Blob([JSON.stringify(jsonOriginal,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=`home_${ch}_corregido_${now}.json`;
+    a.click();
+}
+
 // ========== VALIDATE SKUs ==========
 function validateSKUs(){
     if(!cmsSkus.length){alert('⚠️ Importa el JSON');return}
     let tC=0,tE=0,tF=0,allP=true;
     const res=document.getElementById('skuRes');
     let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';
-    let corrData={components:[]};
+    const skuCorrections=[];
 
     cmsSkus.forEach(cms=>{
         const txt=document.getElementById(cms.tid).value;
         if(!txt.trim()){html+=`<div class="result-card"><div class="result-card-header"><span>⏭️</span><h4>${cms.icon} ${cms.name}</h4></div><p class="perfect-msg" style="color:#555">Sin datos</p></div>`;return}
         const el=parseSkus(txt),cl=cms.skus;
-        const correct=[],missing=[],extra=[],fixed=[];
-        const seen={},dups={};
+        const correct=[],missing=[],extra=[];
 
-        el.forEach(sku=>{
-            if(cl.includes(sku)){correct.push(sku)}
-            else{missing.push(sku);tF++}
-        });
-        cl.forEach(sku=>{if(!el.includes(sku)){extra.push(sku)}});
-        cl.forEach(i=>{seen[i]=(seen[i]||0)+1;if(seen[i]>1)dups[i]=seen[i]});
+        el.forEach(sku=>{if(cl.includes(sku))correct.push(sku);else{missing.push(sku);tF++}});
+        cl.forEach(sku=>{if(!el.includes(sku))extra.push(sku)});
+        const seen={},dups={};cl.forEach(i=>{seen[i]=(seen[i]||0)+1;if(seen[i]>1)dups[i]=seen[i]});
 
-        // Corrección: usar la lista del CMS como la correcta
-        const correctedList=cl.slice();
-        missing.forEach(wrongSku=>{fixed.push({old:wrongSku,new:'[NO ENCONTRADO - Revisar manualmente]'})});
-
-        corrData.components.push({name:cms.name,id:cms.id,original:el,corrected:correctedList,fixes:fixed});
+        // Guardar corrección: siempre usar la lista del CMS
+        skuCorrections.push({id:cms.id,name:cms.name,correctedSkus:[...cl]});
 
         const dk=Object.keys(dups).length,ok=!missing.length&&!extra.length&&!dk;
         if(!ok)allP=false;tC+=correct.length;tE+=missing.length+extra.length+dk;
@@ -410,20 +498,26 @@ function validateSKUs(){
         if(missing.length)h+=`<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="r-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;
         if(extra.length)h+=`<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="r-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;
         if(dk)h+=`<div class="r-section"><div class="r-header dup">🔄 Duplicados</div><ul class="r-list dup">${Object.keys(dups).map(s=>`<li>🔄 ${s} (${dups[s]}x)</li>`).join('')}</ul></div>`;
-
-        if(!ok){
-            h+=`<div class="correction-box"><h5>🔧 Lista corregida (del JSON):</h5>`;
-            h+=`<ul class="r-list fixed">${correctedList.map(s=>`<li>📋 ${s}</li>`).join('')}</ul></div>`;
-        }
+        if(!ok)h+=`<div class="correction-box"><h5>🔧 SKUs correctos (del JSON):</h5><ul class="r-list fixed">${cl.map(s=>`<li>📋 ${s}</li>`).join('')}</ul></div>`;
         if(ok)h+=`<p class="perfect-msg">🎉 Todo correcto</p>`;
         html+=h+'</div>';
     });
 
-    html+=`<div class="global-summary"><div class="g-card correct"><div class="number">${tC}</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">${tE}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${tF}</div><div class="label">🔧 Corregidos</div></div></div>`;
-    html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todo correcto!':'⛔ Se encontraron errores. La lista corregida está disponible para descargar.'}</div>`;
+    // Aplicar correcciones al JSON
+    applyCorrectionsToJSON('skus', skuCorrections);
 
-    corrections.skus=corrData;
-    document.getElementById('dlSkus').disabled=false;
+    html+=`<div class="global-summary"><div class="g-card correct"><div class="number">${tC}</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">${tE}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${tF}</div><div class="label">🔧 Corregidos</div></div></div>`;
+
+    // Sección de descarga
+    html+=`<div class="download-section">
+        <h4>📥 Descargar JSON Corregido</h4>
+        <p>El archivo JSON original fue modificado con los valores correctos. Puedes descargarlo y re-importarlo a ContentStack.</p>
+        <div class="download-btns">
+            <button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button>
+        </div>
+    </div>`;
+
+    html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todo correcto!':'⛔ Se corrigieron errores. Descarga el JSON.'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
@@ -433,32 +527,26 @@ function validateBanners(){
     let totalErr=0,totalFix=0;
     const res=document.getElementById('bannerRes');
     let html='<div class="results-header"><h2>📊 Resultados Sliders/Banners</h2></div>';
-    let corrData={sections:[]};
+    const bannerCorrections=[];
 
     // Slider order
     const orderTxt=document.getElementById('slider-order').value;
     if(orderTxt.trim()&&cmsBanners.sliderPrincipal){
         const uo=parseLines(orderTxt),cs=cmsBanners.sliderPrincipal;
-        let oErr=0;const fixes=[];
+        let oErr=0;
         let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden Slider</h4><span class="mini">Correo:${uo.length}|CMS:${cs.length}</span></div>`;
         oh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS</th><th></th></tr>`;
         const mx=Math.max(uo.length,cs.length);
         for(let i=0;i<mx;i++){
             const u=uo[i]||'—',c=cs[i]?cs[i].category.replace(/^[A-Z]-\s*/,''):'—';
-            const ok=norm(u)===norm(c);if(!ok){oErr++;fixes.push({pos:i+1,old:u,new:c})}
+            const ok=norm(u)===norm(c);if(!ok)oErr++;
             oh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
         oh+='</table>';totalErr+=oErr;totalFix+=oErr;
-
-        if(oErr){
-            oh+=`<div class="correction-box"><h5>🔧 Correcciones del orden:</h5>`;
-            fixes.forEach(f=>{oh+=`<div class="correction-item"><div class="corr-label">Posición ${f.pos}:</div><div class="corr-old">❌ ${f.old}</div><div class="corr-arrow">↓ corregido a ↓</div><div class="corr-new">✅ ${f.new}</div></div>`});
-            oh+=`</div>`;
-            corrData.sections.push({name:'Orden Slider',corrected:cs.map(s=>s.category.replace(/^[A-Z]-\s*/,'')),fixes});
-        } else oh+=`<p class="perfect-msg">🎉 Orden perfecto</p>`;
+        oh+=oErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${oErr} en posición incorrecta</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;
         html+=oh+'</div>'
     }
 
-    // ALTs + URLs sections
+    // Sections
     const sections=[
         {name:'Slider Principal',altId:'slider-alts',urlId:'slider-urls',cmsKey:'sliderPrincipal',icon:'🖼️'},
         {name:'Banners Promo',altId:'banner-alts',urlId:'banner-urls',cmsKey:'bannersPromo',icon:'📸'},
@@ -473,65 +561,50 @@ function validateBanners(){
         const cmsItems=cmsBanners[sec.cmsKey]||[];
         if(!altTxt.trim()&&!urlTxt.trim())return;
 
-        let sErr=0;const secFixes={alts:[],urls:[]};
+        let sErr=0;
+        // Preparar items de corrección (mantener valores del CMS)
+        const corrItems=cmsItems.map(i=>({alt:i.alt,url:i.url}));
+
         let sh=`<div class="result-card"><div class="result-card-header"><span>${sec.icon}</span><h4>${sec.name}</h4><span class="mini">CMS:${cmsItems.length}</span></div>`;
 
         // ALTs
         if(altTxt.trim()){
             const ua=parseLines(altTxt),ca=cmsItems.map(i=>i.alt);
             const matched=[],unmatched=[];
-            ua.forEach(a=>{
-                const m=findAltMatch(a,ca);
-                if(m){matched.push({user:a,cms:ca[m.index],type:m.type})}
-                else{unmatched.push(a);sErr++;totalFix++}
-            });
+            ua.forEach(a=>{const m=findAltMatch(a,ca);if(m)matched.push({user:a,cms:ca[m.index],type:m.type});else{unmatched.push(a);sErr++;totalFix++}});
             const mi=matched.map(m=>ca.indexOf(m.cms));
             const uc2=ca.filter((_,i)=>!mi.includes(i));
 
-            if(matched.length){sh+=`<div class="r-section"><div class="r-header correct">📝 ALTs OK (${matched.length})</div><ul class="r-list correct">${matched.map(m=>`<li>✔ ${m.user.substring(0,80)}... <span class="match-tag ${m.type}">${m.type==='exact'?'EXACTO':'PARCIAL'}</span></li>`).join('')}</ul></div>`}
-            if(unmatched.length){
-                sh+=`<div class="r-section"><div class="r-header missing">❌ ALTs no encontrados (${unmatched.length})</div><ul class="r-list missing">${unmatched.map(u=>`<li>✖ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
-                secFixes.alts=unmatched.map(u=>({old:u,suggestion:'Revisar manualmente - no se encontró match'}));
-            }
-            if(uc2.length){
-                sh+=`<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match (${uc2.length})</div><ul class="r-list extra">${uc2.map(u=>`<li>⚠ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
-            }
-
-            // Corrección: mostrar ALTs correctos del CMS
-            if(unmatched.length||uc2.length){
-                sh+=`<div class="correction-box"><h5>🔧 ALTs correctos del JSON:</h5><ul class="r-list fixed">${ca.map(a=>`<li>📋 ${a}</li>`).join('')}</ul></div>`;
-                secFixes.correctedAlts=ca;
-            }
+            if(matched.length)sh+=`<div class="r-section"><div class="r-header correct">📝 ALTs OK (${matched.length})</div><ul class="r-list correct">${matched.map(m=>`<li>✔ ${m.user.substring(0,80)}... <span class="match-tag ${m.type}">${m.type==='exact'?'EXACTO':'PARCIAL'}</span></li>`).join('')}</ul></div>`;
+            if(unmatched.length)sh+=`<div class="r-section"><div class="r-header missing">❌ ALTs no encontrados (${unmatched.length})</div><ul class="r-list missing">${unmatched.map(u=>`<li>✖ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
+            if(uc2.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match (${uc2.length})</div><ul class="r-list extra">${uc2.map(u=>`<li>⚠ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;
+            if(unmatched.length||uc2.length)sh+=`<div class="correction-box"><h5>🔧 ALTs correctos (del JSON):</h5><ul class="r-list fixed">${ca.map(a=>`<li>📋 ${a}</li>`).join('')}</ul></div>`;
         }
 
         // URLs
         if(urlTxt.trim()){
             const uu=parseLines(urlTxt).map(convertUrl),cu=cmsItems.map(i=>i.url.trim());
             const mU=[],umU=[];
-            uu.forEach(u=>{const f=findUrlMatch(u,cu);if(f!==-1)mU.push({user:u,cms:cu[f]});else{umU.push(u);sErr++;totalFix++}});
+            uu.forEach(u=>{const f=cu.findIndex(c=>c.trim()===u.trim());if(f!==-1)mU.push({user:u,cms:cu[f]});else{umU.push(u);sErr++;totalFix++}});
             const mcu=mU.map(m=>m.cms),umcu=cu.filter(u=>!mcu.includes(u));
 
             if(mU.length)sh+=`<div class="r-section"><div class="r-header correct">🔗 URLs OK (${mU.length})</div><ul class="r-list correct">${mU.map(m=>`<li>✔ ${m.user}</li>`).join('')}</ul></div>`;
             if(umU.length)sh+=`<div class="r-section"><div class="r-header missing">❌ URLs no encontradas (${umU.length})</div><ul class="r-list missing">${umU.map(u=>`<li>✖ ${u}</li>`).join('')}</ul></div>`;
             if(umcu.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ URLs en CMS sin match (${umcu.length})</div><ul class="r-list extra">${umcu.map(u=>`<li>⚠ ${u}</li>`).join('')}</ul></div>`;
-
-            if(umU.length||umcu.length){
-                sh+=`<div class="correction-box"><h5>🔧 URLs correctas del JSON:</h5><ul class="r-list fixed">${cu.map(u=>`<li>📋 ${u}</li>`).join('')}</ul></div>`;
-                secFixes.correctedUrls=cu;
-            }
+            if(umU.length||umcu.length)sh+=`<div class="correction-box"><h5>🔧 URLs correctas (del JSON):</h5><ul class="r-list fixed">${cu.map(u=>`<li>📋 ${u}</li>`).join('')}</ul></div>`;
         }
 
+        bannerCorrections.push({cmsKey:sec.cmsKey,items:corrItems});
         totalErr+=sErr;
-        if(secFixes.correctedAlts||secFixes.correctedUrls)corrData.sections.push({name:sec.name,...secFixes});
         sh+=sErr?`<div class="r-section" style="margin-top:6px"><div class="r-header missing">❌ ${sErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Todo correcto</p>`;
         html+=sh+'</div>'
     });
 
-    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Por corregir</div></div></div>`;
-    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga el archivo corregido.`:'🎉 ¡Todo perfecto!'}</div>`;
+    applyCorrectionsToJSON('banners',bannerCorrections);
 
-    corrections.banners=corrData;
-    document.getElementById('dlBanners').disabled=false;
+    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;
+    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Los valores correctos del JSON original se mantienen. Descárgalo para re-importar a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
+    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga el JSON corregido.`:'🎉 ¡Todo perfecto!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
@@ -543,24 +616,17 @@ function validateDepts(){
     const un=parseLines(nt);let totalErr=0,totalFix=0;
     const res=document.getElementById('deptRes');
     let html='<div class="results-header"><h2>📊 Resultados Iconografía</h2></div>';
-    let corrData={names:{fixes:[],corrected:[]},pcts:{fixes:[],corrected:[]},links:{fixes:[],corrected:[]}};
+    const deptCorrections=cmsDepts.map(d=>({name:d.name,text:d.text,link:d.link}));
 
     // Names
     const mx=Math.max(un.length,cmsDepts.length);let oErr=0;
     let nh=`<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden</h4><span class="mini">Excel:${un.length}|CMS:${cmsDepts.length}</span></div>`;
     nh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS (correcto)</th><th></th></tr>`;
-    for(let i=0;i<mx;i++){
-        const u=un[i]||'—',c=cmsDepts[i]?cmsDepts[i].name:'—';
-        const ok=norm(u)===norm(c);if(!ok){oErr++;totalFix++;corrData.names.fixes.push({pos:i+1,old:u,new:c})}
+    for(let i=0;i<mx;i++){const u=un[i]||'—',c=cmsDepts[i]?cmsDepts[i].name:'—';const ok=norm(u)===norm(c);if(!ok){oErr++;totalFix++}
         nh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
     nh+='</table>';totalErr+=oErr;
-    corrData.names.corrected=cmsDepts.map(d=>d.name);
-
-    if(oErr){
-        nh+=`<div class="correction-box"><h5>🔧 Correcciones:</h5>`;
-        corrData.names.fixes.forEach(f=>{nh+=`<div class="correction-item"><div class="corr-label">Posición ${f.pos}:</div><div class="corr-old">❌ ${f.old}</div><div class="corr-arrow">↓</div><div class="corr-new">✅ ${f.new}</div></div>`});
-        nh+=`</div>`
-    }else nh+=`<p class="perfect-msg">🎉 Perfecto</p>`;
+    if(oErr)nh+=`<div class="correction-box"><h5>🔧 Orden correcto:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${i+1}. ${d.name}</li>`).join('')}</ul></div>`;
+    else nh+=`<p class="perfect-msg">🎉 Perfecto</p>`;
     html+=nh+'</div>';
 
     // Pcts
@@ -569,12 +635,10 @@ function validateDepts(){
         if(pt.trim()){const up=parseLines(pt);let pE=0;
             let ph=`<div class="result-card"><div class="result-card-header"><span>📊</span><h4>Porcentajes</h4></div>`;
             ph+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>`;
-            for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){
-                const u=up[i]||'—',c=cmsDepts[i]?cmsDepts[i].text:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';
-                const ok=norm(u)===norm(c);if(!ok){pE++;totalFix++;corrData.pcts.fixes.push({pos:i+1,dept:dn,old:u,new:c})}
+            for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){const u=up[i]||'—',c=cmsDepts[i]?cmsDepts[i].text:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=norm(u)===norm(c);if(!ok){pE++;totalFix++}
                 ph+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
-            ph+='</table>';totalErr+=pE;corrData.pcts.corrected=cmsDepts.map(d=>d.text);
-            if(pE){ph+=`<div class="correction-box"><h5>🔧 Correcciones:</h5>`;corrData.pcts.fixes.forEach(f=>{ph+=`<div class="correction-item"><div class="corr-label">${f.dept} (#${f.pos}):</div><div class="corr-old">❌ ${f.old}</div><div class="corr-arrow">↓</div><div class="corr-new">✅ ${f.new}</div></div>`});ph+=`</div>`}
+            ph+='</table>';totalErr+=pE;
+            if(pE)ph+=`<div class="correction-box"><h5>🔧 Porcentajes correctos:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${d.name}: ${d.text}</li>`).join('')}</ul></div>`;
             else ph+=`<p class="perfect-msg">🎉 Correctos</p>`;
             html+=ph+'</div>'}}
 
@@ -584,105 +648,25 @@ function validateDepts(){
         if(lt.trim()){const ul=parseLines(lt);let lE=0;
             let lh=`<div class="result-card"><div class="result-card-header"><span>🔗</span><h4>Links</h4></div>`;
             lh+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>`;
-            for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){
-                const u=ul[i]||'—',c=cmsDepts[i]?cmsDepts[i].link:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';
-                const ok=u.trim()===c.trim();if(!ok){lE++;totalFix++;corrData.links.fixes.push({pos:i+1,dept:dn,old:u,new:c})}
+            for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){const u=ul[i]||'—',c=cmsDepts[i]?cmsDepts[i].link:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=u.trim()===c.trim();if(!ok){lE++;totalFix++}
                 lh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}
-            lh+='</table>';totalErr+=lE;corrData.links.corrected=cmsDepts.map(d=>d.link);
-            if(lE){lh+=`<div class="correction-box"><h5>🔧 Correcciones:</h5>`;corrData.links.fixes.forEach(f=>{lh+=`<div class="correction-item"><div class="corr-label">${f.dept} (#${f.pos}):</div><div class="corr-old">❌ ${f.old}</div><div class="corr-arrow">↓</div><div class="corr-new">✅ ${f.new}</div></div>`});lh+=`</div>`}
+            lh+='</table>';totalErr+=lE;
+            if(lE)lh+=`<div class="correction-box"><h5>🔧 Links correctos:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${d.name}: ${d.link}</li>`).join('')}</ul></div>`;
             else lh+=`<p class="perfect-msg">🎉 Correctos</p>`;
             html+=lh+'</div>'}}
 
-    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;
-    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga corregido.`:'🎉 ¡Perfecto!'}</div>`;
+    applyCorrectionsToJSON('depts',deptCorrections);
 
-    corrections.depts=corrData;
-    document.getElementById('dlDepts').disabled=false;
+    html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;
+    html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Descarga el JSON con los valores correctos para re-importar a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;
+    html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es). Descarga el JSON.`:'🎉 ¡Perfecto!'}</div>`;
     res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})
 }
 
-// ========== DOWNLOAD ==========
-function downloadCorrection(type){
-    const data=corrections[type];if(!data)return;
-    const ch=channel==='store'?'Tienda':'.COM';
-    const now=new Date().toLocaleDateString('es-MX');
-    let txt=`═══════════════════════════════════════════\n`;
-    txt+=`   CORRECCIONES - ${ch} - ${now}\n`;
-    txt+=`═══════════════════════════════════════════\n\n`;
-
-    if(type==='skus'){
-        data.components.forEach(comp=>{
-            txt+=`━━━ ${comp.name} (${comp.id}) ━━━\n\n`;
-            txt+=`SKUs CORRECTOS (del JSON):\n`;
-            comp.corrected.forEach((s,i)=>{txt+=`  ${i+1}. ${s}\n`});
-            if(comp.fixes.length){
-                txt+=`\n⚠️ ERRORES ENCONTRADOS:\n`;
-                comp.fixes.forEach(f=>{txt+=`  ❌ ${f.old} → No encontrado en CMS\n`});
-            }
-            txt+=`\n`;
-        });
-    }
-
-    if(type==='banners'){
-        data.sections.forEach(sec=>{
-            txt+=`━━━ ${sec.name} ━━━\n\n`;
-            if(sec.corrected){
-                txt+=`ORDEN CORRECTO:\n`;
-                sec.corrected.forEach((s,i)=>{txt+=`  ${i+1}. ${s}\n`});
-            }
-            if(sec.correctedAlts){
-                txt+=`\nALTs CORRECTOS:\n`;
-                sec.correctedAlts.forEach((a,i)=>{txt+=`  ${i+1}. ${a}\n`});
-            }
-            if(sec.correctedUrls){
-                txt+=`\nURLs CORRECTAS:\n`;
-                sec.correctedUrls.forEach((u,i)=>{txt+=`  ${i+1}. ${u}\n`});
-            }
-            if(sec.fixes&&sec.fixes.length){
-                txt+=`\n🔧 CORRECCIONES:\n`;
-                sec.fixes.forEach(f=>{txt+=`  Pos ${f.pos}: "${f.old}" → "${f.new}"\n`});
-            }
-            txt+=`\n`;
-        });
-    }
-
-    if(type==='depts'){
-        if(data.names.fixes.length){
-            txt+=`━━━ NOMBRES DEPARTAMENTOS ━━━\n\n`;
-            txt+=`ORDEN CORRECTO:\n`;
-            data.names.corrected.forEach((n,i)=>{txt+=`  ${i+1}. ${n}\n`});
-            txt+=`\n🔧 CORRECCIONES:\n`;
-            data.names.fixes.forEach(f=>{txt+=`  #${f.pos}: "${f.old}" → "${f.new}"\n`});
-            txt+=`\n`;
-        }
-        if(data.pcts.fixes.length){
-            txt+=`━━━ PORCENTAJES ━━━\n\n`;
-            txt+=`CORRECTOS:\n`;
-            data.pcts.corrected.forEach((p,i)=>{txt+=`  ${i+1}. ${p}\n`});
-            txt+=`\n🔧 CORRECCIONES:\n`;
-            data.pcts.fixes.forEach(f=>{txt+=`  #${f.pos} ${f.dept}: "${f.old}" → "${f.new}"\n`});
-            txt+=`\n`;
-        }
-        if(data.links.fixes.length){
-            txt+=`━━━ LINKS ━━━\n\n`;
-            txt+=`CORRECTOS:\n`;
-            data.links.corrected.forEach((l,i)=>{txt+=`  ${i+1}. ${l}\n`});
-            txt+=`\n🔧 CORRECCIONES:\n`;
-            data.links.fixes.forEach(f=>{txt+=`  #${f.pos} ${f.dept}: "${f.old}" → "${f.new}"\n`});
-        }
-    }
-
-    const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download=`correccion_${type}_${ch}_${now.replace(/\//g,'-')}.txt`;
-    a.click();
-}
-
 // CLEAR
-function clearSKUs(){SKU_COMPS.forEach(c=>{document.getElementById(c.tid).value='';document.getElementById(c.cid).textContent='0'});document.getElementById('skuRes').style.display='none';document.getElementById('dlSkus').disabled=true;corrections.skus=null}
-function clearBanners(){['slider-order','slider-alts','slider-urls','banner-alts','banner-urls','bmedio-alt','bmedio-url','credito-alts','credito-urls','servicio-alts','servicio-urls'].forEach(id=>{document.getElementById(id).value=''});['c-so','c-sa','c-su','c-ba','c-bu','c-bma','c-bmu','c-ca','c-cu','c-sva','c-svu'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('bannerRes').style.display='none';document.getElementById('dlBanners').disabled=true;corrections.banners=null}
-function clearDepts(){['dept-names','dept-pcts','dept-links'].forEach(id=>{document.getElementById(id).value=''});['c-dn','c-dp','c-dl'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('deptRes').style.display='none';document.getElementById('dlDepts').disabled=true;corrections.depts=null}
+function clearSKUs(){SKU_COMPS.forEach(c=>{document.getElementById(c.tid).value='';document.getElementById(c.cid).textContent='0'});document.getElementById('skuRes').style.display='none'}
+function clearBanners(){['slider-order','slider-alts','slider-urls','banner-alts','banner-urls','bmedio-alt','bmedio-url','credito-alts','credito-urls','servicio-alts','servicio-urls'].forEach(id=>{document.getElementById(id).value=''});['c-so','c-sa','c-su','c-ba','c-bu','c-bma','c-bmu','c-ca','c-cu','c-sva','c-svu'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('bannerRes').style.display='none'}
+function clearDepts(){['dept-names','dept-pcts','dept-links'].forEach(id=>{document.getElementById(id).value=''});['c-dn','c-dp','c-dl'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('deptRes').style.display='none'}
 </script>
 </body>
 </html>
