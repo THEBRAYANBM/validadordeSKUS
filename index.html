@@ -35,16 +35,34 @@
             margin-bottom: 30px;
         }
 
-        .header h1 {
-            color: #e94560;
-            font-size: 2em;
-            margin-bottom: 5px;
+        .header h1 { color: #e94560; font-size: 2em; margin-bottom: 5px; }
+        .header p { color: #666; font-size: 0.9em; }
+
+        /* ---- TABS PRINCIPALES ---- */
+        .main-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .header p {
-            color: #666;
-            font-size: 0.9em;
+        .main-tab {
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 2px solid #2a2a4a;
+            background-color: #1a1a2e;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: all 0.3s;
         }
+
+        .main-tab:hover { border-color: #6c5ce7; color: #fff; }
+        .main-tab.active { border-color: #6c5ce7; background-color: #6c5ce7; color: white; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         /* ---- STEPS ---- */
         .step {
@@ -76,9 +94,7 @@
             flex-shrink: 0;
         }
 
-        .step-header h2 {
-            font-size: 1.1em;
-        }
+        .step-header h2 { font-size: 1.1em; }
 
         .channel-selector {
             display: flex;
@@ -99,16 +115,8 @@
             transition: all 0.3s;
         }
 
-        .channel-btn:hover {
-            border-color: #6c5ce7;
-            color: #fff;
-        }
-
-        .channel-btn.active {
-            border-color: #6c5ce7;
-            background-color: #6c5ce7;
-            color: white;
-        }
+        .channel-btn:hover { border-color: #6c5ce7; color: #fff; }
+        .channel-btn.active { border-color: #6c5ce7; background-color: #6c5ce7; color: white; }
 
         .file-upload {
             display: flex;
@@ -129,18 +137,9 @@
             font-size: 0.9em;
         }
 
-        .file-upload label:hover {
-            background-color: #1a4a80;
-        }
-
-        .file-upload input[type="file"] {
-            display: none;
-        }
-
-        .file-name {
-            color: #888;
-            font-size: 0.85em;
-        }
+        .file-upload label:hover { background-color: #1a4a80; }
+        .file-upload input[type="file"] { display: none; }
+        .file-name { color: #888; font-size: 0.85em; }
 
         .file-status {
             margin-top: 10px;
@@ -164,16 +163,8 @@
             border: 1px solid rgba(233, 69, 96, 0.2);
         }
 
-        .detected-carousels {
-            display: none;
-            margin-top: 15px;
-        }
-
-        .detected-carousels h3 {
-            color: #6c5ce7;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
+        .detected-carousels { display: none; margin-top: 15px; }
+        .detected-carousels h3 { color: #6c5ce7; font-size: 0.9em; margin-bottom: 10px; }
 
         .detected-card {
             background-color: #12122a;
@@ -183,15 +174,10 @@
             border-left: 3px solid #6c5ce7;
         }
 
-        .detected-card.popup-card {
-            border-left-color: #e94560;
-        }
+        .detected-card.popup-card { border-left-color: #e94560; }
+        .detected-card.dept-card { border-left-color: #fdcb6e; }
 
-        .detected-card h4 {
-            color: #fdcb6e;
-            font-size: 0.85em;
-            margin-bottom: 4px;
-        }
+        .detected-card h4 { color: #fdcb6e; font-size: 0.85em; margin-bottom: 4px; }
 
         .detected-card .sku-preview {
             font-family: 'Courier New', monospace;
@@ -200,11 +186,7 @@
             word-break: break-all;
         }
 
-        .detected-card .sku-count {
-            color: #00b894;
-            font-size: 0.75em;
-            margin-bottom: 4px;
-        }
+        .detected-card .sku-count { color: #00b894; font-size: 0.75em; margin-bottom: 4px; }
 
         /* ---- POPUP SECTION ---- */
         .popup-section {
@@ -222,21 +204,20 @@
             margin-bottom: 12px;
         }
 
-        .popup-section .section-label h3 {
-            color: #e94560;
-            font-size: 1em;
-        }
+        .popup-section .section-label h3 { color: #e94560; font-size: 1em; }
 
-        .popup-section .section-label .badge {
-            background-color: #e9456030;
-            color: #e94560;
+        .popup-section .badge, .badge {
             padding: 3px 10px;
             border-radius: 12px;
             font-size: 0.7em;
             font-weight: 600;
         }
 
-        .popup-section .card-id {
+        .badge-popup { background-color: #e9456030; color: #e94560; }
+        .badge-dept { background-color: #fdcb6e30; color: #fdcb6e; }
+        .badge-optional { background-color: #6c5ce730; color: #6c5ce7; }
+
+        .card-id {
             color: #555;
             font-size: 0.7em;
             margin-bottom: 8px;
@@ -257,18 +238,7 @@
             border: 1px solid #2a2a4a;
         }
 
-        .excel-card h4 {
-            color: #00b894;
-            font-size: 0.9em;
-            margin-bottom: 4px;
-        }
-
-        .excel-card .card-id {
-            color: #555;
-            font-size: 0.7em;
-            margin-bottom: 8px;
-            font-family: 'Courier New', monospace;
-        }
+        .excel-card h4 { color: #00b894; font-size: 0.9em; margin-bottom: 4px; }
 
         textarea {
             width: 100%;
@@ -283,25 +253,75 @@
             resize: vertical;
         }
 
-        textarea:focus {
-            outline: none;
-            border-color: #6c5ce7;
+        textarea:focus { outline: none; border-color: #6c5ce7; }
+        textarea::placeholder { color: #333; }
+        textarea.popup-textarea { height: 80px; }
+        textarea.dept-textarea { height: 350px; }
+
+        .counter { text-align: right; font-size: 0.7em; color: #555; margin-top: 3px; }
+
+        /* ---- DEPARTMENT SECTION ---- */
+        .dept-section {
+            background-color: #1a1a2e;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #fdcb6e40;
         }
 
-        textarea::placeholder {
-            color: #333;
+        .dept-section .section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
 
-        textarea.popup-textarea {
-            height: 80px;
+        .dept-section .section-label h3 { color: #fdcb6e; font-size: 1em; }
+
+        .dept-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
 
-        .counter {
-            text-align: right;
-            font-size: 0.7em;
-            color: #555;
-            margin-top: 3px;
+        .dept-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
+            color: #aaa;
         }
+
+        .dept-option input[type="checkbox"] {
+            accent-color: #6c5ce7;
+            width: 16px;
+            height: 16px;
+        }
+
+        .dept-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .dept-col {
+            background-color: #12122a;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #2a2a4a;
+        }
+
+        .dept-col h4 { font-size: 0.85em; margin-bottom: 4px; }
+        .dept-col h4.dept-name-label { color: #fdcb6e; }
+        .dept-col h4.dept-pct-label { color: #6c5ce7; }
+        .dept-col h4.dept-link-label { color: #00b894; }
+
+        .dept-col .hint { color: #555; font-size: 0.7em; margin-bottom: 6px; }
+
+        .optional-col { display: none; }
+        .optional-col.visible { display: block; }
 
         /* ---- BUTTONS ---- */
         .btn-container {
@@ -321,40 +341,16 @@
             transition: all 0.3s;
         }
 
-        .btn-validate {
-            background-color: #e94560;
-            color: white;
-        }
-
-        .btn-validate:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-        }
-
-        .btn-clear {
-            background-color: #2a2a4a;
-            color: #aaa;
-        }
-
-        .btn-clear:hover {
-            background-color: #3a3a5a;
-            color: #fff;
-        }
+        .btn-validate { background-color: #e94560; color: white; }
+        .btn-validate:hover { background-color: #c0392b; transform: translateY(-2px); }
+        .btn-clear { background-color: #2a2a4a; color: #aaa; }
+        .btn-clear:hover { background-color: #3a3a5a; color: #fff; }
 
         /* ---- RESULTS ---- */
-        .results-container {
-            display: none;
-        }
+        .results-container { display: none; }
 
-        .results-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .results-header h2 {
-            color: #e94560;
-            font-size: 1.4em;
-        }
+        .results-header { text-align: center; margin-bottom: 20px; }
+        .results-header h2 { color: #e94560; font-size: 1.4em; }
 
         .global-summary {
             display: flex;
@@ -373,17 +369,8 @@
             min-width: 120px;
         }
 
-        .global-card .number {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .global-card .label {
-            font-size: 0.7em;
-            color: #666;
-            margin-top: 3px;
-        }
-
+        .global-card .number { font-size: 2em; font-weight: bold; }
+        .global-card .label { font-size: 0.7em; color: #666; margin-top: 3px; }
         .global-card.correct .number { color: #00b894; }
         .global-card.missing .number { color: #e94560; }
         .global-card.extra .number { color: #fdcb6e; }
@@ -391,7 +378,7 @@
 
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -403,9 +390,8 @@
             border: 1px solid #2a2a4a;
         }
 
-        .result-card.popup-result {
-            border-color: #e9456050;
-        }
+        .result-card.popup-result { border-color: #e9456050; }
+        .result-card.dept-result { border-color: #fdcb6e50; }
 
         .result-card-header {
             display: flex;
@@ -414,11 +400,10 @@
             margin-bottom: 10px;
             padding-bottom: 8px;
             border-bottom: 1px solid #2a2a4a;
+            flex-wrap: wrap;
         }
 
-        .result-card-header h4 {
-            font-size: 0.85em;
-        }
+        .result-card-header h4 { font-size: 0.85em; }
 
         .result-card-header .mini-stats {
             margin-left: auto;
@@ -426,27 +411,17 @@
             color: #888;
         }
 
-        .result-section {
-            margin-bottom: 8px;
-        }
+        .result-section { margin-bottom: 8px; }
 
-        .result-section-header {
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
+        .result-section-header { font-size: 0.75em; font-weight: 600; margin-bottom: 4px; }
         .result-section-header.correct { color: #00b894; }
         .result-section-header.missing { color: #e94560; }
         .result-section-header.extra { color: #fdcb6e; }
         .result-section-header.duplicate { color: #6c5ce7; }
+        .result-section-header.order-ok { color: #00b894; }
+        .result-section-header.order-bad { color: #e94560; }
 
-        .result-list {
-            list-style: none;
-            padding: 0;
-            max-height: 150px;
-            overflow-y: auto;
-        }
+        .result-list { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; }
 
         .result-list li {
             padding: 3px 8px;
@@ -456,36 +431,18 @@
             font-size: 0.72em;
         }
 
-        .result-list.correct li {
-            background-color: rgba(0, 184, 148, 0.08);
-            border-left: 3px solid #00b894;
-            color: #00b894;
-        }
+        .result-list.correct li { background-color: rgba(0,184,148,0.08); border-left: 3px solid #00b894; color: #00b894; }
+        .result-list.missing li { background-color: rgba(233,69,96,0.08); border-left: 3px solid #e94560; color: #e94560; }
+        .result-list.extra li { background-color: rgba(253,203,110,0.08); border-left: 3px solid #fdcb6e; color: #fdcb6e; }
+        .result-list.duplicate li { background-color: rgba(108,92,231,0.08); border-left: 3px solid #6c5ce7; color: #6c5ce7; }
 
-        .result-list.missing li {
-            background-color: rgba(233, 69, 96, 0.08);
-            border-left: 3px solid #e94560;
-            color: #e94560;
-        }
+        .order-table { width: 100%; border-collapse: collapse; font-size: 0.72em; margin-top: 5px; }
+        .order-table th { text-align: left; padding: 4px 6px; color: #888; border-bottom: 1px solid #2a2a4a; }
+        .order-table td { padding: 4px 6px; border-bottom: 1px solid #1a1a3a; font-family: 'Courier New', monospace; }
+        .order-table tr.row-ok td { color: #00b894; }
+        .order-table tr.row-bad td { color: #e94560; background-color: rgba(233,69,96,0.05); }
 
-        .result-list.extra li {
-            background-color: rgba(253, 203, 110, 0.08);
-            border-left: 3px solid #fdcb6e;
-            color: #fdcb6e;
-        }
-
-        .result-list.duplicate li {
-            background-color: rgba(108, 92, 231, 0.08);
-            border-left: 3px solid #6c5ce7;
-            color: #6c5ce7;
-        }
-
-        .perfect-msg {
-            text-align: center;
-            color: #00b894;
-            font-size: 0.8em;
-            padding: 10px;
-        }
+        .perfect-msg { text-align: center; color: #00b894; font-size: 0.8em; padding: 10px; }
 
         .status-bar {
             text-align: center;
@@ -495,43 +452,34 @@
             font-size: 1em;
         }
 
-        .status-bar.success {
-            background-color: rgba(0, 184, 148, 0.1);
-            color: #00b894;
-            border: 1px solid rgba(0, 184, 148, 0.3);
-        }
-
-        .status-bar.error {
-            background-color: rgba(233, 69, 96, 0.1);
-            color: #e94560;
-            border: 1px solid rgba(233, 69, 96, 0.3);
-        }
+        .status-bar.success { background-color: rgba(0,184,148,0.1); color: #00b894; border: 1px solid rgba(0,184,148,0.3); }
+        .status-bar.error { background-color: rgba(233,69,96,0.1); color: #e94560; border: 1px solid rgba(233,69,96,0.3); }
 
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
 
-        @media (max-width: 1100px) {
-            .results-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 700px) {
-            .excel-grid, .results-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 900px) {
+            .excel-grid, .dept-columns { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔍 Validador de SKUs</h1>
-            <p>Importa el JSON de ContentStack + Pega los SKUs del Excel</p>
+            <h1>🔍 Validador ContentStack</h1>
+            <p>Importa el JSON + Valida SKUs e Iconografía</p>
         </div>
 
-        <!-- PASO 1: JSON -->
+        <!-- TABS PRINCIPALES -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="switchMainTab('skus', this)">🛒 SKUs (Productos)</button>
+            <button class="main-tab" onclick="switchMainTab('departments', this)">🏷️ Iconografía (Departamentos)</button>
+        </div>
+
+        <!-- ==================== -->
+        <!--   PASO 1: JSON       -->
+        <!-- ==================== -->
         <div class="step">
             <div class="step-header">
                 <div class="step-number">1</div>
@@ -555,132 +503,200 @@
             <div class="detected-carousels" id="detectedCarousels"></div>
         </div>
 
-        <!-- PASO 2: POPUP -->
-        <div class="step">
-            <div class="step-header">
-                <div class="step-number">2</div>
-                <h2>Pegar SKUs del Excel</h2>
-            </div>
-            <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
-                Pega los SKUs de cada sección (uno por línea, las comas se quitan automáticamente)
-            </p>
+        <!-- ==================== -->
+        <!--   TAB: SKUs          -->
+        <!-- ==================== -->
+        <div class="tab-content active" id="tab-skus">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2>Pegar SKUs del Excel</h2>
+                </div>
+                <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
+                    Pega los SKUs de cada sección (uno por línea, las comas se quitan automáticamente)
+                </p>
 
-            <!-- POPUP -->
-            <div class="popup-section">
-                <div class="section-label">
-                    <h3>🔔 Popup Oferta del Día</h3>
-                    <span class="badge">POPUP</span>
+                <!-- POPUP -->
+                <div class="popup-section">
+                    <div class="section-label">
+                        <h3>🔔 Popup Oferta del Día</h3>
+                        <span class="badge badge-popup">POPUP</span>
+                    </div>
+                    <div class="card-id">popupOfertaDelDia</div>
+                    <textarea id="excel-popup" class="popup-textarea"
+                        placeholder="Pega los SKUs del popup aquí..."
+                        oninput="updateCounter('excel-popup','count-popup')"></textarea>
+                    <div class="counter"><span id="count-popup">0</span> SKUs</div>
                 </div>
-                <div class="card-id">popupOfertaDelDia</div>
-                <textarea id="excel-popup" class="popup-textarea"
-                    placeholder="Pega los SKUs del popup aquí...&#10;PM-9389043&#10;PR-3783422"
-                    oninput="updateCounter('excel-popup', 'count-popup')"></textarea>
-                <div class="counter"><span id="count-popup">0</span> SKUs</div>
+
+                <!-- CARRUSELES -->
+                <div class="excel-grid">
+                    <div class="excel-card">
+                        <h4>🎠 Carrusel 1</h4>
+                        <div class="card-id">carruselOfertaDelDia</div>
+                        <textarea id="excel-0" placeholder="Pega los SKUs aquí..."
+                            oninput="updateCounter('excel-0','count-0')"></textarea>
+                        <div class="counter"><span id="count-0">0</span> SKUs</div>
+                    </div>
+                    <div class="excel-card">
+                        <h4>🎠 Carrusel 2</h4>
+                        <div class="card-id">carruselEligeTuFavorito</div>
+                        <textarea id="excel-1" placeholder="Pega los SKUs aquí..."
+                            oninput="updateCounter('excel-1','count-1')"></textarea>
+                        <div class="counter"><span id="count-1">0</span> SKUs</div>
+                    </div>
+                    <div class="excel-card">
+                        <h4>🎠 Carrusel 3</h4>
+                        <div class="card-id">carruselLosMasBuscados</div>
+                        <textarea id="excel-2" placeholder="Pega los SKUs aquí..."
+                            oninput="updateCounter('excel-2','count-2')"></textarea>
+                        <div class="counter"><span id="count-2">0</span> SKUs</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- CARRUSELES -->
-            <div class="excel-grid">
-                <div class="excel-card">
-                    <h4>🎠 Carrusel 1</h4>
-                    <div class="card-id">carruselOfertaDelDia</div>
-                    <textarea id="excel-0" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-0', 'count-0')"></textarea>
-                    <div class="counter"><span id="count-0">0</span> SKUs</div>
+            <div class="btn-container">
+                <button class="btn btn-validate" onclick="validateSKUs()">🔍 VALIDAR SKUs</button>
+                <button class="btn btn-clear" onclick="clearSKUs()">🗑️ LIMPIAR</button>
+            </div>
+
+            <div class="results-container" id="skuResults">
+                <div class="results-header">
+                    <h2>📊 Resultados SKUs</h2>
+                    <p style="color:#888; font-size:0.8em; margin-top:5px;" id="skuResultsSubtitle"></p>
                 </div>
-                <div class="excel-card">
-                    <h4>🎠 Carrusel 2</h4>
-                    <div class="card-id">carruselEligeTuFavorito</div>
-                    <textarea id="excel-1" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-1', 'count-1')"></textarea>
-                    <div class="counter"><span id="count-1">0</span> SKUs</div>
+                <div class="global-summary">
+                    <div class="global-card correct"><div class="number" id="gCorrect">0</div><div class="label">✅ Correctos</div></div>
+                    <div class="global-card missing"><div class="number" id="gMissing">0</div><div class="label">❌ Faltantes</div></div>
+                    <div class="global-card extra"><div class="number" id="gExtra">0</div><div class="label">⚠️ Extras</div></div>
+                    <div class="global-card duplicate"><div class="number" id="gDuplicate">0</div><div class="label">🔄 Duplicados</div></div>
                 </div>
-                <div class="excel-card">
-                    <h4>🎠 Carrusel 3</h4>
-                    <div class="card-id">carruselLosMasBuscados</div>
-                    <textarea id="excel-2" placeholder="Pega los SKUs aquí..." oninput="updateCounter('excel-2', 'count-2')"></textarea>
-                    <div class="counter"><span id="count-2">0</span> SKUs</div>
-                </div>
+                <div class="results-grid" id="skuResultsGrid"></div>
+                <div id="skuStatusBar" class="status-bar"></div>
             </div>
         </div>
 
-        <!-- BOTONES -->
-        <div class="btn-container">
-            <button class="btn btn-validate" onclick="validate()">🔍 VALIDAR SKUs</button>
-            <button class="btn btn-clear" onclick="clearAll()">🗑️ LIMPIAR TODO</button>
-        </div>
+        <!-- ==================== -->
+        <!--   TAB: DEPARTAMENTOS -->
+        <!-- ==================== -->
+        <div class="tab-content" id="tab-departments">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2>Pegar Iconografía de Departamentos</h2>
+                </div>
+                <p style="color:#888; font-size:0.8em; margin-bottom:12px;">
+                    Pega los nombres de los departamentos en el orden que te los dieron (uno por línea)
+                </p>
 
-        <!-- RESULTADOS -->
-        <div class="results-container" id="resultsContainer">
-            <div class="results-header">
-                <h2>📊 Resultados de Validación</h2>
-                <p style="color:#888; font-size:0.8em; margin-top:5px;" id="resultsSubtitle"></p>
+                <div class="dept-section">
+                    <div class="section-label">
+                        <h3>🏷️ Bloque de Departamentos</h3>
+                        <span class="badge badge-dept">ICONOGRAFÍA</span>
+                    </div>
+                    <div class="card-id">bloqueDepartamentos</div>
+
+                    <!-- OPCIONES -->
+                    <div class="dept-options">
+                        <label class="dept-option">
+                            <input type="checkbox" id="chkPct" onchange="toggleDeptCol('pct')">
+                            Validar porcentajes
+                            <span class="badge badge-optional">OPCIONAL</span>
+                        </label>
+                        <label class="dept-option">
+                            <input type="checkbox" id="chkLinks" onchange="toggleDeptCol('links')">
+                            Validar links
+                            <span class="badge badge-optional">OPCIONAL</span>
+                        </label>
+                    </div>
+
+                    <div class="dept-columns">
+                        <!-- NOMBRES (SIEMPRE VISIBLE) -->
+                        <div class="dept-col">
+                            <h4 class="dept-name-label">📋 Nombres de Departamentos</h4>
+                            <div class="hint">Pega los nombres en orden (uno por línea)</div>
+                            <textarea id="dept-names" class="dept-textarea"
+                                placeholder="Ofertas&#10;Motos y Movilidad&#10;Zapatos&#10;Celulares&#10;Hogar y Muebles&#10;Electrónica&#10;Línea Blanca&#10;Mujeres&#10;Hombres&#10;..."
+                                oninput="updateCounter('dept-names','count-dept-names')"></textarea>
+                            <div class="counter"><span id="count-dept-names">0</span> departamentos</div>
+                        </div>
+
+                        <!-- PORCENTAJES (OPCIONAL) -->
+                        <div class="dept-col optional-col" id="col-pct">
+                            <h4 class="dept-pct-label">📊 Porcentajes</h4>
+                            <div class="hint">Pega los porcentajes en orden (uno por línea)</div>
+                            <textarea id="dept-pcts" class="dept-textarea"
+                                placeholder="Hasta 50%&#10;Hasta 30%&#10;Hasta 40%&#10;Hasta 40%&#10;Hasta 30%&#10;..."
+                                oninput="updateCounter('dept-pcts','count-dept-pcts')"></textarea>
+                            <div class="counter"><span id="count-dept-pcts">0</span> porcentajes</div>
+                        </div>
+
+                        <!-- LINKS (OPCIONAL) -->
+                        <div class="dept-col optional-col" id="col-links">
+                            <h4 class="dept-link-label">🔗 Links</h4>
+                            <div class="hint">Pega los links en orden (uno por línea)</div>
+                            <textarea id="dept-links" class="dept-textarea"
+                                placeholder="/sd/RB2514EPMTPEMOODS&#10;/ct/motos-movilidad/cat002550&#10;/ct/zapatos/cat000774&#10;..."
+                                oninput="updateCounter('dept-links','count-dept-links')"></textarea>
+                            <div class="counter"><span id="count-dept-links">0</span> links</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="global-summary">
-                <div class="global-card correct">
-                    <div class="number" id="gCorrect">0</div>
-                    <div class="label">✅ Correctos</div>
-                </div>
-                <div class="global-card missing">
-                    <div class="number" id="gMissing">0</div>
-                    <div class="label">❌ Faltantes</div>
-                </div>
-                <div class="global-card extra">
-                    <div class="number" id="gExtra">0</div>
-                    <div class="label">⚠️ Extras</div>
-                </div>
-                <div class="global-card duplicate">
-                    <div class="number" id="gDuplicate">0</div>
-                    <div class="label">🔄 Duplicados</div>
-                </div>
+
+            <div class="btn-container">
+                <button class="btn btn-validate" onclick="validateDepts()">🔍 VALIDAR ICONOGRAFÍA</button>
+                <button class="btn btn-clear" onclick="clearDepts()">🗑️ LIMPIAR</button>
             </div>
-            <div class="results-grid" id="resultsGrid"></div>
-            <div id="statusBar" class="status-bar"></div>
+
+            <div class="results-container" id="deptResults">
+                <div class="results-header">
+                    <h2>📊 Resultados Iconografía</h2>
+                    <p style="color:#888; font-size:0.8em; margin-top:5px;" id="deptResultsSubtitle"></p>
+                </div>
+                <div class="results-grid" id="deptResultsGrid"></div>
+                <div id="deptStatusBar" class="status-bar"></div>
+            </div>
         </div>
     </div>
 
     <script>
         // =====================
-        // CONFIGURACIÓN DE COMPONENTES
+        // CONFIG
         // =====================
         const COMPONENTS = [
-            {
-                id: 'popupOfertaDelDia',
-                name: 'Popup Oferta del Día',
-                icon: '🔔',
-                type: 'popup',
-                textareaId: 'excel-popup',
-                counterId: 'count-popup'
-            },
-            {
-                id: 'carruselOfertaDelDia',
-                name: 'Oferta del Día',
-                icon: '🎠',
-                type: 'carousel',
-                textareaId: 'excel-0',
-                counterId: 'count-0'
-            },
-            {
-                id: 'carruselEligeTuFavorito',
-                name: 'Elige tu Favorito',
-                icon: '🎠',
-                type: 'carousel',
-                textareaId: 'excel-1',
-                counterId: 'count-1'
-            },
-            {
-                id: 'carruselLosMasBuscados',
-                name: 'Los Más Buscados',
-                icon: '🎠',
-                type: 'carousel',
-                textareaId: 'excel-2',
-                counterId: 'count-2'
-            }
+            { id:'popupOfertaDelDia', name:'Popup Oferta del Día', icon:'🔔', type:'popup', textareaId:'excel-popup', counterId:'count-popup' },
+            { id:'carruselOfertaDelDia', name:'Oferta del Día', icon:'🎠', type:'carousel', textareaId:'excel-0', counterId:'count-0' },
+            { id:'carruselEligeTuFavorito', name:'Elige tu Favorito', icon:'🎠', type:'carousel', textareaId:'excel-1', counterId:'count-1' },
+            { id:'carruselLosMasBuscados', name:'Los Más Buscados', icon:'🎠', type:'carousel', textareaId:'excel-2', counterId:'count-2' }
         ];
 
         let selectedChannel = 'store';
         let jsonData = null;
         let cmsComponents = [];
+        let cmsDepartments = [];
 
         // =====================
-        // CANAL
+        // MAIN TABS
+        // =====================
+        function switchMainTab(tab, btn) {
+            document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        // =====================
+        // DEPT OPTIONAL COLUMNS
+        // =====================
+        function toggleDeptCol(type) {
+            const col = document.getElementById(`col-${type}`);
+            const chk = document.getElementById(type === 'pct' ? 'chkPct' : 'chkLinks');
+            col.classList.toggle('visible', chk.checked);
+        }
+
+        // =====================
+        // CHANNEL
         // =====================
         function setChannel(channel, btn) {
             selectedChannel = channel;
@@ -690,256 +706,367 @@
         }
 
         // =====================
-        // CARGAR JSON
+        // LOAD JSON
         // =====================
         function loadJSON(event) {
             const file = event.target.files[0];
             if (!file) return;
             document.getElementById('fileName').textContent = file.name;
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     jsonData = JSON.parse(e.target.result);
                     processJSON(jsonData);
                 } catch (err) {
-                    showFileStatus('error', '❌ Error al leer el JSON. Verifica que sea válido.');
+                    showFileStatus('error', '❌ Error al leer el JSON.');
                 }
             };
             reader.readAsText(file);
         }
 
         // =====================
-        // PROCESAR JSON
+        // PROCESS JSON
         // =====================
         function processJSON(data) {
             const components = data.component || data.components || [];
             cmsComponents = [];
+            cmsDepartments = [];
 
             if (!components || components.length === 0) {
                 showFileStatus('error', '❌ No se encontró "component" en el JSON.');
                 return;
             }
 
+            // SKU components
             COMPONENTS.forEach((config) => {
                 let found = false;
-
                 for (const comp of components) {
                     if (comp.product_carousel && comp.product_carousel.component_id === config.id) {
                         const products = comp.product_carousel.products || [];
-                        cmsComponents.push({
-                            ...config,
-                            skus: products.map(p => p.trim().toUpperCase())
-                        });
+                        cmsComponents.push({ ...config, skus: products.map(p => p.trim().toUpperCase()) });
                         found = true;
                         break;
                     }
                 }
-
-                if (!found) {
-                    cmsComponents.push({ ...config, skus: [] });
-                }
+                if (!found) cmsComponents.push({ ...config, skus: [] });
             });
 
+            // Departments
+            for (const comp of components) {
+                if (comp.department && comp.department.component_id === 'bloqueDepartamentos') {
+                    const items = comp.department.items || [];
+                    cmsDepartments = items.map((item, idx) => ({
+                        order: idx + 1,
+                        name: item.link ? item.link.title : '',
+                        text: item.text || '',
+                        link: item.link ? item.link.href : ''
+                    }));
+                    break;
+                }
+            }
+
             displayDetected();
-            const totalSkus = cmsComponents.reduce((sum, c) => sum + c.skus.length, 0);
-            const channelName = selectedChannel === 'store' ? 'Tienda' : '.COM';
+            const totalSkus = cmsComponents.reduce((s, c) => s + c.skus.length, 0);
+            const ch = selectedChannel === 'store' ? 'Tienda' : '.COM';
             showFileStatus('success',
-                `✅ JSON cargado (${channelName}). ${cmsComponents.length} componentes con ${totalSkus} SKUs en total.`
+                `✅ JSON cargado (${ch}). ${cmsComponents.length} componentes con ${totalSkus} SKUs + ${cmsDepartments.length} departamentos.`
             );
         }
 
         // =====================
-        // MOSTRAR DETECTADOS
+        // DISPLAY DETECTED
         // =====================
         function displayDetected() {
             const container = document.getElementById('detectedCarousels');
             container.style.display = 'block';
-            container.innerHTML = '<h3>📦 Componentes detectados en el JSON:</h3>';
+            container.innerHTML = '<h3>📦 Componentes detectados:</h3>';
 
-            cmsComponents.forEach((c) => {
+            cmsComponents.forEach(c => {
                 const card = document.createElement('div');
                 card.className = `detected-card ${c.type === 'popup' ? 'popup-card' : ''}`;
                 card.innerHTML = `
-                    <h4>${c.icon} ${c.name}
-                        <span style="color:#555; font-weight:normal;">(${c.id})</span>
-                        ${c.type === 'popup' ? '<span style="background:#e9456030;color:#e94560;padding:2px 8px;border-radius:10px;font-size:0.7em;margin-left:6px;">POPUP</span>' : ''}
-                    </h4>
-                    <div class="sku-count">${c.skus.length} SKUs encontrados</div>
-                    <div class="sku-preview">${c.skus.join(', ') || 'Sin SKUs'}</div>
-                `;
+                    <h4>${c.icon} ${c.name} <span style="color:#555;font-weight:normal">(${c.id})</span></h4>
+                    <div class="sku-count">${c.skus.length} SKUs</div>
+                    <div class="sku-preview">${c.skus.join(', ') || 'Sin SKUs'}</div>`;
                 container.appendChild(card);
             });
+
+            if (cmsDepartments.length > 0) {
+                const card = document.createElement('div');
+                card.className = 'detected-card dept-card';
+                card.innerHTML = `
+                    <h4>🏷️ Departamentos <span style="color:#555;font-weight:normal">(bloqueDepartamentos)</span></h4>
+                    <div class="sku-count">${cmsDepartments.length} departamentos</div>
+                    <div class="sku-preview">${cmsDepartments.map(d => d.name).join(', ')}</div>`;
+                container.appendChild(card);
+            }
         }
 
         // =====================
-        // UTILIDADES
+        // UTILS
         // =====================
-        function showFileStatus(type, message) {
+        function showFileStatus(type, msg) {
             const el = document.getElementById('fileStatus');
             el.className = `file-status ${type}`;
-            el.textContent = message;
+            el.textContent = msg;
             el.style.display = 'block';
         }
 
-        function updateCounter(textareaId, counterId) {
-            const text = document.getElementById(textareaId).value.trim();
+        function updateCounter(tid, cid) {
+            const text = document.getElementById(tid).value.trim();
             const items = text ? text.split('\n').filter(i => i.trim() !== '') : [];
-            document.getElementById(counterId).textContent = items.length;
+            document.getElementById(cid).textContent = items.length;
         }
 
         function parseExcel(text) {
-            return text
-                .split('\n')
-                .map(item => item.trim().replace(/,+$/, '').trim().toUpperCase())
-                .filter(item => item !== '');
+            return text.split('\n').map(i => i.trim().replace(/,+$/, '').trim().toUpperCase()).filter(i => i !== '');
+        }
+
+        function parseLines(text) {
+            return text.split('\n').map(i => i.trim()).filter(i => i !== '');
+        }
+
+        function normalize(str) {
+            return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
         }
 
         // =====================
-        // VALIDAR
+        // VALIDATE SKUs
         // =====================
-        function validate() {
-            if (cmsComponents.length === 0) {
-                alert('⚠️ Primero importa el archivo JSON de ContentStack.');
-                return;
-            }
+        function validateSKUs() {
+            if (cmsComponents.length === 0) { alert('⚠️ Primero importa el JSON.'); return; }
 
-            let totalCorrect = 0, totalMissing = 0, totalExtra = 0, totalDuplicate = 0;
-            let allPerfect = true;
+            let tC=0, tM=0, tE=0, tD=0, allP=true;
+            const grid = document.getElementById('skuResultsGrid');
+            grid.innerHTML = '';
 
-            const resultsGrid = document.getElementById('resultsGrid');
-            resultsGrid.innerHTML = '';
+            cmsComponents.forEach(cms => {
+                const txt = document.getElementById(cms.textareaId).value;
+                if (!txt.trim()) { grid.innerHTML += buildEmptyResult(cms); return; }
 
-            cmsComponents.forEach((cms) => {
-                const excelText = document.getElementById(cms.textareaId).value;
-
-                if (!excelText.trim()) {
-                    resultsGrid.innerHTML += buildEmptyResult(cms);
-                    return;
-                }
-
-                const excelList = parseExcel(excelText);
+                const excelList = parseExcel(txt);
                 const cmsList = cms.skus;
-
-                const correct = excelList.filter(item => cmsList.includes(item));
-                const missing = excelList.filter(item => !cmsList.includes(item));
-                const extra = cmsList.filter(item => !excelList.includes(item));
-
-                const seen = {};
-                const duplicates = {};
-                cmsList.forEach(item => {
-                    seen[item] = (seen[item] || 0) + 1;
-                    if (seen[item] > 1) duplicates[item] = seen[item];
-                });
-
-                const dupCount = Object.keys(duplicates).length;
-                const isPerfect = missing.length === 0 && extra.length === 0 && dupCount === 0;
-                if (!isPerfect) allPerfect = false;
-
-                totalCorrect += correct.length;
-                totalMissing += missing.length;
-                totalExtra += extra.length;
-                totalDuplicate += dupCount;
-
-                resultsGrid.innerHTML += buildResultCard(cms, isPerfect, excelList.length, cmsList.length, correct, missing, extra, duplicates);
+                const correct = excelList.filter(i => cmsList.includes(i));
+                const missing = excelList.filter(i => !cmsList.includes(i));
+                const extra = cmsList.filter(i => !excelList.includes(i));
+                const seen = {}, dups = {};
+                cmsList.forEach(i => { seen[i]=(seen[i]||0)+1; if(seen[i]>1) dups[i]=seen[i]; });
+                const dk = Object.keys(dups).length;
+                const ok = missing.length===0 && extra.length===0 && dk===0;
+                if (!ok) allP = false;
+                tC+=correct.length; tM+=missing.length; tE+=extra.length; tD+=dk;
+                grid.innerHTML += buildSKUResultCard(cms, ok, excelList.length, cmsList.length, correct, missing, extra, dups);
             });
 
-            document.getElementById('gCorrect').textContent = totalCorrect;
-            document.getElementById('gMissing').textContent = totalMissing;
-            document.getElementById('gExtra').textContent = totalExtra;
-            document.getElementById('gDuplicate').textContent = totalDuplicate;
+            document.getElementById('gCorrect').textContent = tC;
+            document.getElementById('gMissing').textContent = tM;
+            document.getElementById('gExtra').textContent = tE;
+            document.getElementById('gDuplicate').textContent = tD;
+            document.getElementById('skuResultsSubtitle').textContent = `Canal: ${selectedChannel==='store'?'🏬 Tienda':'🌐 .COM'}`;
 
-            const channelName = selectedChannel === 'store' ? '🏬 Tienda' : '🌐 .COM';
-            document.getElementById('resultsSubtitle').textContent = `Canal: ${channelName}`;
-
-            const statusBar = document.getElementById('statusBar');
-            if (allPerfect) {
-                statusBar.className = 'status-bar success';
-                statusBar.textContent = '🎉 ¡PERFECTO! Todos los SKUs están correctos en los 4 componentes.';
-            } else {
-                let errors = [];
-                if (totalMissing > 0) errors.push(`${totalMissing} faltante(s)`);
-                if (totalExtra > 0) errors.push(`${totalExtra} extra(s)`);
-                if (totalDuplicate > 0) errors.push(`${totalDuplicate} duplicado(s)`);
-                statusBar.className = 'status-bar error';
-                statusBar.textContent = `⛔ Hay errores: ${errors.join(', ')}.`;
+            const sb = document.getElementById('skuStatusBar');
+            if (allP) { sb.className='status-bar success'; sb.textContent='🎉 ¡PERFECTO! Todos los SKUs correctos.'; }
+            else {
+                let e=[];
+                if(tM>0) e.push(`${tM} faltante(s)`);
+                if(tE>0) e.push(`${tE} extra(s)`);
+                if(tD>0) e.push(`${tD} duplicado(s)`);
+                sb.className='status-bar error'; sb.textContent=`⛔ Errores: ${e.join(', ')}.`;
             }
-
-            document.getElementById('resultsContainer').style.display = 'block';
-            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('skuResults').style.display = 'block';
+            document.getElementById('skuResults').scrollIntoView({ behavior:'smooth' });
         }
 
-        // =====================
-        // BUILD RESULT CARD
-        // =====================
-        function buildResultCard(cms, isPerfect, excelCount, cmsCount, correct, missing, extra, duplicates) {
-            const dupKeys = Object.keys(duplicates);
-            const isPopup = cms.type === 'popup';
-            let html = `
-                <div class="result-card ${isPopup ? 'popup-result' : ''}" style="border-color: ${isPerfect ? '#00b894' : '#e94560'}">
-                    <div class="result-card-header">
-                        <span>${isPerfect ? '✅' : '❌'}</span>
-                        <h4>${cms.icon} ${cms.name}</h4>
-                        <span class="mini-stats">Excel: ${excelCount} | CMS: ${cmsCount}</span>
-                    </div>`;
-
-            if (correct.length > 0) {
-                html += `<div class="result-section">
-                    <div class="result-section-header correct">✅ Correctos (${correct.length})</div>
-                    <ul class="result-list correct">${correct.map(s => `<li>✔ ${s}</li>`).join('')}</ul>
-                </div>`;
-            }
-            if (missing.length > 0) {
-                html += `<div class="result-section">
-                    <div class="result-section-header missing">❌ En Excel pero NO en CMS (${missing.length})</div>
-                    <ul class="result-list missing">${missing.map(s => `<li>✖ ${s}</li>`).join('')}</ul>
-                </div>`;
-            }
-            if (extra.length > 0) {
-                html += `<div class="result-section">
-                    <div class="result-section-header extra">⚠️ En CMS pero NO en Excel (${extra.length})</div>
-                    <ul class="result-list extra">${extra.map(s => `<li>⚠ ${s}</li>`).join('')}</ul>
-                </div>`;
-            }
-            if (dupKeys.length > 0) {
-                html += `<div class="result-section">
-                    <div class="result-section-header duplicate">🔄 Duplicados (${dupKeys.length})</div>
-                    <ul class="result-list duplicate">${dupKeys.map(s => `<li>🔄 ${s} (${duplicates[s]}x)</li>`).join('')}</ul>
-                </div>`;
-            }
-            if (isPerfect) {
-                html += `<p class="perfect-msg">🎉 Todo correcto</p>`;
-            }
-            html += `</div>`;
-            return html;
+        function buildSKUResultCard(cms, ok, ec, cc, correct, missing, extra, dups) {
+            const dk = Object.keys(dups);
+            const isP = cms.type==='popup';
+            let h = `<div class="result-card ${isP?'popup-result':''}" style="border-color:${ok?'#00b894':'#e94560'}">
+                <div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4>
+                <span class="mini-stats">Excel:${ec} | CMS:${cc}</span></div>`;
+            if(correct.length>0) h+=`<div class="result-section"><div class="result-section-header correct">✅ Correctos (${correct.length})</div><ul class="result-list correct">${correct.map(s=>`<li>✔ ${s}</li>`).join('')}</ul></div>`;
+            if(missing.length>0) h+=`<div class="result-section"><div class="result-section-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="result-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;
+            if(extra.length>0) h+=`<div class="result-section"><div class="result-section-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="result-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;
+            if(dk.length>0) h+=`<div class="result-section"><div class="result-section-header duplicate">🔄 Duplicados (${dk.length})</div><ul class="result-list duplicate">${dk.map(s=>`<li>🔄 ${s} (${dups[s]}x)</li>`).join('')}</ul></div>`;
+            if(ok) h+=`<p class="perfect-msg">🎉 Todo correcto</p>`;
+            return h+'</div>';
         }
 
         function buildEmptyResult(cms) {
-            return `
-                <div class="result-card ${cms.type === 'popup' ? 'popup-result' : ''}">
-                    <div class="result-card-header">
-                        <span>⏭️</span>
-                        <h4>${cms.icon} ${cms.name}</h4>
-                    </div>
-                    <p class="perfect-msg" style="color:#555;">Sin datos del Excel</p>
-                </div>`;
+            return `<div class="result-card ${cms.type==='popup'?'popup-result':''}"><div class="result-card-header"><span>⏭️</span><h4>${cms.icon} ${cms.name}</h4></div><p class="perfect-msg" style="color:#555">Sin datos</p></div>`;
         }
 
         // =====================
-        // LIMPIAR
+        // VALIDATE DEPARTMENTS
         // =====================
-        function clearAll() {
+        function validateDepts() {
+            if (cmsDepartments.length === 0) { alert('⚠️ Primero importa el JSON.'); return; }
+
+            const namesText = document.getElementById('dept-names').value;
+            if (!namesText.trim()) { alert('⚠️ Pega los nombres de los departamentos.'); return; }
+
+            const userNames = parseLines(namesText);
+            const validatePct = document.getElementById('chkPct').checked;
+            const validateLinks = document.getElementById('chkLinks').checked;
+
+            let userPcts = [], userLinks = [];
+            if (validatePct) userPcts = parseLines(document.getElementById('dept-pcts').value);
+            if (validateLinks) userLinks = parseLines(document.getElementById('dept-links').value);
+
+            const grid = document.getElementById('deptResultsGrid');
+            grid.innerHTML = '';
+
+            let totalErrors = 0;
+
+            // ---- VALIDAR ORDEN DE NOMBRES ----
+            let namesHtml = `<div class="result-card dept-result" style="grid-column: 1 / -1;">
+                <div class="result-card-header">
+                    <span>🏷️</span><h4>Orden de Departamentos</h4>
+                    <span class="mini-stats">Excel: ${userNames.length} | CMS: ${cmsDepartments.length}</span>
+                </div>`;
+
+            if (userNames.length !== cmsDepartments.length) {
+                namesHtml += `<div class="result-section"><div class="result-section-header missing">
+                    ❌ La cantidad no coincide (Excel: ${userNames.length} vs CMS: ${cmsDepartments.length})</div></div>`;
+                totalErrors++;
+            }
+
+            namesHtml += `<table class="order-table">
+                <tr><th>#</th><th>Excel (lo que pegaste)</th><th>CMS (lo que tiene)</th><th>Estado</th></tr>`;
+
+            const maxLen = Math.max(userNames.length, cmsDepartments.length);
+            let orderErrors = 0;
+
+            for (let i = 0; i < maxLen; i++) {
+                const userName = userNames[i] || '— vacío —';
+                const cmsName = cmsDepartments[i] ? cmsDepartments[i].name : '— vacío —';
+                const match = normalize(userName) === normalize(cmsName);
+                if (!match) orderErrors++;
+
+                namesHtml += `<tr class="${match ? 'row-ok' : 'row-bad'}">
+                    <td>${i + 1}</td>
+                    <td>${userName}</td>
+                    <td>${cmsName}</td>
+                    <td>${match ? '✅' : '❌'}</td>
+                </tr>`;
+            }
+
+            namesHtml += `</table>`;
+            totalErrors += orderErrors;
+
+            if (orderErrors === 0 && userNames.length === cmsDepartments.length) {
+                namesHtml += `<p class="perfect-msg">🎉 Orden perfecto</p>`;
+            } else {
+                namesHtml += `<div class="result-section" style="margin-top:8px"><div class="result-section-header missing">
+                    ❌ ${orderErrors} departamento(s) en posición incorrecta</div></div>`;
+            }
+            namesHtml += `</div>`;
+            grid.innerHTML += namesHtml;
+
+            // ---- VALIDAR PORCENTAJES (OPCIONAL) ----
+            if (validatePct && userPcts.length > 0) {
+                let pctHtml = `<div class="result-card dept-result" style="grid-column: 1 / -1;">
+                    <div class="result-card-header"><span>📊</span><h4>Porcentajes</h4>
+                    <span class="mini-stats">Excel: ${userPcts.length} | CMS: ${cmsDepartments.length}</span></div>`;
+
+                pctHtml += `<table class="order-table">
+                    <tr><th>#</th><th>Departamento</th><th>Excel</th><th>CMS</th><th>Estado</th></tr>`;
+
+                let pctErrors = 0;
+                const maxP = Math.max(userPcts.length, cmsDepartments.length);
+
+                for (let i = 0; i < maxP; i++) {
+                    const up = userPcts[i] || '— vacío —';
+                    const cp = cmsDepartments[i] ? cmsDepartments[i].text : '— vacío —';
+                    const dn = cmsDepartments[i] ? cmsDepartments[i].name : '';
+                    const match = normalize(up) === normalize(cp);
+                    if (!match) pctErrors++;
+
+                    pctHtml += `<tr class="${match ? 'row-ok' : 'row-bad'}">
+                        <td>${i+1}</td><td>${dn}</td><td>${up}</td><td>${cp}</td><td>${match?'✅':'❌'}</td></tr>`;
+                }
+
+                pctHtml += `</table>`;
+                totalErrors += pctErrors;
+                if (pctErrors === 0) pctHtml += `<p class="perfect-msg">🎉 Porcentajes correctos</p>`;
+                else pctHtml += `<div class="result-section" style="margin-top:8px"><div class="result-section-header missing">❌ ${pctErrors} porcentaje(s) diferente(s)</div></div>`;
+                pctHtml += `</div>`;
+                grid.innerHTML += pctHtml;
+            }
+
+            // ---- VALIDAR LINKS (OPCIONAL) ----
+            if (validateLinks && userLinks.length > 0) {
+                let linkHtml = `<div class="result-card dept-result" style="grid-column: 1 / -1;">
+                    <div class="result-card-header"><span>🔗</span><h4>Links</h4>
+                    <span class="mini-stats">Excel: ${userLinks.length} | CMS: ${cmsDepartments.length}</span></div>`;
+
+                linkHtml += `<table class="order-table">
+                    <tr><th>#</th><th>Departamento</th><th>Excel</th><th>CMS</th><th>Estado</th></tr>`;
+
+                let linkErrors = 0;
+                const maxL = Math.max(userLinks.length, cmsDepartments.length);
+
+                for (let i = 0; i < maxL; i++) {
+                    const ul = userLinks[i] || '— vacío —';
+                    const cl = cmsDepartments[i] ? cmsDepartments[i].link : '— vacío —';
+                    const dn = cmsDepartments[i] ? cmsDepartments[i].name : '';
+                    const match = ul.trim() === cl.trim();
+                    if (!match) linkErrors++;
+
+                    linkHtml += `<tr class="${match ? 'row-ok' : 'row-bad'}">
+                        <td>${i+1}</td><td>${dn}</td><td style="word-break:break-all">${ul}</td><td style="word-break:break-all">${cl}</td><td>${match?'✅':'❌'}</td></tr>`;
+                }
+
+                linkHtml += `</table>`;
+                totalErrors += linkErrors;
+                if (linkErrors === 0) linkHtml += `<p class="perfect-msg">🎉 Links correctos</p>`;
+                else linkHtml += `<div class="result-section" style="margin-top:8px"><div class="result-section-header missing">❌ ${linkErrors} link(s) diferente(s)</div></div>`;
+                linkHtml += `</div>`;
+                grid.innerHTML += linkHtml;
+            }
+
+            // Status
+            const ch = selectedChannel==='store'?'🏬 Tienda':'🌐 .COM';
+            document.getElementById('deptResultsSubtitle').textContent = `Canal: ${ch}`;
+            const sb = document.getElementById('deptStatusBar');
+            if (totalErrors === 0) {
+                sb.className = 'status-bar success';
+                sb.textContent = '🎉 ¡PERFECTO! La iconografía está correcta.';
+            } else {
+                sb.className = 'status-bar error';
+                sb.textContent = `⛔ Se encontraron ${totalErrors} error(es) en la iconografía.`;
+            }
+
+            document.getElementById('deptResults').style.display = 'block';
+            document.getElementById('deptResults').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // =====================
+        // CLEAR
+        // =====================
+        function clearSKUs() {
             COMPONENTS.forEach(c => {
                 document.getElementById(c.textareaId).value = '';
                 document.getElementById(c.counterId).textContent = '0';
             });
-            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('skuResults').style.display = 'none';
+        }
+
+        function clearDepts() {
+            ['dept-names','dept-pcts','dept-links'].forEach(id => { document.getElementById(id).value = ''; });
+            ['count-dept-names','count-dept-pcts','count-dept-links'].forEach(id => { document.getElementById(id).textContent = '0'; });
+            document.getElementById('deptResults').style.display = 'none';
+        }
+
+        function clearAll() {
+            clearSKUs();
+            clearDepts();
             document.getElementById('detectedCarousels').style.display = 'none';
             document.getElementById('fileStatus').style.display = 'none';
             document.getElementById('fileName').textContent = 'Ningún archivo seleccionado';
             document.getElementById('jsonFile').value = '';
             jsonData = null;
             cmsComponents = [];
+            cmsDepartments = [];
         }
     </script>
 </body>
