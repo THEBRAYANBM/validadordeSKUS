@@ -12,7 +12,6 @@
         %3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* VARIABLES PARA MODO CLARO (Tu diseño original exacto) */
         :root {
             --bg-body: #e8e6e1;
             --text-main: #3d3a36;
@@ -23,28 +22,20 @@
             --border-main: #d5d1cb;
             --border-input: #cdc9c3;
             --bg-hover: #ddd9d3;
-            
             --success-text: #1a7a42;
             --success-bg: #e6f5ec;
             --success-border: #a3dbb8;
-            
             --error-text: #c0392b;
             --error-bg: #fce8e8;
             --error-border: #f5b7b7;
-            
             --warning-text: #b8860b;
             --warning-bg: #fdf3e0;
-            
             --info-text: #2c5fad;
             --info-bg: #e8edf8;
-            
             --purple-text: #7c5cbf;
             --purple-bg: #f0ecf8;
-            
             --accent: #5b6abf;
         }
-
-        /* VARIABLES PARA MODO OSCURO */
         [data-theme="dark"] {
             --bg-body: #14161a;
             --text-main: #e0e0e0;
@@ -55,35 +46,25 @@
             --border-main: #353945;
             --border-input: #4b5563;
             --bg-hover: #3a3e4c;
-            
             --success-text: #4ade80;
             --success-bg: rgba(74, 222, 128, 0.15);
             --success-border: rgba(74, 222, 128, 0.3);
-            
             --error-text: #f87171;
             --error-bg: rgba(248, 113, 113, 0.15);
             --error-border: rgba(248, 113, 113, 0.3);
-            
             --warning-text: #fbbf24;
             --warning-bg: rgba(251, 191, 36, 0.15);
-            
             --info-text: #60a5fa;
             --info-bg: rgba(96, 165, 250, 0.15);
-            
             --purple-text: #a78bfa;
             --purple-bg: rgba(167, 139, 250, 0.15);
         }
-
-        /* TRANSICIÓN SUAVE ENTRE MODOS */
         body, .step, .sub-card, textarea, .main-tab, .channel-btn, .file-upload label, .g-card, .result-card {
             transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
-
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Inter',sans-serif;background:var(--bg-body);color:var(--text-main);min-height:100vh;padding:20px}
         .container{max-width:1500px;margin:0 auto;position:relative;}
-
-        /* BOTÓN THEME TOGGLE */
         .theme-toggle {
             position: absolute;
             top: 20px;
@@ -102,28 +83,23 @@
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
         }
-
         .header{text-align:center;margin-bottom:25px;padding:20px;background:linear-gradient(135deg,#5b6abf 0%,#7c5cbf 100%);border-radius:16px;color:#fff;position:relative;}
         .header h1{font-size:1.8em;margin-bottom:4px;font-weight:700}
         .header p{opacity:.85;font-size:.85em}
-
         .main-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
         .main-tab{padding:10px 22px;border-radius:10px;border:2px solid var(--border-input);background:var(--bg-panel);color:var(--text-muted);cursor:pointer;font-size:.85em;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)}
         .main-tab:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 2px 8px rgba(91,106,191,.15)}
         .main-tab.active{border-color:var(--accent);background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(91,106,191,.3)}
         .tab-content{display:none}.tab-content.active{display:block}
-
         .step{background:var(--bg-panel);border-radius:14px;padding:20px;margin-bottom:16px;border:1px solid var(--border-main);box-shadow:0 1px 3px rgba(0,0,0,.05)}
         .step-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
         .step-number{background:linear-gradient(135deg,#5b6abf,#7c5cbf);color:#fff;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8em;flex-shrink:0}
         .step-header h2{font-size:1em;color:var(--text-title)}
         .hint{color:var(--text-muted);font-size:.75em;margin-bottom:10px}
-
         .channel-selector{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
         .channel-btn{padding:10px 28px;border-radius:10px;border:2px solid var(--border-input);background:var(--bg-sub);color:var(--text-muted);cursor:pointer;font-size:.9em;font-weight:600;}
         .channel-btn:hover{border-color:var(--accent);color:var(--accent)}
         .channel-btn.active{border-color:var(--accent);background:var(--accent);color:#fff}
-
         .file-upload{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
         .file-upload label{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--bg-sub);border:2px dashed var(--border-input);border-radius:10px;cursor:pointer;font-size:.85em;color:var(--text-main)}
         .file-upload label:hover{background:var(--bg-hover);border-color:var(--accent)}
@@ -132,13 +108,11 @@
         .file-status{margin-top:10px;font-size:.8em;padding:10px 14px;border-radius:8px;display:none}
         .file-status.success{display:block;background:var(--success-bg);color:var(--success-text);border:1px solid var(--success-border)}
         .file-status.error{display:block;background:var(--error-bg);color:var(--error-text);border:1px solid var(--error-border)}
-
         .detected{display:none;margin-top:14px;background:var(--bg-sub);border-radius:10px;padding:12px;border:1px solid var(--border-main)}
         .detected h3{color:var(--accent);font-size:.85em;margin-bottom:8px}
         .det-card{background:var(--bg-panel);border-radius:8px;padding:8px 12px;margin-bottom:6px;border-left:3px solid var(--accent);font-size:.75em;box-shadow:0 1px 2px rgba(0,0,0,.04)}
         .det-card .det-title{color:var(--text-title);font-weight:600}
         .det-card .det-info{color:var(--text-muted);margin-top:2px}
-
         .section-box{background:var(--bg-panel);border-radius:14px;padding:18px;margin-bottom:14px;border:1px solid var(--border-main);box-shadow:0 1px 3px rgba(0,0,0,.04)}
         .section-label{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
         .section-label h3{font-size:.95em;color:var(--text-title)}
@@ -148,15 +122,14 @@
         .badge-banner{background:var(--warning-bg);color:var(--warning-text)}
         .badge-dept{background:var(--success-bg);color:var(--success-text)}
         .badge-opt{background:var(--bg-sub);color:var(--text-muted)}
+        .badge-reorder{background:var(--purple-bg);color:var(--purple-text)}
         .card-id{color:var(--text-muted);font-size:.65em;margin-bottom:6px;font-family:'Courier New',monospace}
-
         textarea{width:100%;height:160px;background:var(--bg-sub);border:1.5px solid var(--border-input);border-radius:10px;color:var(--text-main);padding:12px;font-size:12px;font-family:'Courier New',monospace;resize:vertical;}
         textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,106,191,.12);background:var(--bg-panel)}
         textarea::placeholder{color:#b0aba4}
         textarea.small{height:80px}
         textarea.tall{height:280px}
         .counter{text-align:right;font-size:.65em;color:var(--text-muted);margin-top:3px}
-
         .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
         .sub-card{background:var(--bg-sub);border-radius:10px;padding:14px;border:1px solid var(--border-main)}
@@ -166,11 +139,9 @@
         .sub-card h4.c-yellow{color:var(--warning-text)}
         .sub-card h4.c-blue{color:var(--info-text)}
         .sub-card h4.c-purple{color:var(--purple-text)}
-
         .options-row{display:flex;gap:15px;margin-bottom:10px;flex-wrap:wrap}
         .opt-label{display:flex;align-items:center;gap:6px;font-size:.8em;color:var(--text-muted);cursor:pointer}
         .opt-label input[type="checkbox"]{accent-color:var(--accent);width:16px;height:16px}
-
         .btn-container{display:flex;justify-content:center;gap:10px;margin:22px 0;flex-wrap:wrap}
         .btn{border:none;padding:12px 36px;font-size:.9em;border-radius:10px;cursor:pointer;font-weight:600;transition:.3s;box-shadow:0 2px 4px rgba(0,0,0,.1)}
         .btn-validate{background:linear-gradient(135deg,#5b6abf,#7c5cbf);color:#fff}
@@ -180,7 +151,6 @@
         .btn-download-json{background:linear-gradient(135deg,#1a7a42,#27ae60);color:#fff}
         .btn-download-json:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(26,122,66,.35)}
         .btn-download-json:disabled{background:var(--border-input);color:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
-
         .results-container{display:none}
         .results-header{text-align:center;margin-bottom:16px}
         .results-header h2{color:var(--text-title);font-size:1.3em}
@@ -191,12 +161,11 @@
         .g-card.correct .number{color:var(--success-text)}
         .g-card.errors .number{color:var(--error-text)}
         .g-card.fixed .number{color:var(--info-text)}
-
+        .g-card.reorder .number{color:var(--purple-text)}
         .result-card{background:var(--bg-panel);border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid var(--border-main);box-shadow:0 1px 3px rgba(0,0,0,.05)}
         .result-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border-main);flex-wrap:wrap}
         .result-card-header h4{font-size:.85em;color:var(--text-title)}
         .result-card-header .mini{margin-left:auto;font-size:.65em;color:var(--text-muted)}
-
         .r-section{margin-bottom:8px}
         .r-header{font-size:.72em;font-weight:600;margin-bottom:4px}
         .r-header.correct{color:var(--success-text)}
@@ -204,7 +173,7 @@
         .r-header.extra{color:var(--warning-text)}
         .r-header.dup{color:var(--purple-text)}
         .r-header.fixed{color:var(--info-text)}
-
+        .r-header.reorder{color:var(--purple-text)}
         .r-list{list-style:none;padding:0;max-height:200px;overflow-y:auto}
         .r-list li{padding:5px 10px;margin:3px 0;border-radius:6px;font-family:'Courier New',monospace;font-size:.72em;word-break:break-all}
         .r-list.correct li{background:var(--success-bg);border-left:3px solid var(--success-text);color:var(--success-text)}
@@ -212,36 +181,36 @@
         .r-list.extra li{background:var(--warning-bg);border-left:3px solid var(--warning-text);color:var(--warning-text)}
         .r-list.dup li{background:var(--purple-bg);border-left:3px solid var(--purple-text);color:var(--purple-text)}
         .r-list.fixed li{background:var(--info-bg);border-left:3px solid var(--info-text);color:var(--info-text)}
-
+        .r-list.reorder li{background:var(--purple-bg);border-left:3px solid var(--purple-text);color:var(--purple-text)}
         .correction-box{background:var(--info-bg);border:1px solid var(--info-text);border-radius:10px;padding:14px;margin-top:10px}
         .correction-box h5{color:var(--info-text);font-size:.8em;margin-bottom:8px}
-
+        .reorder-box{background:var(--purple-bg);border:1px solid var(--purple-text);border-radius:10px;padding:14px;margin-top:10px}
+        .reorder-box h5{color:var(--purple-text);font-size:.8em;margin-bottom:8px}
         .match-tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.55em;margin-left:4px;font-weight:600}
         .match-tag.exact{background:var(--success-bg);color:var(--success-text)}
         .match-tag.partial{background:var(--warning-bg);color:var(--warning-text)}
-
         .order-table{width:100%;border-collapse:collapse;font-size:.72em;margin-top:6px}
         .order-table th{text-align:left;padding:6px 8px;color:var(--text-muted);border-bottom:2px solid var(--border-main);font-weight:600}
         .order-table td{padding:6px 8px;border-bottom:1px solid var(--bg-sub);font-family:'Courier New',monospace;word-break:break-all;color:var(--text-main)}
         .order-table tr.row-ok td{color:var(--success-text);background:var(--success-bg)}
         .order-table tr.row-bad td{color:var(--error-text);background:var(--error-bg)}
+        .order-table tr.row-moved td{color:var(--purple-text);background:var(--purple-bg)}
         .order-table tr:hover td{filter:brightness(.97)}
-
         .perfect-msg{text-align:center;color:var(--success-text);font-size:.82em;padding:10px;font-weight:600}
         .status-bar{text-align:center;padding:14px;border-radius:10px;font-weight:600;font-size:.95em;margin-top:16px}
         .status-bar.success{background:var(--success-bg);color:var(--success-text);border:1px solid var(--success-border)}
         .status-bar.error{background:var(--error-bg);color:var(--error-text);border:1px solid var(--error-border)}
-
         .download-section{background:linear-gradient(135deg,var(--success-bg),var(--info-bg));border:1px solid var(--success-border);border-radius:12px;padding:18px;margin-top:16px;text-align:center}
         .download-section h4{color:var(--success-text);margin-bottom:6px;font-size:.9em}
         .download-section p{color:var(--text-muted);font-size:.75em;margin-bottom:12px}
         .download-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-
+        /* Pending changes indicator */
+        .pending-indicator{display:none;background:var(--warning-bg);border:1px solid var(--warning-text);border-radius:10px;padding:12px 18px;margin:10px 0;text-align:center;font-size:.82em;color:var(--warning-text);font-weight:600}
+        .pending-indicator.show{display:block}
         ::-webkit-scrollbar{width:6px}
         ::-webkit-scrollbar-track{background:var(--bg-body);border-radius:3px}
         ::-webkit-scrollbar-thumb{background:var(--border-input);border-radius:3px}
         ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-
         @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
     </style>
 </head>
@@ -250,13 +219,19 @@
     <div class="header">
         <button id="themeToggleBtn" class="theme-toggle">🌙 Modo Oscuro</button>
         <h1>🔍 Validador ContentStack By Brayan</h1>
-        <p>Valida, corrige y descarga el JSON corregido</p>
+        <p>Valida, corrige, reordena y descarga el JSON corregido</p>
     </div>
 
     <div class="main-tabs">
         <button class="main-tab active" onclick="switchTab('skus',this)">🛒 SKUs</button>
         <button class="main-tab" onclick="switchTab('sliders',this)">🖼️ Sliders / Banners</button>
         <button class="main-tab" onclick="switchTab('depts',this)">🏷️ Iconografía</button>
+    </div>
+
+    <!-- Indicador de cambios pendientes -->
+    <div class="pending-indicator" id="pendingIndicator">
+        ⏳ Cambios pendientes: <span id="pendingList"></span> — 
+        <button class="btn btn-download-json" style="padding:6px 16px;font-size:.8em" onclick="downloadCorrectedJSON()">📥 Descargar JSON con TODO</button>
     </div>
 
     <div class="step">
@@ -273,6 +248,7 @@
         <div class="detected" id="detected"></div>
     </div>
 
+    <!-- TAB SKUs -->
     <div class="tab-content active" id="tab-skus">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Pegar SKUs del Excel</h2></div>
@@ -299,6 +275,7 @@
         <div class="results-container" id="skuRes"></div>
     </div>
 
+    <!-- TAB SLIDERS -->
     <div class="tab-content" id="tab-sliders">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Sliders y Banners</h2></div>
@@ -351,6 +328,7 @@
         <div class="results-container" id="bannerRes"></div>
     </div>
 
+    <!-- TAB DEPTS / ICONOGRAFÍA -->
     <div class="tab-content" id="tab-depts">
         <div class="step">
             <div class="step-header"><div class="step-number">2</div><h2>Validar Iconografía</h2></div>
@@ -358,11 +336,13 @@
                 <div class="section-label"><h3>🏷️ Departamentos</h3><span class="badge badge-dept">ICONOGRAFÍA</span></div>
                 <div class="card-id">bloqueDepartamentos</div>
                 <div class="options-row">
+                    <label class="opt-label"><input type="checkbox" id="chkReorder" checked> 🔄 Reordenar según mi lista <span class="badge badge-reorder">REORDEN</span></label>
                     <label class="opt-label"><input type="checkbox" id="chkPct" onchange="toggleEl('col-pct',this.checked)"> Porcentajes <span class="badge badge-opt">OPCIONAL</span></label>
                     <label class="opt-label"><input type="checkbox" id="chkLinks" onchange="toggleEl('col-links',this.checked)"> Links <span class="badge badge-opt">OPCIONAL</span></label>
                 </div>
+                <p class="hint">📌 Si "Reordenar" está activo, el JSON se reorganizará según el orden que pegues aquí. Los items que no existan en el CMS se ignoran, los que sobren en CMS se agregan al final.</p>
                 <div class="grid-3">
-                    <div class="sub-card"><h4 class="c-green">📋 Nombres</h4><div class="sub-hint">En orden, uno por línea</div>
+                    <div class="sub-card"><h4 class="c-green">📋 Nombres (nuevo orden)</h4><div class="sub-hint">En el orden que quieres, uno por línea</div>
                         <textarea id="dept-names" class="tall" placeholder="Ofertas&#10;Motos y Movilidad&#10;Zapatos&#10;..." oninput="uc('dept-names','c-dn')"></textarea><div class="counter"><span id="c-dn">0</span></div></div>
                     <div class="sub-card" id="col-pct" style="display:none"><h4 class="c-purple">📊 Porcentajes</h4>
                         <textarea id="dept-pcts" class="tall" placeholder="Hasta 50%&#10;Hasta 30%&#10;..." oninput="uc('dept-pcts','c-dp')"></textarea><div class="counter"><span id="c-dp">0</span></div></div>
@@ -372,7 +352,7 @@
             </div>
         </div>
         <div class="btn-container">
-            <button class="btn btn-validate" onclick="validateDepts()">🔍 VALIDAR</button>
+            <button class="btn btn-validate" onclick="validateDepts()">🔍 VALIDAR Y REORDENAR</button>
             <button class="btn btn-clear" onclick="clearDepts()">🗑️ LIMPIAR</button>
         </div>
         <div class="results-container" id="deptRes"></div>
@@ -380,17 +360,15 @@
 </div>
 
 <script>
-// SCRIPT DEL BOTÓN DARK MODE
+// =============================================
+// THEME TOGGLE
+// =============================================
 const themeBtn = document.getElementById('themeToggleBtn');
 const currentTheme = localStorage.getItem('theme');
-
-// Si el usuario ya lo había puesto en oscuro antes, cargarlo.
 if (currentTheme === 'dark') {
     document.body.setAttribute('data-theme', 'dark');
     themeBtn.innerHTML = '☀️ Modo Claro';
 }
-
-// Al dar click al botón
 themeBtn.addEventListener('click', () => {
     let theme = document.body.getAttribute('data-theme');
     if (theme === 'dark') {
@@ -404,78 +382,741 @@ themeBtn.addEventListener('click', () => {
     }
 });
 
-// ----------------------------------------------------
-// TU SCRIPT ORIGINAL INTACTO DE AQUÍ EN ADELANTE
-// ----------------------------------------------------
-const SKU_COMPS=[
-    {id:'popupOfertaDelDia',name:'Popup Oferta del Día',icon:'🔔',tid:'excel-popup',cid:'c-popup'},
-    {id:'carruselOfertaDelDia',name:'Oferta del Día',icon:'🎠',tid:'excel-c0',cid:'c-c0'},
-    {id:'carruselEligeTuFavorito',name:'Elige tu Favorito',icon:'🎠',tid:'excel-c1',cid:'c-c1'},
-    {id:'carruselLosMasBuscados',name:'Los Más Buscados',icon:'🎠',tid:'excel-c2',cid:'c-c2'}
+// =============================================
+// GLOBAL STATE
+// =============================================
+const SKU_COMPS = [
+    {id:'popupOfertaDelDia', name:'Popup Oferta del Día', icon:'🔔', tid:'excel-popup', cid:'c-popup'},
+    {id:'carruselOfertaDelDia', name:'Oferta del Día', icon:'🎠', tid:'excel-c0', cid:'c-c0'},
+    {id:'carruselEligeTuFavorito', name:'Elige tu Favorito', icon:'🎠', tid:'excel-c1', cid:'c-c1'},
+    {id:'carruselLosMasBuscados', name:'Los Más Buscados', icon:'🎠', tid:'excel-c2', cid:'c-c2'}
 ];
-let channel='store',jsonData=null,jsonOriginal=null,cmsSkus=[],cmsBanners={},cmsDepts=[];
 
-function switchTab(t,b){document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active')}
-function toggleEl(id,s){document.getElementById(id).style.display=s?'block':'none'}
-function setChannel(c,b){channel=c;document.querySelectorAll('.channel-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(jsonData)processJSON(jsonData)}
-function uc(t,c){const v=document.getElementById(t).value.trim();const i=v?v.split('\n').filter(x=>x.trim()!==''):[];document.getElementById(c).textContent=i.length}
-function parseSkus(t){return t.split('\n').map(i=>i.trim().replace(/,+$/,'').trim().toUpperCase()).filter(i=>i!=='')}
-function parseLines(t){return t.split('\n').map(i=>i.trim()).filter(i=>i!=='')}
-function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim()}
-function convertUrl(u){return u.trim().replace(/^https?:\/\/(www\.)?coppel\.com/,'').trim()||u.trim()}
-function showFS(t,m){const e=document.getElementById('fileStatus');e.className='file-status '+t;e.textContent=m;e.style.display='block'}
+let channel = 'store';
+let jsonData = null;
+let jsonOriginal = null;
+let cmsSkus = [];
+let cmsBanners = {};
+let cmsDepts = [];
 
-function findAltMatch(ua,ca){
-    const nu=norm(ua);
-    for(let i=0;i<ca.length;i++){if(norm(ca[i])===nu)return{index:i,type:'exact'}}
-    for(let i=0;i<ca.length;i++){const nc=norm(ca[i]);if(nu.length>15&&nc.length>15){if(nc.includes(nu)||nu.includes(nc))return{index:i,type:'partial'};const ml=Math.min(nu.length,nc.length,30);if(ml>10&&nu.substring(0,ml)===nc.substring(0,ml))return{index:i,type:'partial'}}}
-    return null
+// Track which sections have been validated/applied
+let pendingChanges = { skus: false, banners: false, depts: false };
+
+// =============================================
+// UTILITY FUNCTIONS
+// =============================================
+function switchTab(t, b) {
+    document.querySelectorAll('.main-tab').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+    document.getElementById('tab-' + t).classList.add('active');
 }
 
-function loadJSON(e){const f=e.target.files[0];if(!f)return;document.getElementById('fileName').textContent=f.name;const r=new FileReader();r.onload=function(ev){try{jsonData=JSON.parse(ev.target.result);jsonOriginal=JSON.parse(ev.target.result);processJSON(jsonData)}catch(er){showFS('error','❌ JSON inválido')}};r.readAsText(f)}
-
-function processJSON(d){
-    const comps=d.component||d.components||[];if(!comps.length){showFS('error','❌ No se encontró component');return}
-    cmsSkus=[];cmsBanners={};cmsDepts=[];
-    SKU_COMPS.forEach(cfg=>{let f=false;for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===cfg.id){cmsSkus.push({...cfg,skus:(c.product_carousel.products||[]).map(p=>p.trim().toUpperCase())});f=true;break}}if(!f)cmsSkus.push({...cfg,skus:[]})});
-    for(const c of comps){if(c.slider_banner&&c.slider_banner.component_id==='sliderBannerPromo'){if(c.slider_banner.slider)cmsBanners['sliderPrincipal']=(c.slider_banner.slider.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim(),category:i.analytics?.category||''}));if(c.slider_banner.banner)cmsBanners['bannersPromo']=(c.slider_banner.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}if(c.banner){const bid=c.banner.component_id;if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(bid))cmsBanners[bid]=(c.banner.items||[]).map(i=>({alt:i.alt||'',url:(i.link?.href||'').trim()}))}}
-    for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){cmsDepts=(c.department.items||[]).map((i,idx)=>({order:idx+1,name:i.link?i.link.title:'',text:i.text||'',link:i.link?i.link.href:''}));break}}
-    showDetected();const ts=cmsSkus.reduce((s,c)=>s+c.skus.length,0),tb=Object.values(cmsBanners).reduce((s,a)=>s+a.length,0);
-    showFS('success',`✅ JSON cargado (${channel==='store'?'Tienda':'.COM'}). ${ts} SKUs, ${tb} banners, ${cmsDepts.length} deptos.`)
+function toggleEl(id, s) {
+    document.getElementById(id).style.display = s ? 'block' : 'none';
 }
 
-function showDetected(){const d=document.getElementById('detected');d.style.display='block';d.innerHTML='<h3>📦 Componentes detectados:</h3>';cmsSkus.forEach(c=>{d.innerHTML+=`<div class="det-card"><span class="det-title">${c.icon} ${c.name}</span><span class="det-info"> — ${c.skus.length} SKUs</span></div>`});Object.entries(cmsBanners).forEach(([k,v])=>{d.innerHTML+=`<div class="det-card"><span class="det-title">🖼️ ${k}</span><span class="det-info"> — ${v.length} items</span></div>`});if(cmsDepts.length)d.innerHTML+=`<div class="det-card"><span class="det-title">🏷️ Departamentos</span><span class="det-info"> — ${cmsDepts.length}</span></div>`}
+function setChannel(c, b) {
+    channel = c;
+    document.querySelectorAll('.channel-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    if (jsonData) processJSON(jsonData);
+}
 
-function applyCorrectionsToJSON(type,data){if(!jsonOriginal)return;const comps=jsonOriginal.component||jsonOriginal.components||[];if(type==='skus'){data.forEach(corr=>{for(const c of comps){if(c.product_carousel&&c.product_carousel.component_id===corr.id){c.product_carousel.products=corr.correctedSkus;break}}})}if(type==='banners'){data.forEach(corr=>{if(corr.cmsKey==='sliderPrincipal'){for(const c of comps){if(c.slider_banner&&c.slider_banner.slider){corr.items.forEach((fix,i)=>{if(c.slider_banner.slider.items[i]){if(fix.alt!==undefined)c.slider_banner.slider.items[i].alt=fix.alt;if(fix.url!==undefined)c.slider_banner.slider.items[i].link.href=fix.url}});break}}}if(corr.cmsKey==='bannersPromo'){for(const c of comps){if(c.slider_banner&&c.slider_banner.banner){corr.items.forEach((fix,i)=>{if(c.slider_banner.banner.items[i]){if(fix.alt!==undefined)c.slider_banner.banner.items[i].alt=fix.alt;if(fix.url!==undefined)c.slider_banner.banner.items[i].link.href=fix.url}});break}}}if(['bannerMedio','bloqueCredito','bloqueServicios'].includes(corr.cmsKey)){for(const c of comps){if(c.banner&&c.banner.component_id===corr.cmsKey){corr.items.forEach((fix,i)=>{if(c.banner.items[i]){if(fix.alt!==undefined)c.banner.items[i].alt=fix.alt;if(fix.url!==undefined)c.banner.items[i].link.href=fix.url}});break}}}})}if(type==='depts'){for(const c of comps){if(c.department&&c.department.component_id==='bloqueDepartamentos'){data.forEach((fix,i)=>{if(c.department.items[i]){if(fix.name!==undefined&&c.department.items[i].link)c.department.items[i].link.title=fix.name;if(fix.text!==undefined)c.department.items[i].text=fix.text;if(fix.link!==undefined&&c.department.items[i].link)c.department.items[i].link.href=fix.link}});break}}}}
+function uc(t, c) {
+    const v = document.getElementById(t).value.trim();
+    const items = v ? v.split('\n').filter(x => x.trim() !== '') : [];
+    document.getElementById(c).textContent = items.length;
+}
 
-function downloadCorrectedJSON(){if(!jsonOriginal)return;const ch=channel==='store'?'Tienda':'COM';const now=new Date().toISOString().split('T')[0];const blob=new Blob([JSON.stringify(jsonOriginal,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`home_${ch}_corregido_${now}.json`;a.click()}
+function parseSkus(t) {
+    return t.split('\n').map(i => i.trim().replace(/,+$/, '').trim().toUpperCase()).filter(i => i !== '');
+}
 
+function parseLines(t) {
+    return t.split('\n').map(i => i.trim()).filter(i => i !== '');
+}
+
+function norm(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function convertUrl(u) {
+    return u.trim().replace(/^https?:\/\/(www\.)?coppel\.com/, '').trim() || u.trim();
+}
+
+function showFS(type, msg) {
+    const e = document.getElementById('fileStatus');
+    e.className = 'file-status ' + type;
+    e.textContent = msg;
+    e.style.display = 'block';
+}
+
+function updatePendingIndicator() {
+    const ind = document.getElementById('pendingIndicator');
+    const list = document.getElementById('pendingList');
+    const active = [];
+    if (pendingChanges.skus) active.push('SKUs');
+    if (pendingChanges.banners) active.push('Sliders/Banners');
+    if (pendingChanges.depts) active.push('Iconografía');
+    if (active.length > 0) {
+        list.textContent = active.join(', ');
+        ind.classList.add('show');
+    } else {
+        ind.classList.remove('show');
+    }
+}
+
+function findAltMatch(ua, ca) {
+    const nu = norm(ua);
+    for (let i = 0; i < ca.length; i++) {
+        if (norm(ca[i]) === nu) return { index: i, type: 'exact' };
+    }
+    for (let i = 0; i < ca.length; i++) {
+        const nc = norm(ca[i]);
+        if (nu.length > 15 && nc.length > 15) {
+            if (nc.includes(nu) || nu.includes(nc)) return { index: i, type: 'partial' };
+            const ml = Math.min(nu.length, nc.length, 30);
+            if (ml > 10 && nu.substring(0, ml) === nc.substring(0, ml)) return { index: i, type: 'partial' };
+        }
+    }
+    return null;
+}
+
+// =============================================
+// LOAD & PROCESS JSON
+// =============================================
+function loadJSON(e) {
+    const f = e.target.files[0];
+    if (!f) return;
+    document.getElementById('fileName').textContent = f.name;
+    const r = new FileReader();
+    r.onload = function(ev) {
+        try {
+            jsonData = JSON.parse(ev.target.result);
+            jsonOriginal = JSON.parse(ev.target.result);
+            pendingChanges = { skus: false, banners: false, depts: false };
+            updatePendingIndicator();
+            processJSON(jsonData);
+        } catch(er) {
+            showFS('error', '❌ JSON inválido: ' + er.message);
+        }
+    };
+    r.readAsText(f);
+}
+
+function processJSON(d) {
+    const comps = d.component || d.components || [];
+    if (!comps.length) {
+        showFS('error', '❌ No se encontró component');
+        return;
+    }
+    cmsSkus = [];
+    cmsBanners = {};
+    cmsDepts = [];
+
+    // SKUs
+    SKU_COMPS.forEach(cfg => {
+        let found = false;
+        for (const c of comps) {
+            if (c.product_carousel && c.product_carousel.component_id === cfg.id) {
+                cmsSkus.push({...cfg, skus: (c.product_carousel.products || []).map(p => p.trim().toUpperCase())});
+                found = true;
+                break;
+            }
+        }
+        if (!found) cmsSkus.push({...cfg, skus: []});
+    });
+
+    // Banners
+    for (const c of comps) {
+        if (c.slider_banner && c.slider_banner.component_id === 'sliderBannerPromo') {
+            if (c.slider_banner.slider) {
+                cmsBanners['sliderPrincipal'] = (c.slider_banner.slider.items || []).map(i => ({
+                    alt: i.alt || '', url: (i.link?.href || '').trim(), category: i.analytics?.category || ''
+                }));
+            }
+            if (c.slider_banner.banner) {
+                cmsBanners['bannersPromo'] = (c.slider_banner.banner.items || []).map(i => ({
+                    alt: i.alt || '', url: (i.link?.href || '').trim()
+                }));
+            }
+        }
+        if (c.banner) {
+            const bid = c.banner.component_id;
+            if (['bannerMedio', 'bloqueCredito', 'bloqueServicios'].includes(bid)) {
+                cmsBanners[bid] = (c.banner.items || []).map(i => ({
+                    alt: i.alt || '', url: (i.link?.href || '').trim()
+                }));
+            }
+        }
+    }
+
+    // Departments
+    for (const c of comps) {
+        if (c.department && c.department.component_id === 'bloqueDepartamentos') {
+            cmsDepts = (c.department.items || []).map((i, idx) => ({
+                order: idx + 1,
+                name: i.link ? i.link.title : '',
+                text: i.text || '',
+                link: i.link ? i.link.href : '',
+                _originalItem: JSON.parse(JSON.stringify(i)) // Deep copy of original item for reordering
+            }));
+            break;
+        }
+    }
+
+    showDetected();
+    const ts = cmsSkus.reduce((s, c) => s + c.skus.length, 0);
+    const tb = Object.values(cmsBanners).reduce((s, a) => s + a.length, 0);
+    showFS('success', '✅ JSON cargado (' + (channel === 'store' ? 'Tienda' : '.COM') + '). ' + ts + ' SKUs, ' + tb + ' banners, ' + cmsDepts.length + ' deptos.');
+}
+
+function showDetected() {
+    const d = document.getElementById('detected');
+    d.style.display = 'block';
+    let h = '<h3>📦 Componentes detectados:</h3>';
+    cmsSkus.forEach(c => {
+        h += '<div class="det-card"><span class="det-title">' + c.icon + ' ' + c.name + '</span><span class="det-info"> — ' + c.skus.length + ' SKUs</span></div>';
+    });
+    Object.entries(cmsBanners).forEach(([k, v]) => {
+        h += '<div class="det-card"><span class="det-title">🖼️ ' + k + '</span><span class="det-info"> — ' + v.length + ' items</span></div>';
+    });
+    if (cmsDepts.length) {
+        h += '<div class="det-card"><span class="det-title">🏷️ Departamentos</span><span class="det-info"> — ' + cmsDepts.length + '</span></div>';
+    }
+    d.innerHTML = h;
+}
+
+// =============================================
+// APPLY CORRECTIONS TO JSON (ACCUMULATED)
+// =============================================
+function applyCorrectionsToJSON(type, data) {
+    if (!jsonOriginal) return;
+    const comps = jsonOriginal.component || jsonOriginal.components || [];
+
+    if (type === 'skus') {
+        data.forEach(corr => {
+            for (const c of comps) {
+                if (c.product_carousel && c.product_carousel.component_id === corr.id) {
+                    c.product_carousel.products = corr.correctedSkus;
+                    break;
+                }
+            }
+        });
+        pendingChanges.skus = true;
+    }
+
+    if (type === 'banners') {
+        data.forEach(corr => {
+            if (corr.cmsKey === 'sliderPrincipal') {
+                for (const c of comps) {
+                    if (c.slider_banner && c.slider_banner.slider) {
+                        corr.items.forEach((fix, i) => {
+                            if (c.slider_banner.slider.items[i]) {
+                                if (fix.alt !== undefined) c.slider_banner.slider.items[i].alt = fix.alt;
+                                if (fix.url !== undefined && c.slider_banner.slider.items[i].link) c.slider_banner.slider.items[i].link.href = fix.url;
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+            if (corr.cmsKey === 'bannersPromo') {
+                for (const c of comps) {
+                    if (c.slider_banner && c.slider_banner.banner) {
+                        corr.items.forEach((fix, i) => {
+                            if (c.slider_banner.banner.items[i]) {
+                                if (fix.alt !== undefined) c.slider_banner.banner.items[i].alt = fix.alt;
+                                if (fix.url !== undefined && c.slider_banner.banner.items[i].link) c.slider_banner.banner.items[i].link.href = fix.url;
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+            if (['bannerMedio', 'bloqueCredito', 'bloqueServicios'].includes(corr.cmsKey)) {
+                for (const c of comps) {
+                    if (c.banner && c.banner.component_id === corr.cmsKey) {
+                        corr.items.forEach((fix, i) => {
+                            if (c.banner.items[i]) {
+                                if (fix.alt !== undefined) c.banner.items[i].alt = fix.alt;
+                                if (fix.url !== undefined && c.banner.items[i].link) c.banner.items[i].link.href = fix.url;
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+        });
+        pendingChanges.banners = true;
+    }
+
+    if (type === 'depts') {
+        for (const c of comps) {
+            if (c.department && c.department.component_id === 'bloqueDepartamentos') {
+                // data is the reordered array of original items
+                c.department.items = data;
+                break;
+            }
+        }
+        pendingChanges.depts = true;
+    }
+
+    updatePendingIndicator();
+}
+
+// =============================================
+// DOWNLOAD CORRECTED JSON (ALL ACCUMULATED)
+// =============================================
+function downloadCorrectedJSON() {
+    if (!jsonOriginal) {
+        alert('⚠️ No hay JSON cargado');
+        return;
+    }
+    const ch = channel === 'store' ? 'Tienda' : 'COM';
+    const now = new Date().toISOString().split('T')[0];
+    const blob = new Blob([JSON.stringify(jsonOriginal, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'home_' + ch + '_corregido_' + now + '.json';
+    a.click();
+}
+
+// =============================================
 // VALIDATE SKUs
-function validateSKUs(){if(!cmsSkus.length){alert('⚠️ Importa el JSON');return}let tC=0,tE=0,tF=0,allP=true;const res=document.getElementById('skuRes');let html='<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';const skuCorr=[];
-cmsSkus.forEach(cms=>{const txt=document.getElementById(cms.tid).value;if(!txt.trim()){html+=`<div class="result-card"><div class="result-card-header"><span>⏭️</span><h4>${cms.icon} ${cms.name}</h4></div><p class="perfect-msg" style="color:var(--text-muted)">Sin datos</p></div>`;return}const el=parseSkus(txt),cl=cms.skus;const correct=[],missing=[],extra=[];el.forEach(s=>{if(cl.includes(s))correct.push(s);else{missing.push(s);tF++}});cl.forEach(s=>{if(!el.includes(s))extra.push(s)});const seen={},dups={};cl.forEach(i=>{seen[i]=(seen[i]||0)+1;if(seen[i]>1)dups[i]=seen[i]});skuCorr.push({id:cms.id,correctedSkus:[...cl]});const dk=Object.keys(dups).length,ok=!missing.length&&!extra.length&&!dk;if(!ok)allP=false;tC+=correct.length;tE+=missing.length+extra.length+dk;
-let h=`<div class="result-card" style="border-left:3px solid ${ok?'var(--success-text)':'var(--error-text)'}"><div class="result-card-header"><span>${ok?'✅':'❌'}</span><h4>${cms.icon} ${cms.name}</h4><span class="mini">Excel: ${el.length} | CMS: ${cl.length}</span></div>`;if(correct.length)h+=`<div class="r-section"><div class="r-header correct">✅ Correctos (${correct.length})</div><ul class="r-list correct">${correct.map(s=>`<li>✔ ${s}</li>`).join('')}</ul></div>`;if(missing.length)h+=`<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (${missing.length})</div><ul class="r-list missing">${missing.map(s=>`<li>✖ ${s}</li>`).join('')}</ul></div>`;if(extra.length)h+=`<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (${extra.length})</div><ul class="r-list extra">${extra.map(s=>`<li>⚠ ${s}</li>`).join('')}</ul></div>`;if(dk)h+=`<div class="r-section"><div class="r-header dup">🔄 Duplicados</div><ul class="r-list dup">${Object.keys(dups).map(s=>`<li>🔄 ${s} (${dups[s]}x)</li>`).join('')}</ul></div>`;if(!ok)h+=`<div class="correction-box"><h5>🔧 SKUs correctos (del JSON):</h5><ul class="r-list fixed">${cl.map(s=>`<li>📋 ${s}</li>`).join('')}</ul></div>`;if(ok)h+=`<p class="perfect-msg">🎉 Todo correcto</p>`;html+=h+'</div>'});
-applyCorrectionsToJSON('skus',skuCorr);html+=`<div class="global-summary"><div class="g-card correct"><div class="number">${tC}</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">${tE}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${tF}</div><div class="label">🔧 Corregidos</div></div></div>`;html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Re-importa a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;html+=`<div class="status-bar ${allP?'success':'error'}">${allP?'🎉 ¡Todos los SKUs correctos!':'⛔ Errores encontrados. Descarga el JSON corregido.'}</div>`;res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})}
+// =============================================
+function validateSKUs() {
+    if (!cmsSkus.length) { alert('⚠️ Importa el JSON primero'); return; }
+    let tC = 0, tE = 0, tF = 0, allP = true;
+    const res = document.getElementById('skuRes');
+    let html = '<div class="results-header"><h2>📊 Resultados SKUs</h2></div>';
+    const skuCorr = [];
 
+    cmsSkus.forEach(cms => {
+        const txt = document.getElementById(cms.tid).value;
+        if (!txt.trim()) {
+            html += '<div class="result-card"><div class="result-card-header"><span>⏭️</span><h4>' + cms.icon + ' ' + cms.name + '</h4></div><p class="perfect-msg" style="color:var(--text-muted)">Sin datos del Excel</p></div>';
+            skuCorr.push({id: cms.id, correctedSkus: [...cms.skus]});
+            return;
+        }
+        const el = parseSkus(txt);
+        const cl = cms.skus;
+        const correct = [], missing = [], extra = [];
+        el.forEach(s => { if (cl.includes(s)) correct.push(s); else { missing.push(s); tF++; } });
+        cl.forEach(s => { if (!el.includes(s)) extra.push(s); });
+        const seen = {}, dups = {};
+        cl.forEach(i => { seen[i] = (seen[i] || 0) + 1; if (seen[i] > 1) dups[i] = seen[i]; });
+        skuCorr.push({id: cms.id, correctedSkus: [...cl]});
+        const dk = Object.keys(dups).length;
+        const ok = !missing.length && !extra.length && !dk;
+        if (!ok) allP = false;
+        tC += correct.length;
+        tE += missing.length + extra.length + dk;
+
+        let h = '<div class="result-card" style="border-left:3px solid ' + (ok ? 'var(--success-text)' : 'var(--error-text)') + '"><div class="result-card-header"><span>' + (ok ? '✅' : '❌') + '</span><h4>' + cms.icon + ' ' + cms.name + '</h4><span class="mini">Excel: ' + el.length + ' | CMS: ' + cl.length + '</span></div>';
+        if (correct.length) h += '<div class="r-section"><div class="r-header correct">✅ Correctos (' + correct.length + ')</div><ul class="r-list correct">' + correct.map(s => '<li>✔ ' + s + '</li>').join('') + '</ul></div>';
+        if (missing.length) h += '<div class="r-section"><div class="r-header missing">❌ En Excel no en CMS (' + missing.length + ')</div><ul class="r-list missing">' + missing.map(s => '<li>✖ ' + s + '</li>').join('') + '</ul></div>';
+        if (extra.length) h += '<div class="r-section"><div class="r-header extra">⚠️ En CMS no en Excel (' + extra.length + ')</div><ul class="r-list extra">' + extra.map(s => '<li>⚠ ' + s + '</li>').join('') + '</ul></div>';
+        if (dk) h += '<div class="r-section"><div class="r-header dup">🔄 Duplicados</div><ul class="r-list dup">' + Object.keys(dups).map(s => '<li>🔄 ' + s + ' (' + dups[s] + 'x)</li>').join('') + '</ul></div>';
+        if (!ok) h += '<div class="correction-box"><h5>🔧 SKUs correctos (del JSON):</h5><ul class="r-list fixed">' + cl.map(s => '<li>📋 ' + s + '</li>').join('') + '</ul></div>';
+        if (ok) h += '<p class="perfect-msg">🎉 Todo correcto</p>';
+        html += h + '</div>';
+    });
+
+    applyCorrectionsToJSON('skus', skuCorr);
+
+    html += '<div class="global-summary"><div class="g-card correct"><div class="number">' + tC + '</div><div class="label">✅ Correctos</div></div><div class="g-card errors"><div class="number">' + tE + '</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">' + tF + '</div><div class="label">🔧 Corregidos</div></div></div>';
+    html += '<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Incluye correcciones de SKUs' + (pendingChanges.banners ? ', Sliders/Banners' : '') + (pendingChanges.depts ? ', Iconografía' : '') + '</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>';
+    html += '<div class="status-bar ' + (allP ? 'success' : 'error') + '">' + (allP ? '🎉 ¡Todos los SKUs correctos!' : '⛔ Errores encontrados. Descarga el JSON corregido.') + '</div>';
+    res.innerHTML = html;
+    res.style.display = 'block';
+    res.scrollIntoView({behavior: 'smooth'});
+}
+
+// =============================================
 // VALIDATE BANNERS
-function validateBanners(){if(!Object.keys(cmsBanners).length){alert('⚠️ Importa el JSON');return}let totalErr=0,totalFix=0;const res=document.getElementById('bannerRes');let html='<div class="results-header"><h2>📊 Resultados Sliders / Banners</h2></div>';const bannerCorr=[];
-const orderTxt=document.getElementById('slider-order').value;if(orderTxt.trim()&&cmsBanners.sliderPrincipal){const uo=parseLines(orderTxt),cs=cmsBanners.sliderPrincipal;let oErr=0;let oh=`<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden Slider</h4><span class="mini">Correo: ${uo.length} | CMS: ${cs.length}</span></div>`;oh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS</th><th></th></tr>`;const mx=Math.max(uo.length,cs.length);for(let i=0;i<mx;i++){const u=uo[i]||'—',c=cs[i]?cs[i].category.replace(/^[A-Z]-\s*/,''):'—';const ok=norm(u)===norm(c);if(!ok)oErr++;oh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}oh+='</table>';totalErr+=oErr;totalFix+=oErr;oh+=oErr?`<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ${oErr} posición(es) incorrecta(s)</div></div>`:`<p class="perfect-msg">🎉 Orden perfecto</p>`;html+=oh+'</div>'}
-const sections=[{name:'Slider Principal',altId:'slider-alts',urlId:'slider-urls',cmsKey:'sliderPrincipal',icon:'🖼️'},{name:'Banners Promo',altId:'banner-alts',urlId:'banner-urls',cmsKey:'bannersPromo',icon:'📸'},{name:'Banner Medio',altId:'bmedio-alt',urlId:'bmedio-url',cmsKey:'bannerMedio',icon:'🖼️'},{name:'Bloque Crédito',altId:'credito-alts',urlId:'credito-urls',cmsKey:'bloqueCredito',icon:'💳'},{name:'Bloque Servicios',altId:'servicio-alts',urlId:'servicio-urls',cmsKey:'bloqueServicios',icon:'📸'}];
-sections.forEach(sec=>{const altTxt=document.getElementById(sec.altId).value,urlTxt=document.getElementById(sec.urlId).value;const cmsItems=cmsBanners[sec.cmsKey]||[];if(!altTxt.trim()&&!urlTxt.trim())return;let sErr=0;const corrItems=cmsItems.map(i=>({alt:i.alt,url:i.url}));let sh=`<div class="result-card"><div class="result-card-header"><span>${sec.icon}</span><h4>${sec.name}</h4><span class="mini">CMS: ${cmsItems.length}</span></div>`;
-if(altTxt.trim()){const ua=parseLines(altTxt),ca=cmsItems.map(i=>i.alt);const matched=[],unmatched=[];ua.forEach(a=>{const m=findAltMatch(a,ca);if(m)matched.push({user:a,cms:ca[m.index],type:m.type});else{unmatched.push(a);sErr++;totalFix++}});const mi=matched.map(m=>ca.indexOf(m.cms)),uc2=ca.filter((_,i)=>!mi.includes(i));if(matched.length)sh+=`<div class="r-section"><div class="r-header correct">📝 ALTs OK (${matched.length})</div><ul class="r-list correct">${matched.map(m=>`<li>✔ ${m.user.substring(0,80)}... <span class="match-tag ${m.type}">${m.type==='exact'?'EXACTO':'PARCIAL'}</span></li>`).join('')}</ul></div>`;if(unmatched.length)sh+=`<div class="r-section"><div class="r-header missing">❌ ALTs no encontrados (${unmatched.length})</div><ul class="r-list missing">${unmatched.map(u=>`<li>✖ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;if(uc2.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match (${uc2.length})</div><ul class="r-list extra">${uc2.map(u=>`<li>⚠ ${u.substring(0,100)}</li>`).join('')}</ul></div>`;if(unmatched.length||uc2.length)sh+=`<div class="correction-box"><h5>🔧 ALTs correctos:</h5><ul class="r-list fixed">${ca.map(a=>`<li>📋 ${a}</li>`).join('')}</ul></div>`}
-if(urlTxt.trim()){const uu=parseLines(urlTxt).map(convertUrl),cu=cmsItems.map(i=>i.url.trim());const mU=[],umU=[];uu.forEach(u=>{const f=cu.findIndex(c=>c.trim()===u.trim());if(f!==-1)mU.push({user:u,cms:cu[f]});else{umU.push(u);sErr++;totalFix++}});const mcu=mU.map(m=>m.cms),umcu=cu.filter(u=>!mcu.includes(u));if(mU.length)sh+=`<div class="r-section"><div class="r-header correct">🔗 URLs OK (${mU.length})</div><ul class="r-list correct">${mU.map(m=>`<li>✔ ${m.user}</li>`).join('')}</ul></div>`;if(umU.length)sh+=`<div class="r-section"><div class="r-header missing">❌ URLs no encontradas (${umU.length})</div><ul class="r-list missing">${umU.map(u=>`<li>✖ ${u}</li>`).join('')}</ul></div>`;if(umcu.length)sh+=`<div class="r-section"><div class="r-header extra">⚠️ URLs en CMS sin match (${umcu.length})</div><ul class="r-list extra">${umcu.map(u=>`<li>⚠ ${u}</li>`).join('')}</ul></div>`;if(umU.length||umcu.length)sh+=`<div class="correction-box"><h5>🔧 URLs correctas:</h5><ul class="r-list fixed">${cu.map(u=>`<li>📋 ${u}</li>`).join('')}</ul></div>`}
-bannerCorr.push({cmsKey:sec.cmsKey,items:corrItems});totalErr+=sErr;sh+=sErr?`<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ${sErr} error(es)</div></div>`:`<p class="perfect-msg">🎉 Todo correcto</p>`;html+=sh+'</div>'});
-applyCorrectionsToJSON('banners',bannerCorr);html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Por corregir</div></div></div>`;html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Re-importa a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Todo perfecto!'}</div>`;res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})}
+// =============================================
+function validateBanners() {
+    if (!Object.keys(cmsBanners).length) { alert('⚠️ Importa el JSON primero'); return; }
+    let totalErr = 0, totalFix = 0;
+    const res = document.getElementById('bannerRes');
+    let html = '<div class="results-header"><h2>📊 Resultados Sliders / Banners</h2></div>';
+    const bannerCorr = [];
 
-// VALIDATE DEPTS
-function validateDepts(){if(!cmsDepts.length){alert('⚠️ Importa el JSON');return}const nt=document.getElementById('dept-names').value;if(!nt.trim()){alert('⚠️ Pega los nombres');return}const un=parseLines(nt);let totalErr=0,totalFix=0;const res=document.getElementById('deptRes');let html='<div class="results-header"><h2>📊 Resultados Iconografía</h2></div>';const deptCorr=cmsDepts.map(d=>({name:d.name,text:d.text,link:d.link}));
-const mx=Math.max(un.length,cmsDepts.length);let oErr=0;let nh=`<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden Departamentos</h4><span class="mini">Excel: ${un.length} | CMS: ${cmsDepts.length}</span></div>`;nh+=`<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS (correcto)</th><th></th></tr>`;for(let i=0;i<mx;i++){const u=un[i]||'—',c=cmsDepts[i]?cmsDepts[i].name:'—';const ok=norm(u)===norm(c);if(!ok){oErr++;totalFix++}nh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}nh+='</table>';totalErr+=oErr;if(oErr)nh+=`<div class="correction-box"><h5>🔧 Orden correcto:</h5><ul class="r-list fixed">${cmsDepts.map((d,i)=>`<li>📋 ${i+1}. ${d.name}</li>`).join('')}</ul></div>`;else nh+=`<p class="perfect-msg">🎉 Orden perfecto</p>`;html+=nh+'</div>';
-if(document.getElementById('chkPct').checked){const pt=document.getElementById('dept-pcts').value;if(pt.trim()){const up=parseLines(pt);let pE=0;let ph=`<div class="result-card"><div class="result-card-header"><span>📊</span><h4>Porcentajes</h4></div>`;ph+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>`;for(let i=0;i<Math.max(up.length,cmsDepts.length);i++){const u=up[i]||'—',c=cmsDepts[i]?cmsDepts[i].text:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=norm(u)===norm(c);if(!ok){pE++;totalFix++}ph+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}ph+='</table>';totalErr+=pE;if(pE)ph+=`<div class="correction-box"><h5>🔧 Porcentajes correctos:</h5><ul class="r-list fixed">${cmsDepts.map(d=>`<li>📋 ${d.name}: ${d.text}</li>`).join('')}</ul></div>`;else ph+=`<p class="perfect-msg">🎉 Correctos</p>`;html+=ph+'</div>'}}
-if(document.getElementById('chkLinks').checked){const lt=document.getElementById('dept-links').value;if(lt.trim()){const ul=parseLines(lt);let lE=0;let lh=`<div class="result-card"><div class="result-card-header"><span>🔗</span><h4>Links</h4></div>`;lh+=`<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>`;for(let i=0;i<Math.max(ul.length,cmsDepts.length);i++){const u=ul[i]||'—',c=cmsDepts[i]?cmsDepts[i].link:'—',dn=cmsDepts[i]?cmsDepts[i].name:'';const ok=u.trim()===c.trim();if(!ok){lE++;totalFix++}lh+=`<tr class="${ok?'row-ok':'row-bad'}"><td>${i+1}</td><td>${dn}</td><td>${u}</td><td>${c}</td><td>${ok?'✅':'❌'}</td></tr>`}lh+='</table>';totalErr+=lE;if(lE)lh+=`<div class="correction-box"><h5>🔧 Links correctos:</h5><ul class="r-list fixed">${cmsDepts.map(d=>`<li>📋 ${d.name}: ${d.link}</li>`).join('')}</ul></div>`;else lh+=`<p class="perfect-msg">🎉 Correctos</p>`;html+=lh+'</div>'}}
-applyCorrectionsToJSON('depts',deptCorr);html+=`<div class="global-summary"><div class="g-card errors"><div class="number">${totalErr}</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">${totalFix}</div><div class="label">🔧 Corregidos</div></div></div>`;html+=`<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Re-importa a ContentStack.</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>`;html+=`<div class="status-bar ${totalErr?'error':'success'}">${totalErr?`⛔ ${totalErr} error(es)`:'🎉 ¡Iconografía perfecta!'}</div>`;res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'})}
+    // Slider order check
+    const orderTxt = document.getElementById('slider-order').value;
+    if (orderTxt.trim() && cmsBanners.sliderPrincipal) {
+        const uo = parseLines(orderTxt);
+        const cs = cmsBanners.sliderPrincipal;
+        let oErr = 0;
+        let oh = '<div class="result-card"><div class="result-card-header"><span>🖼️</span><h4>Orden Slider</h4><span class="mini">Correo: ' + uo.length + ' | CMS: ' + cs.length + '</span></div>';
+        oh += '<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS</th><th></th></tr>';
+        const mx = Math.max(uo.length, cs.length);
+        for (let i = 0; i < mx; i++) {
+            const u = uo[i] || '—';
+            const c = cs[i] ? cs[i].category.replace(/^[A-Z]-\s*/, '') : '—';
+            const ok = norm(u) === norm(c);
+            if (!ok) oErr++;
+            oh += '<tr class="' + (ok ? 'row-ok' : 'row-bad') + '"><td>' + (i+1) + '</td><td>' + u + '</td><td>' + c + '</td><td>' + (ok ? '✅' : '❌') + '</td></tr>';
+        }
+        oh += '</table>';
+        totalErr += oErr;
+        totalFix += oErr;
+        oh += oErr ? '<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ' + oErr + ' posición(es) incorrecta(s)</div></div>' : '<p class="perfect-msg">🎉 Orden perfecto</p>';
+        html += oh + '</div>';
+    }
 
-function clearSKUs(){SKU_COMPS.forEach(c=>{document.getElementById(c.tid).value='';document.getElementById(c.cid).textContent='0'});document.getElementById('skuRes').style.display='none'}
-function clearBanners(){['slider-order','slider-alts','slider-urls','banner-alts','banner-urls','bmedio-alt','bmedio-url','credito-alts','credito-urls','servicio-alts','servicio-urls'].forEach(id=>{document.getElementById(id).value=''});['c-so','c-sa','c-su','c-ba','c-bu','c-bma','c-bmu','c-ca','c-cu','c-sva','c-svu'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('bannerRes').style.display='none'}
-function clearDepts(){['dept-names','dept-pcts','dept-links'].forEach(id=>{document.getElementById(id).value=''});['c-dn','c-dp','c-dl'].forEach(id=>{document.getElementById(id).textContent='0'});document.getElementById('deptRes').style.display='none'}
+    // Banner sections
+    const sections = [
+        {name:'Slider Principal', altId:'slider-alts', urlId:'slider-urls', cmsKey:'sliderPrincipal', icon:'🖼️'},
+        {name:'Banners Promo', altId:'banner-alts', urlId:'banner-urls', cmsKey:'bannersPromo', icon:'📸'},
+        {name:'Banner Medio', altId:'bmedio-alt', urlId:'bmedio-url', cmsKey:'bannerMedio', icon:'🖼️'},
+        {name:'Bloque Crédito', altId:'credito-alts', urlId:'credito-urls', cmsKey:'bloqueCredito', icon:'💳'},
+        {name:'Bloque Servicios', altId:'servicio-alts', urlId:'servicio-urls', cmsKey:'bloqueServicios', icon:'📸'}
+    ];
+
+    sections.forEach(sec => {
+        const altTxt = document.getElementById(sec.altId).value;
+        const urlTxt = document.getElementById(sec.urlId).value;
+        const cmsItems = cmsBanners[sec.cmsKey] || [];
+        if (!altTxt.trim() && !urlTxt.trim()) return;
+        let sErr = 0;
+        const corrItems = cmsItems.map(i => ({alt: i.alt, url: i.url}));
+        let sh = '<div class="result-card"><div class="result-card-header"><span>' + sec.icon + '</span><h4>' + sec.name + '</h4><span class="mini">CMS: ' + cmsItems.length + '</span></div>';
+
+        // ALTs
+        if (altTxt.trim()) {
+            const ua = parseLines(altTxt);
+            const ca = cmsItems.map(i => i.alt);
+            const matched = [], unmatched = [];
+            ua.forEach(a => {
+                const m = findAltMatch(a, ca);
+                if (m) matched.push({user: a, cms: ca[m.index], type: m.type});
+                else { unmatched.push(a); sErr++; totalFix++; }
+            });
+            const mi = matched.map(m => ca.indexOf(m.cms));
+            const uc2 = ca.filter((_, i) => !mi.includes(i));
+            if (matched.length) sh += '<div class="r-section"><div class="r-header correct">📝 ALTs OK (' + matched.length + ')</div><ul class="r-list correct">' + matched.map(m => '<li>✔ ' + m.user.substring(0, 80) + '... <span class="match-tag ' + m.type + '">' + (m.type === 'exact' ? 'EXACTO' : 'PARCIAL') + '</span></li>').join('') + '</ul></div>';
+            if (unmatched.length) sh += '<div class="r-section"><div class="r-header missing">❌ ALTs no encontrados (' + unmatched.length + ')</div><ul class="r-list missing">' + unmatched.map(u => '<li>✖ ' + u.substring(0, 100) + '</li>').join('') + '</ul></div>';
+            if (uc2.length) sh += '<div class="r-section"><div class="r-header extra">⚠️ ALTs en CMS sin match (' + uc2.length + ')</div><ul class="r-list extra">' + uc2.map(u => '<li>⚠ ' + u.substring(0, 100) + '</li>').join('') + '</ul></div>';
+            if (unmatched.length || uc2.length) sh += '<div class="correction-box"><h5>🔧 ALTs correctos:</h5><ul class="r-list fixed">' + ca.map(a => '<li>📋 ' + a + '</li>').join('') + '</ul></div>';
+        }
+
+        // URLs
+        if (urlTxt.trim()) {
+            const uu = parseLines(urlTxt).map(convertUrl);
+            const cu = cmsItems.map(i => i.url.trim());
+            const mU = [], umU = [];
+            uu.forEach(u => {
+                const f = cu.findIndex(c => c.trim() === u.trim());
+                if (f !== -1) mU.push({user: u, cms: cu[f]});
+                else { umU.push(u); sErr++; totalFix++; }
+            });
+            const mcu = mU.map(m => m.cms);
+            const umcu = cu.filter(u => !mcu.includes(u));
+            if (mU.length) sh += '<div class="r-section"><div class="r-header correct">🔗 URLs OK (' + mU.length + ')</div><ul class="r-list correct">' + mU.map(m => '<li>✔ ' + m.user + '</li>').join('') + '</ul></div>';
+            if (umU.length) sh += '<div class="r-section"><div class="r-header missing">❌ URLs no encontradas (' + umU.length + ')</div><ul class="r-list missing">' + umU.map(u => '<li>✖ ' + u + '</li>').join('') + '</ul></div>';
+            if (umcu.length) sh += '<div class="r-section"><div class="r-header extra">⚠️ URLs en CMS sin match (' + umcu.length + ')</div><ul class="r-list extra">' + umcu.map(u => '<li>⚠ ' + u + '</li>').join('') + '</ul></div>';
+            if (umU.length || umcu.length) sh += '<div class="correction-box"><h5>🔧 URLs correctas:</h5><ul class="r-list fixed">' + cu.map(u => '<li>📋 ' + u + '</li>').join('') + '</ul></div>';
+        }
+
+        bannerCorr.push({cmsKey: sec.cmsKey, items: corrItems});
+        totalErr += sErr;
+        sh += sErr ? '<div class="r-section" style="margin-top:8px"><div class="r-header missing">❌ ' + sErr + ' error(es)</div></div>' : '<p class="perfect-msg">🎉 Todo correcto</p>';
+        html += sh + '</div>';
+    });
+
+    applyCorrectionsToJSON('banners', bannerCorr);
+
+    html += '<div class="global-summary"><div class="g-card errors"><div class="number">' + totalErr + '</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">' + totalFix + '</div><div class="label">🔧 Por corregir</div></div></div>';
+    html += '<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Incluye correcciones de ' + (pendingChanges.skus ? 'SKUs, ' : '') + 'Sliders/Banners' + (pendingChanges.depts ? ', Iconografía' : '') + '</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>';
+    html += '<div class="status-bar ' + (totalErr ? 'error' : 'success') + '">' + (totalErr ? '⛔ ' + totalErr + ' error(es) encontrados' : '🎉 ¡Todo perfecto!') + '</div>';
+    res.innerHTML = html;
+    res.style.display = 'block';
+    res.scrollIntoView({behavior: 'smooth'});
+}
+
+// =============================================
+// VALIDATE DEPTS (WITH REORDER!)
+// =============================================
+function validateDepts() {
+    if (!cmsDepts.length) { alert('⚠️ Importa el JSON primero'); return; }
+    const nt = document.getElementById('dept-names').value;
+    if (!nt.trim()) { alert('⚠️ Pega los nombres de departamentos'); return; }
+    const un = parseLines(nt);
+    const doReorder = document.getElementById('chkReorder').checked;
+    let totalErr = 0, totalFix = 0, totalReordered = 0;
+    const res = document.getElementById('deptRes');
+    let html = '<div class="results-header"><h2>📊 Resultados Iconografía</h2></div>';
+
+    // =============================================
+    // REORDER LOGIC
+    // =============================================
+    let reorderedItems = []; // This will hold the final reordered original items for the JSON
+    let reorderReport = [];
+
+    if (doReorder) {
+        // Build a map: normalized name -> original CMS item(s)
+        const cmsMap = new Map();
+        cmsDepts.forEach(dept => {
+            const key = norm(dept.name);
+            if (!cmsMap.has(key)) cmsMap.set(key, []);
+            cmsMap.get(key).push(dept);
+        });
+
+        const usedIndices = new Set();
+        const newOrder = [];
+
+        // For each name in the user's list, find the matching CMS item
+        un.forEach((userName, newIdx) => {
+            const key = norm(userName);
+            let found = null;
+            if (cmsMap.has(key)) {
+                const candidates = cmsMap.get(key);
+                for (const cand of candidates) {
+                    const origIdx = cmsDepts.indexOf(cand);
+                    if (!usedIndices.has(origIdx)) {
+                        found = cand;
+                        usedIndices.add(origIdx);
+                        break;
+                    }
+                }
+            }
+            // Partial match fallback
+            if (!found) {
+                for (let i = 0; i < cmsDepts.length; i++) {
+                    if (usedIndices.has(i)) continue;
+                    const nc = norm(cmsDepts[i].name);
+                    if (nc.includes(key) || key.includes(nc)) {
+                        found = cmsDepts[i];
+                        usedIndices.add(i);
+                        break;
+                    }
+                }
+            }
+
+            if (found) {
+                const oldPos = found.order;
+                const newPos = newIdx + 1;
+                const moved = oldPos !== newPos;
+                if (moved) totalReordered++;
+                newOrder.push({
+                    item: found,
+                    userName: userName,
+                    oldPos: oldPos,
+                    newPos: newPos,
+                    moved: moved,
+                    status: moved ? 'moved' : 'same'
+                });
+            } else {
+                newOrder.push({
+                    item: null,
+                    userName: userName,
+                    oldPos: '—',
+                    newPos: newIdx + 1,
+                    moved: false,
+                    status: 'not_found'
+                });
+            }
+        });
+
+        // Items in CMS not in user's list → append at the end
+        const remaining = [];
+        cmsDepts.forEach((dept, i) => {
+            if (!usedIndices.has(i)) {
+                remaining.push(dept);
+            }
+        });
+
+        reorderReport = { newOrder, remaining };
+
+        // Build the reordered items array for JSON
+        newOrder.forEach(entry => {
+            if (entry.item) reorderedItems.push(entry.item._originalItem);
+        });
+        remaining.forEach(dept => {
+            reorderedItems.push(dept._originalItem);
+        });
+
+        // === REORDER REPORT CARD ===
+        let rh = '<div class="result-card" style="border-left:3px solid var(--purple-text)"><div class="result-card-header"><span>🔄</span><h4>Reordenamiento de Iconografía</h4><span class="mini">Tu lista: ' + un.length + ' | CMS: ' + cmsDepts.length + '</span></div>';
+
+        if (totalReordered === 0 && remaining.length === 0 && newOrder.every(e => e.status !== 'not_found')) {
+            rh += '<p class="perfect-msg">🎉 El orden ya es idéntico, no se necesita reordenar</p>';
+        } else {
+            rh += '<table class="order-table"><tr><th>Nuevo #</th><th>Nombre</th><th>Pos. anterior</th><th>Estado</th></tr>';
+            newOrder.forEach(entry => {
+                let rowClass = 'row-ok';
+                let statusIcon = '✅ Sin cambio';
+                if (entry.status === 'not_found') {
+                    rowClass = 'row-bad';
+                    statusIcon = '❌ No encontrado en CMS';
+                    totalErr++;
+                } else if (entry.moved) {
+                    rowClass = 'row-moved';
+                    statusIcon = '🔄 Movido (' + entry.oldPos + ' → ' + entry.newPos + ')';
+                }
+                rh += '<tr class="' + rowClass + '"><td>' + entry.newPos + '</td><td>' + entry.userName + '</td><td>' + entry.oldPos + '</td><td>' + statusIcon + '</td></tr>';
+            });
+            if (remaining.length) {
+                remaining.forEach((dept, i) => {
+                    rh += '<tr class="row-bad"><td>' + (newOrder.length + i + 1) + '</td><td>' + dept.name + '</td><td>' + dept.order + '</td><td>⚠️ No en tu lista (al final)</td></tr>';
+                });
+            }
+            rh += '</table>';
+
+            if (totalReordered > 0) {
+                rh += '<div class="reorder-box"><h5>🔄 ' + totalReordered + ' item(s) reordenados en el JSON</h5><ul class="r-list reorder">';
+                newOrder.filter(e => e.moved).forEach(e => {
+                    rh += '<li>🔄 ' + e.userName + ': posición ' + e.oldPos + ' → ' + e.newPos + '</li>';
+                });
+                rh += '</ul></div>';
+            }
+            if (remaining.length) {
+                rh += '<div class="correction-box"><h5>⚠️ ' + remaining.length + ' item(s) del CMS no estaban en tu lista (se agregan al final):</h5><ul class="r-list extra">';
+                remaining.forEach(d => { rh += '<li>⚠ ' + d.name + '</li>'; });
+                rh += '</ul></div>';
+            }
+        }
+        html += rh + '</div>';
+    } else {
+        // No reorder — just compare order like before
+        reorderedItems = cmsDepts.map(d => d._originalItem);
+        const mx2 = Math.max(un.length, cmsDepts.length);
+        let oErr = 0;
+        let nh = '<div class="result-card"><div class="result-card-header"><span>🏷️</span><h4>Orden Departamentos</h4><span class="mini">Excel: ' + un.length + ' | CMS: ' + cmsDepts.length + '</span></div>';
+        nh += '<table class="order-table"><tr><th>#</th><th>Tu orden</th><th>CMS (actual)</th><th></th></tr>';
+        for (let i = 0; i < mx2; i++) {
+            const u = un[i] || '—';
+            const c = cmsDepts[i] ? cmsDepts[i].name : '—';
+            const ok = norm(u) === norm(c);
+            if (!ok) { oErr++; totalFix++; }
+            nh += '<tr class="' + (ok ? 'row-ok' : 'row-bad') + '"><td>' + (i+1) + '</td><td>' + u + '</td><td>' + c + '</td><td>' + (ok ? '✅' : '❌') + '</td></tr>';
+        }
+        nh += '</table>';
+        totalErr += oErr;
+        if (oErr) {
+            nh += '<div class="correction-box"><h5>🔧 Orden actual en CMS:</h5><ul class="r-list fixed">' + cmsDepts.map((d, i) => '<li>📋 ' + (i+1) + '. ' + d.name + '</li>').join('') + '</ul></div>';
+        } else {
+            nh += '<p class="perfect-msg">🎉 Orden perfecto</p>';
+        }
+        html += nh + '</div>';
+    }
+
+    // =============================================
+    // PORCENTAJES
+    // =============================================
+    // Use the reordered cmsDepts for comparison if reorder was done
+    let effectiveDepts = cmsDepts;
+    if (doReorder && reorderReport.newOrder) {
+        // Build effective list in new order
+        effectiveDepts = [];
+        reorderReport.newOrder.forEach(entry => {
+            if (entry.item) effectiveDepts.push(entry.item);
+        });
+        reorderReport.remaining.forEach(dept => {
+            effectiveDepts.push(dept);
+        });
+    }
+
+    if (document.getElementById('chkPct').checked) {
+        const pt = document.getElementById('dept-pcts').value;
+        if (pt.trim()) {
+            const up = parseLines(pt);
+            let pE = 0;
+            let ph = '<div class="result-card"><div class="result-card-header"><span>📊</span><h4>Porcentajes</h4></div>';
+            ph += '<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>';
+            for (let i = 0; i < Math.max(up.length, effectiveDepts.length); i++) {
+                const u = up[i] || '—';
+                const c = effectiveDepts[i] ? effectiveDepts[i].text : '—';
+                const dn = effectiveDepts[i] ? effectiveDepts[i].name : '';
+                const ok = norm(u) === norm(c);
+                if (!ok) { pE++; totalFix++; }
+                ph += '<tr class="' + (ok ? 'row-ok' : 'row-bad') + '"><td>' + (i+1) + '</td><td>' + dn + '</td><td>' + u + '</td><td>' + c + '</td><td>' + (ok ? '✅' : '❌') + '</td></tr>';
+            }
+            ph += '</table>';
+            totalErr += pE;
+            if (pE) {
+                ph += '<div class="correction-box"><h5>🔧 Porcentajes en CMS:</h5><ul class="r-list fixed">' + effectiveDepts.map(d => '<li>📋 ' + d.name + ': ' + d.text + '</li>').join('') + '</ul></div>';
+            } else {
+                ph += '<p class="perfect-msg">🎉 Correctos</p>';
+            }
+            html += ph + '</div>';
+        }
+    }
+
+    // =============================================
+    // LINKS
+    // =============================================
+    if (document.getElementById('chkLinks').checked) {
+        const lt = document.getElementById('dept-links').value;
+        if (lt.trim()) {
+            const ul = parseLines(lt);
+            let lE = 0;
+            let lh = '<div class="result-card"><div class="result-card-header"><span>🔗</span><h4>Links</h4></div>';
+            lh += '<table class="order-table"><tr><th>#</th><th>Depto</th><th>Tuyo</th><th>CMS</th><th></th></tr>';
+            for (let i = 0; i < Math.max(ul.length, effectiveDepts.length); i++) {
+                const u = ul[i] || '—';
+                const c = effectiveDepts[i] ? effectiveDepts[i].link : '—';
+                const dn = effectiveDepts[i] ? effectiveDepts[i].name : '';
+                const ok = u.trim() === c.trim();
+                if (!ok) { lE++; totalFix++; }
+                lh += '<tr class="' + (ok ? 'row-ok' : 'row-bad') + '"><td>' + (i+1) + '</td><td>' + dn + '</td><td>' + u + '</td><td>' + c + '</td><td>' + (ok ? '✅' : '❌') + '</td></tr>';
+            }
+            lh += '</table>';
+            totalErr += lE;
+            if (lE) {
+                lh += '<div class="correction-box"><h5>🔧 Links en CMS:</h5><ul class="r-list fixed">' + effectiveDepts.map(d => '<li>📋 ' + d.name + ': ' + d.link + '</li>').join('') + '</ul></div>';
+            } else {
+                lh += '<p class="perfect-msg">🎉 Correctos</p>';
+            }
+            html += lh + '</div>';
+        }
+    }
+
+    // Apply reordered items to JSON
+    applyCorrectionsToJSON('depts', reorderedItems);
+
+    // Summary
+    html += '<div class="global-summary"><div class="g-card errors"><div class="number">' + totalErr + '</div><div class="label">❌ Errores</div></div><div class="g-card fixed"><div class="number">' + totalFix + '</div><div class="label">🔧 Observaciones</div></div>' + (doReorder ? '<div class="g-card reorder"><div class="number">' + totalReordered + '</div><div class="label">🔄 Reordenados</div></div>' : '') + '</div>';
+    html += '<div class="download-section"><h4>📥 Descargar JSON Corregido</h4><p>Incluye ' + (pendingChanges.skus ? 'SKUs, ' : '') + (pendingChanges.banners ? 'Sliders/Banners, ' : '') + 'Iconografía' + (doReorder && totalReordered > 0 ? ' (reordenada)' : '') + '</p><div class="download-btns"><button class="btn btn-download-json" onclick="downloadCorrectedJSON()">📥 Descargar JSON Corregido</button></div></div>';
+    html += '<div class="status-bar ' + (totalErr ? 'error' : 'success') + '">' + (totalErr ? '⛔ ' + totalErr + ' error(es) encontrados' : '🎉 ¡Iconografía perfecta!' + (totalReordered > 0 ? ' (reordenada ✅)' : '')) + '</div>';
+    res.innerHTML = html;
+    res.style.display = 'block';
+    res.scrollIntoView({behavior: 'smooth'});
+}
+
+// =============================================
+// CLEAR FUNCTIONS
+// =============================================
+function clearSKUs() {
+    SKU_COMPS.forEach(c => {
+        document.getElementById(c.tid).value = '';
+        document.getElementById(c.cid).textContent = '0';
+    });
+    document.getElementById('skuRes').style.display = 'none';
+}
+
+function clearBanners() {
+    ['slider-order','slider-alts','slider-urls','banner-alts','banner-urls','bmedio-alt','bmedio-url','credito-alts','credito-urls','servicio-alts','servicio-urls'].forEach(id => {
+        document.getElementById(id).value = '';
+    });
+    ['c-so','c-sa','c-su','c-ba','c-bu','c-bma','c-bmu','c-ca','c-cu','c-sva','c-svu'].forEach(id => {
+        document.getElementById(id).textContent = '0';
+    });
+    document.getElementById('bannerRes').style.display = 'none';
+}
+
+function clearDepts() {
+    ['dept-names','dept-pcts','dept-links'].forEach(id => {
+        document.getElementById(id).value = '';
+    });
+    ['c-dn','c-dp','c-dl'].forEach(id => {
+        document.getElementById(id).textContent = '0';
+    });
+    document.getElementById('deptRes').style.display = 'none';
+}
 </script>
 </body>
 </html>
